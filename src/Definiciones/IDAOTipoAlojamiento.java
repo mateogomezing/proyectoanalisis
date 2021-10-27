@@ -3,6 +3,7 @@ package Definiciones;
 import Excepcion.DatosIncompletosException;
 import Excepcion.NombreCategoriaException;
 import Modelo.TipoAlojamiento;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,17 +14,16 @@ public interface IDAOTipoAlojamiento {
     /**
      * Método encargado de guardar el tipo Alojamiento
      *
+     * @param tipoalojamiento
      * @return
      * @throws NombreCategoriaException
      * @throws DatosIncompletosException
      */
-    public boolean guardarTipoAlojamiento() throws NombreCategoriaException, DatosIncompletosException;
+    public boolean guardarTipoAlojamiento(TipoAlojamiento tipoalojamiento) throws NombreCategoriaException, DatosIncompletosException;
 
-    public TipoAlojamiento buscarTipoAlojamiento();
+    public TipoAlojamiento buscarTipoAlojamiento(String nombre) throws DatosIncompletosException;
 
-    public TipoAlojamiento modificarTipoAlojamiento();
+    public TipoAlojamiento modificarTipoAlojamiento(TipoAlojamiento tipoalojamiento) throws NombreCategoriaException, DatosIncompletosException;
 
-    public TipoAlojamiento listarTipoAlojamiento();
-
-    public TipoAlojamiento EliminarTipoAlojamiento();
+    public ArrayList<TipoAlojamiento> listarTipoAlojamiento();
 }
