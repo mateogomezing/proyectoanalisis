@@ -78,7 +78,7 @@ public class FrmLogin extends javax.swing.JFrame {
         lblUsuario1.setForeground(new java.awt.Color(0, 0, 0));
         lblUsuario1.setText("CONTRASEÑA :");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logousuarios.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logousuarios.png"))); // NOI18N
 
         lblUsuario2.setForeground(new java.awt.Color(0, 0, 0));
         lblUsuario2.setText("CEDULA :");
