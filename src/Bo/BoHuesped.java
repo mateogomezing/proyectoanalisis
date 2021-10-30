@@ -5,7 +5,7 @@
  */
 package Bo;
 
-import Dao.FactoryDAOJDBC;
+
 import Definiciones.IDAOHuesped;
 import Excepcion.BuscarHuespedException;
 import Excepcion.CargarImagenException;
