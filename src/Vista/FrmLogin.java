@@ -17,8 +17,8 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form FrmLog
      */
-   
-
+  
+    
     public FrmLogin() {
       
         initComponents();

@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.CtlHuesped;
+import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
 import Excepcion.CedulaException;
 import Excepcion.CedulaHuespedException;
@@ -15,11 +16,14 @@ import Excepcion.CorreoFormatoException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.GuardarHuespedException;
 import Excepcion.TelefonoException;
-import Modelo.Recepcionista;
+import java.io.File;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -31,19 +35,9 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
      * declaracion de variables
      */
     private final CtlHuesped controlador;
-    private Recepcionista recepcionista = null;
 
     public FrmRegistroHuesped() {
         controlador = new CtlHuesped();
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-
-    }
-
-    public FrmRegistroHuesped(Recepcionista recepcionista) {
-        controlador = new CtlHuesped();
-        this.recepcionista = recepcionista;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -334,37 +328,33 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
 
         try {
+            File ruta = new File(txtRuta.getText());
             String cedula = controlador.obtenerDatoJtextFile(txtCedula);
             String nombre = controlador.obtenerDatoJtextFile(txtNombreCompleto);
             String genero = controlador.obtenerDatoJComboBox(cboGenero);
             String correo = controlador.obtenerDatoJtextFile(txtCorreo);
             String telefono = controlador.obtenerDatoJtextFile(txtTelefono);
+            String direccion = controlador.obtenerDatoJtextFile(txtDireccion);
             Date fechaNacimiento = dateFechaNacimiento.getDate();
             String nacionalida = controlador.obtenerDatoJComboBox(cboNacionalidad);
             String contrasena = controlador.obtenerDatoJtextFile(txtPassword);
             String tipo = "regular";
             String estado = "sin multa";
-
-            controlador.guardar(cedula, nombre, genero, correo, telefono, fechaNacimiento, nacionalida, contrasena, tipo, estado);
+            String biografia = "Huesped creado";
+            controlador.guardarHuesped(ruta, cedula, nombre, genero, correo, telefono, direccion, fechaNacimiento, nacionalida, contrasena, tipo, estado, biografia);
 
             JOptionPane.showMessageDialog(null, "Se guardó el huesped " + nombre + " correctamente");
             vaciarCampos();
-        } catch (CedulaAdministradorException | CedulaRecepcionistaException | CedulaException | CorreoException | DatosIncompletosException | TelefonoException | GuardarHuespedException | CorreoFormatoException ex) {
+        } catch (CargarImagenException | CedulaAdministradorException | CedulaException | CorreoException | DatosIncompletosException | TelefonoException | GuardarHuespedException | CorreoFormatoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void BtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverActionPerformed
 
-        if (recepcionista == null) {
-            FrmLogin login = new FrmLogin();
-            login.setVisible(true);
-            this.dispose();
-        } else {
-            FrmMenuRecepcionista vista = new FrmMenuRecepcionista(recepcionista);
-            vista.setVisible(true);
-            this.dispose();
-        }
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        this.dispose();
 
 
     }//GEN-LAST:event_BtnVolverActionPerformed
@@ -438,11 +428,14 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void vaciarCampos() {
+        txtRuta.setText(null);
+        lblmagen.setIcon(null);
         txtCedula.setText(null);
         txtNombreCompleto.setText(null);
         cboGenero.setSelectedIndex(0);
         txtCorreo.setText(null);
         txtTelefono.setText(null);
+        txtDireccion.setText(null);
         dateFechaNacimiento.setDate(null);
         cboNacionalidad.setSelectedIndex(0);
         txtPassword.setText(null);
@@ -479,6 +472,10 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                 new FrmRegistroHuesped().setVisible(true);
             }
         });
+    }
+
+    private void imprimir(String v) {
+        JOptionPane.showMessageDialog(null, v);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

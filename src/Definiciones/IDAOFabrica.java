@@ -24,4 +24,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOHuesped
      */
     public IDAOHuesped crearDAOHuesped();
+
+    /**
+     * Metodó para la creación de un DAOLogIn
+     *
+     * @return Abstraccion de DAOLogIn
+     */
+    public IDAOLogIn crearDAOLogIn();
 }

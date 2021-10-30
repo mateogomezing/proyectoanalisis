@@ -8,6 +8,7 @@ package Dao;
 import Definiciones.IDAOAdministrador;
 import Definiciones.IDAOFabrica;
 import Definiciones.IDAOHuesped;
+import Definiciones.IDAOLogIn;
 
 /**
  *
@@ -23,6 +24,11 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     @Override
     public IDAOHuesped crearDAOHuesped() {
         return new DAOHuesped();
+    }
+
+    @Override
+    public IDAOLogIn crearDAOLogIn() {
+        return new DAOLogIn();
     }
 
 }

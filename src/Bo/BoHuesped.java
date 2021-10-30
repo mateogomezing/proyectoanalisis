@@ -5,7 +5,6 @@
  */
 package Bo;
 
-
 import Definiciones.IDAOHuesped;
 import Excepcion.BuscarHuespedException;
 import Excepcion.CargarImagenException;
@@ -29,6 +28,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -102,6 +103,22 @@ public class BoHuesped {
             throw new BuscarHuespedException();
         }
         return huesped;
+    }
+
+    public String obtenerDatoJtextFile(JTextField x) {
+        String informacion = x.getText();
+        if (informacion.equals("")) {
+            informacion = null;
+        }
+        return informacion;
+    }
+
+    public String obtenerDatoJComboBox(JComboBox x) {
+        String informacion = x.getSelectedItem().toString();
+        if (informacion.equals("Seleccione")) {
+            informacion = null;
+        }
+        return informacion;
     }
 
     private void verificarCorreo(String correo) throws DatosIncompletosException, CorreoFormatoException {
