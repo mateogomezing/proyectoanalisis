@@ -72,7 +72,6 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
         lblCedula = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtNombreCompleto = new javax.swing.JTextField();
-        dateFechaNacimiento = new org.netbeans.modules.form.InvalidComponent();
         cboGenero = new javax.swing.JComboBox<>();
         cboNacionalidad = new javax.swing.JComboBox<>();
         txtPassword = new javax.swing.JPasswordField();
@@ -81,6 +80,7 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
         txtRuta = new javax.swing.JTextField();
         lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JPasswordField();
+        dateFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -238,16 +238,16 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 52, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(lblCorreo)
-                                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                            .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                                             .addComponent(lblFecha)
-                                            .addComponent(lblNacionalidad))
+                                            .addComponent(lblNacionalidad)
+                                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addContainerGap(24, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
@@ -290,9 +290,12 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                     .addComponent(lblFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContrasena)
                     .addComponent(lblNacionalidad))
@@ -485,7 +488,7 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboGenero;
     private javax.swing.JComboBox<String> cboNacionalidad;
-    private org.netbeans.modules.form.InvalidComponent dateFechaNacimiento;
+    private com.toedter.calendar.JDateChooser dateFechaNacimiento;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;

@@ -5,7 +5,12 @@
  */
 package Vista;
 
-
+import Controlador.CtlLogIn;
+import Excepcion.DatosIncompletosException;
+import Excepcion.LogInException;
+import Excepcion.UsuarioSuspendioException;
+import Modelo.Administrador;
+import Modelo.Huesped;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +22,10 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form FrmLog
      */
-  
-    
+    private final CtlLogIn controlador;
+
     public FrmLogin() {
-      
+        controlador = new CtlLogIn();
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -171,7 +176,28 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-      
+        try {
+            Object usuario = controlador.IniciarSesion(controlador.obtenerDatoJtextFile(txtCedula), controlador.obtenerDatoJtextFile(txtContrasena));
+
+            if (usuario instanceof Huesped) {
+                JOptionPane.showMessageDialog(null, "en desarrollo");
+                /**
+                 * FrmMenuHuesped vista = new FrmMenuHuesped((Huesped) usuario);
+                 * vista.setVisible(true); JOptionPane.showMessageDialog(vista,
+                 * "Bienvenido seas " + ((Huesped)
+                 * usuario).getNombreCompleto()); this.dispose();
+                 *
+                 */
+            } else if (usuario instanceof Administrador) {
+                FrmAdministrador vista = new FrmAdministrador((Administrador) usuario);
+                vista.setVisible(true);
+                JOptionPane.showMessageDialog(vista, "Bienvenido seas " + ((Administrador) usuario).getNombrecompleto());
+                this.dispose();
+            }
+
+        } catch (DatosIncompletosException | LogInException | UsuarioSuspendioException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
@@ -189,7 +215,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaKeyTyped
 
     private void btnRegistroHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroHuespedActionPerformed
-   
+        FrmRegistroHuesped vista = new FrmRegistroHuesped();
+        vista.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistroHuespedActionPerformed
 
     /**

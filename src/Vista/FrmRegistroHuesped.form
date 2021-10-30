@@ -125,17 +125,17 @@
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="cboNacionalidad" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                                              <Component id="dateFechaNacimiento" min="-2" pref="185" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCorreo" min="-2" pref="185" max="-2" attributes="0"/>
-                                              <Component id="txtTelefono" min="-2" pref="185" max="-2" attributes="0"/>
+                                              <Component id="txtCorreo" pref="185" max="32767" attributes="0"/>
+                                              <Component id="txtTelefono" pref="185" max="32767" attributes="0"/>
                                               <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblNacionalidad" min="-2" max="-2" attributes="0"/>
+                                              <Component id="dateFechaNacimiento" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace pref="24" max="32767" attributes="0"/>
                                       </Group>
@@ -194,10 +194,15 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="dateFechaNacimiento" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="cboGenero" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="cboGenero" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="dateFechaNacimiento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -317,8 +322,6 @@
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreCompletoKeyTyped"/>
           </Events>
-        </Component>
-        <Component class="org.netbeans.modules.form.InvalidComponent" name="dateFechaNacimiento">
         </Component>
         <Component class="javax.swing.JComboBox" name="cboGenero">
           <Properties>
@@ -664,6 +667,8 @@
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireccionKeyTyped"/>
           </Events>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dateFechaNacimiento">
         </Component>
       </SubComponents>
     </Container>

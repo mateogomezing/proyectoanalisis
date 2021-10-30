@@ -5,9 +5,14 @@
  */
 package Dao;
 
+import Conexion.Conexion;
 import Definiciones.IDAOLogIn;
 import Modelo.Administrador;
 import Modelo.Huesped;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,12 +22,63 @@ public class DAOLogIn implements IDAOLogIn {
 
     @Override
     public Huesped LogInHuesped(String cedula, String contrasena) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Huesped huesped = new Huesped();
+
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,genero,correo,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia FROM huesped where cedula=? AND contrasena=?");
+            pstmt.setString(1, cedula);
+            pstmt.setString(2, contrasena);
+
+            ResultSet respuesta = pstmt.executeQuery();
+            if (respuesta.next()) {
+
+                huesped.setId(respuesta.getInt("id"));
+                huesped.setFoto(respuesta.getBytes("foto"));
+                huesped.setCedula(respuesta.getString("cedula"));
+                huesped.setNombreCompleto(respuesta.getString("nombreCompleto"));
+                huesped.setGenero(respuesta.getString("genero"));
+                huesped.setCorreo(respuesta.getString("correo"));
+                huesped.setTelefono(respuesta.getString("telefono"));
+                huesped.setDireccion(respuesta.getString("direccion"));
+                huesped.setFechaNacimiento(respuesta.getDate("fechaNacimiento"));
+                huesped.setNacionalidad(respuesta.getString("nacionalidad"));
+                huesped.setContrasena(respuesta.getString("contrasena"));
+                huesped.setTipo(respuesta.getString("tipo"));
+                huesped.setEstado(respuesta.getString("estado"));
+                huesped.setBiografia(respuesta.getString("biografia"));
+                return huesped;
+
+            }
+
+        } catch (SQLException ex) {
+            huesped = null;
+        }
+        return null;
     }
 
     @Override
     public Administrador LogInAdministrador(String cedula, String contrasena) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Administrador administrador = new Administrador();
+
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,cedula,nombreCompleto,contrasena FROM administrador WHERE cedula=? AND contrasena=?");
+            pstmt.setString(1, cedula);
+            pstmt.setString(2, contrasena);
+            ResultSet respuesta = pstmt.executeQuery();
+            if (respuesta.next()) {
+
+                administrador.setId(respuesta.getInt("id"));
+                administrador.setCedula(respuesta.getString("cedula"));
+                administrador.setNombrecompleto(respuesta.getString("nombreCompleto"));
+                administrador.setContrasena(respuesta.getString("contrasena"));
+
+                return administrador;
+            }
+        } catch (SQLException ex) {
+            administrador = null;
+
+        }
+        return null;
     }
 
 }
