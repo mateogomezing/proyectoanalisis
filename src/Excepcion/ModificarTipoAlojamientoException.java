@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class ModificarCategoriaProductosException extends Exception {
+public class ModificarTipoAlojamientoException extends Exception {
 
-    public ModificarCategoriaProductosException() {
-        super("Error al modificar la Categoria del producto");
+    public ModificarTipoAlojamientoException() {
+        super("Error al modificar el tipo de alojamiento");
     }
 }

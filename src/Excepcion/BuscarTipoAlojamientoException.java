@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class GuardarCategoriaProductosException extends Exception {
+public class BuscarTipoAlojamientoException extends Exception {
 
-    public GuardarCategoriaProductosException() {
-        super("Error al guardar la Categoria del producto");
+    public BuscarTipoAlojamientoException() {
+        super("Error al buscar el tipo de alojamiento, favor verifique el nombre");
     }
 }

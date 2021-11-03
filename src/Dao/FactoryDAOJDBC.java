@@ -9,6 +9,7 @@ import Definiciones.IDAOAdministrador;
 import Definiciones.IDAOFabrica;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
+import Definiciones.IDAOTipoAlojamiento;
 
 /**
  *
@@ -29,6 +30,11 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     @Override
     public IDAOLogIn crearDAOLogIn() {
         return new DAOLogIn();
+    }
+
+    @Override
+    public IDAOTipoAlojamiento crearDAOTipoAlojamiento() {
+        return new DAOTipoAlojamiento();
     }
 
 }

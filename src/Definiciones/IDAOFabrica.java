@@ -31,4 +31,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOLogIn
      */
     public IDAOLogIn crearDAOLogIn();
+
+    /**
+     * Metodo para la creacion de un DAOTipoAlojamiento
+     *
+     * @return Abstraccion de DAOTipoAlojamiento
+     */
+    public IDAOTipoAlojamiento crearDAOTipoAlojamiento();
 }
