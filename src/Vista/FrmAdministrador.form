@@ -64,7 +64,7 @@
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="btnHabitacionesdisponibles" min="-2" pref="89" max="-2" attributes="0"/>
-                                          <Component id="btnReserva" min="-2" pref="89" max="-2" attributes="0"/>
+                                          <Component id="btnTipoAlojamiento" min="-2" pref="89" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -208,7 +208,7 @@
                               <Component id="btnChkeckin" alignment="1" max="32767" attributes="0"/>
                               <Component id="btnCheckout" alignment="1" max="32767" attributes="0"/>
                               <Component id="btnMulta" max="32767" attributes="0"/>
-                              <Component id="btnReserva" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnTipoAlojamiento" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -285,7 +285,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChkeckinActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnReserva">
+        <Component class="javax.swing.JButton" name="btnTipoAlojamiento">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/reserva.jpg"/>
@@ -295,7 +295,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReservaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTipoAlojamientoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">

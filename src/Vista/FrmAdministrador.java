@@ -46,7 +46,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnChkeckin = new javax.swing.JButton();
-        btnReserva = new javax.swing.JButton();
+        btnTipoAlojamiento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -93,11 +93,11 @@ public class FrmAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reserva.jpg"))); // NOI18N
-        btnReserva.setBorder(null);
-        btnReserva.addActionListener(new java.awt.event.ActionListener() {
+        btnTipoAlojamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reserva.jpg"))); // NOI18N
+        btnTipoAlojamiento.setBorder(null);
+        btnTipoAlojamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReservaActionPerformed(evt);
+                btnTipoAlojamientoActionPerformed(evt);
             }
         });
 
@@ -302,7 +302,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(btnHabitacionesdisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(btnTipoAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -405,7 +405,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
                             .addComponent(btnChkeckin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCheckout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnTipoAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,9 +525,11 @@ public class FrmAdministrador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnHistorialHospedajeActionPerformed
 
-    private void btnReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReservaActionPerformed
+    private void btnTipoAlojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoAlojamientoActionPerformed
+        FrmGestionTipoAlojamiento historial = new FrmGestionTipoAlojamiento(administrador);
+        historial.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTipoAlojamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -580,8 +582,8 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnMulta;
     private javax.swing.JButton btnRecepcionista;
     private javax.swing.JButton btnReportes;
-    private javax.swing.JButton btnReserva;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnTipoAlojamiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
