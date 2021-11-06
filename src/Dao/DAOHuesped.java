@@ -8,11 +8,13 @@ package Dao;
 import Conexion.Conexion;
 import Definiciones.IDAOHuesped;
 import Excepcion.CedulaAdministradorException;
+import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
 import Excepcion.CorreoException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.TelefonoException;
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Huesped;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,28 +29,33 @@ import java.util.ArrayList;
 public class DAOHuesped implements IDAOHuesped {
 
     @Override
-    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException {
+    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException, CedulaAnfitrionException {
         boolean desicion = false;
 
         try (Connection con = Conexion.getConnection()) {
+            DAOAnfitrion daoAnfitrion = new DAOAnfitrion();
             DAOAdministrador daoAdministrador = new DAOAdministrador();
             Administrador administrador = daoAdministrador.buscarAdministrador(huesped.getCedula());
+            Anfitrion anfitrion = daoAnfitrion.buscarAnfitrion(huesped.getCedula());
             vaidarCedulas(administrador);
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO huesped (foto,cedula,nombreCompleto,genero,correo,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO huesped (foto,cedula,nombreCompleto,genero,correo,estrato,nivelestudio,estadocivil,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+//13
             pstmt.setBytes(1, huesped.getFoto());
             pstmt.setString(2, huesped.getCedula());
             pstmt.setString(3, huesped.getNombreCompleto());
             pstmt.setString(4, huesped.getGenero());
             pstmt.setString(5, huesped.getCorreo());
-            pstmt.setString(6, huesped.getTelefono());
-            pstmt.setString(7, huesped.getDireccion());
-            pstmt.setDate(8, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
-            pstmt.setString(9, huesped.getNacionalidad());
-            pstmt.setString(10, huesped.getContrasena());
-            pstmt.setString(11, huesped.getTipo());
-            pstmt.setString(12, huesped.getEstado());
-            pstmt.setString(13, huesped.getBiografia());
+            pstmt.setString(6, huesped.getEstrato());
+            pstmt.setString(7, huesped.getNivelestudio());
+            pstmt.setString(8, huesped.getEstadocivil());
+            pstmt.setString(9, huesped.getTelefono());
+            pstmt.setString(10, huesped.getDireccion());
+            pstmt.setDate(11, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
+            pstmt.setString(12, huesped.getNacionalidad());
+            pstmt.setString(13, huesped.getContrasena());
+            pstmt.setString(14, huesped.getTipo());
+            pstmt.setString(15, huesped.getEstado());
+            pstmt.setString(16, huesped.getBiografia());
             pstmt.executeUpdate();
             desicion = true;
 
@@ -82,7 +89,7 @@ public class DAOHuesped implements IDAOHuesped {
         Huesped huesped = new Huesped();
 
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,genero,correo,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia FROM huesped where cedula=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,genero,correo,estrato,nivelestudio,estadocivil,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia FROM huesped where cedula=?");
             pstmt.setString(1, cedula);
 
             //Resultset guarda los datos de la busqueda
@@ -96,6 +103,9 @@ public class DAOHuesped implements IDAOHuesped {
                 huesped.setNombreCompleto(respuesta.getString("nombreCompleto"));
                 huesped.setGenero(respuesta.getString("genero"));
                 huesped.setCorreo(respuesta.getString("correo"));
+                huesped.setEstrato(respuesta.getString("estrato"));
+                huesped.setNivelestudio(respuesta.getString("nivelestudio"));
+                huesped.setEstadocivil(respuesta.getString("estadocivil"));
                 huesped.setTelefono(respuesta.getString("telefono"));
                 huesped.setDireccion(respuesta.getString("direccion"));
                 huesped.setFechaNacimiento(respuesta.getDate("fechaNacimiento"));
@@ -116,21 +126,24 @@ public class DAOHuesped implements IDAOHuesped {
     public boolean modificarHuesped(Huesped huesped) throws CedulaException, CorreoException, TelefonoException, DatosIncompletosException {
         boolean desicion = false;
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  cedula=?,  nombreCompleto=?, genero=?, correo=?, telefono=?, direccion=?, fechaNacimiento=?, nacionalidad=?, contrasena=?, tipo=?, estado=?, biografia=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
+            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  cedula=?,  nombreCompleto=?, genero=?, correo=?, estrato=?, nivelestudio=?, estadocivil=?, telefono=?, direccion=?, fechaNacimiento=?, nacionalidad=?, contrasena=?, tipo=?, estado=?, biografia=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
 
             pstmt.setString(1, huesped.getCedula());
             pstmt.setString(2, huesped.getNombreCompleto());
             pstmt.setString(3, huesped.getGenero());
             pstmt.setString(4, huesped.getCorreo());
-            pstmt.setString(5, huesped.getTelefono());
-            pstmt.setString(6, huesped.getDireccion());
-            pstmt.setDate(7, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
-            pstmt.setString(8, huesped.getNacionalidad());
-            pstmt.setString(9, huesped.getContrasena());
-            pstmt.setString(10, huesped.getTipo());
-            pstmt.setString(11, huesped.getEstado());
-            pstmt.setString(12, huesped.getBiografia());
-            pstmt.setInt(13, huesped.getId());
+            pstmt.setString(5, huesped.getEstrato());
+            pstmt.setString(6, huesped.getNivelestudio());
+            pstmt.setString(7, huesped.getEstadocivil());
+            pstmt.setString(8, huesped.getTelefono());
+            pstmt.setString(9, huesped.getDireccion());
+            pstmt.setDate(10, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
+            pstmt.setString(11, huesped.getNacionalidad());
+            pstmt.setString(12, huesped.getContrasena());
+            pstmt.setString(13, huesped.getTipo());
+            pstmt.setString(14, huesped.getEstado());
+            pstmt.setString(15, huesped.getBiografia());
+            pstmt.setInt(16, huesped.getId());
             int res = pstmt.executeUpdate();
 
             desicion = res > 0;
@@ -162,22 +175,25 @@ public class DAOHuesped implements IDAOHuesped {
     public boolean modificarHuesped2(Huesped huesped) throws CedulaException, CorreoException, TelefonoException, DatosIncompletosException {
         boolean desicion = false;
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  foto=?, cedula=?,  nombreCompleto=?, genero=?, correo=?, telefono=?, direccion=?, fechaNacimiento=?, nacionalidad=?, contrasena=?, tipo=?, estado=?, biografia=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
+            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  foto=?, cedula=?,  nombreCompleto=?, genero=?, correo=?, estrato=?, nivelestudio=?, estadocivil=?, telefono=?, direccion=?, fechaNacimiento=?, nacionalidad=?, contrasena=?, tipo=?, estado=?, biografia=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
 
             pstmt.setBytes(1, huesped.getFoto());
             pstmt.setString(2, huesped.getCedula());
             pstmt.setString(3, huesped.getNombreCompleto());
             pstmt.setString(4, huesped.getGenero());
             pstmt.setString(5, huesped.getCorreo());
-            pstmt.setString(6, huesped.getTelefono());
-            pstmt.setString(7, huesped.getDireccion());
-            pstmt.setDate(8, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
-            pstmt.setString(9, huesped.getNacionalidad());
-            pstmt.setString(10, huesped.getContrasena());
-            pstmt.setString(11, huesped.getTipo());
-            pstmt.setString(12, huesped.getEstado());
-            pstmt.setString(13, huesped.getBiografia());
-            pstmt.setInt(14, huesped.getId());
+            pstmt.setString(6, huesped.getEstrato());
+            pstmt.setString(7, huesped.getNivelestudio());
+            pstmt.setString(8, huesped.getEstadocivil());
+            pstmt.setString(9, huesped.getTelefono());
+            pstmt.setString(10, huesped.getDireccion());
+            pstmt.setDate(11, convertirDeDateUtilaDateSql(huesped.getFechaNacimiento()));
+            pstmt.setString(12, huesped.getNacionalidad());
+            pstmt.setString(13, huesped.getContrasena());
+            pstmt.setString(14, huesped.getTipo());
+            pstmt.setString(15, huesped.getEstado());
+            pstmt.setString(16, huesped.getBiografia());
+            pstmt.setInt(17, huesped.getId());
             int res = pstmt.executeUpdate();
 
             desicion = res > 0;
@@ -208,7 +224,7 @@ public class DAOHuesped implements IDAOHuesped {
     @Override
     public ArrayList<Huesped> listarHuesped() {
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,genero,correo,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia FROM huesped");
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,genero,correo,estrato,nivelestudio,estadocivil,telefono,direccion,fechaNacimiento,nacionalidad,contrasena,tipo,estado,biografia FROM huesped");
 
             ResultSet respuesta = pstmt.executeQuery();//Me va a traer todo lo que venga como resultado
             ArrayList<Huesped> listar = new ArrayList<>();
@@ -224,6 +240,9 @@ public class DAOHuesped implements IDAOHuesped {
                     huesped.setNombreCompleto(respuesta.getString("nombreCompleto"));
                     huesped.setGenero(respuesta.getString("genero"));
                     huesped.setCorreo(respuesta.getString("correo"));
+                    huesped.setEstrato(respuesta.getString("estrato"));
+                    huesped.setNivelestudio(respuesta.getString("nivelestudio"));
+                    huesped.setEstadocivil(respuesta.getString("estadocivil"));
                     huesped.setTelefono(respuesta.getString("telefono"));
                     huesped.setDireccion(respuesta.getString("direccion"));
                     huesped.setFechaNacimiento(respuesta.getDate("fechaNacimiento"));

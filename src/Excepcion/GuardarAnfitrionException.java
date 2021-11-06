@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class BuscarRecepcionistaException extends Exception {
+public class GuardarAnfitrionException extends Exception {
 
-    public BuscarRecepcionistaException() {
-        super("Error al buscar el huesped, favor verifique la cedula");
+    public GuardarAnfitrionException() {
+        super("Error al guardar Anfitrion");
     }
 }

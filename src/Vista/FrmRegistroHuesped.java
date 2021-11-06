@@ -8,9 +8,9 @@ package Vista;
 import Controlador.CtlHuesped;
 import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
+import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
 import Excepcion.CedulaHuespedException;
-import Excepcion.CedulaRecepcionistaException;
 import Excepcion.CorreoException;
 import Excepcion.CorreoFormatoException;
 import Excepcion.DatosIncompletosException;
@@ -79,8 +79,14 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
         btnSeleccionarImagen = new javax.swing.JButton();
         txtRuta = new javax.swing.JTextField();
         lblDireccion = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JPasswordField();
         dateFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        txtDireccion = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        cboEstrato = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cboNivelEstudio = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        cboEstadoCivil = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -190,11 +196,17 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
 
         lblDireccion.setText("Direccion");
 
-        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDireccionKeyTyped(evt);
-            }
-        });
+        jLabel1.setText("Estrato");
+
+        cboEstrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6" }));
+
+        jLabel2.setText("Nivel De Estudio");
+
+        cboNivelEstudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Sin estudio", "Bachiller", "Tecnico/Tecnologo", "Universitario" }));
+
+        jLabel3.setText("Estado Civil");
+
+        cboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Union Libre", "Casado(a)", "Soltero(a)" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -219,16 +231,21 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblContrasena)
-                            .addComponent(cboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGenero)
-                            .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCedula)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cboNivelEstudio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(lblContrasena, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboGenero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGenero, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnRegistro)
                                 .addGap(20, 20, 20)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,35 +255,36 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 52, Short.MAX_VALUE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 167, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cboNacionalidad, 0, 0, Short.MAX_VALUE)
+                                            .addComponent(cboEstrato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(lblCorreo)
                                             .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                                             .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                                             .addComponent(lblFecha)
                                             .addComponent(lblNacionalidad)
-                                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addContainerGap(24, Short.MAX_VALUE))))
+                                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(cboEstadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
                                 .addComponent(BtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
                 .addComponent(jLabel9)
                 .addGap(29, 29, 29)
                 .addComponent(lblmagen, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeleccionarImagen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -304,10 +322,22 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
                     .addComponent(txtPassword)
                     .addComponent(cboNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDireccion)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDireccion)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDireccion)
-                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboNivelEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistro)
                     .addComponent(BtnVolver))
@@ -336,6 +366,9 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
             String nombre = controlador.obtenerDatoJtextFile(txtNombreCompleto);
             String genero = controlador.obtenerDatoJComboBox(cboGenero);
             String correo = controlador.obtenerDatoJtextFile(txtCorreo);
+            String estrato = controlador.obtenerDatoJComboBox(cboEstrato);
+            String nivelestudio = controlador.obtenerDatoJComboBox(cboNivelEstudio);
+            String estadocivil = controlador.obtenerDatoJComboBox(cboEstadoCivil);
             String telefono = controlador.obtenerDatoJtextFile(txtTelefono);
             String direccion = controlador.obtenerDatoJtextFile(txtDireccion);
             Date fechaNacimiento = dateFechaNacimiento.getDate();
@@ -344,11 +377,11 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
             String tipo = "regular";
             String estado = "sin multa";
             String biografia = "Huesped creado";
-            controlador.guardarHuesped(ruta, cedula, nombre, genero, correo, telefono, direccion, fechaNacimiento, nacionalida, contrasena, tipo, estado, biografia);
+            controlador.guardarHuesped(ruta, cedula, nombre, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechaNacimiento, nacionalida, contrasena, tipo, estado, biografia);
 
             JOptionPane.showMessageDialog(null, "Se guardó el huesped " + nombre + " correctamente");
             vaciarCampos();
-        } catch (CargarImagenException | CedulaAdministradorException | CedulaException | CorreoException | DatosIncompletosException | TelefonoException | GuardarHuespedException | CorreoFormatoException ex) {
+        } catch (CedulaAnfitrionException | CargarImagenException | CedulaAdministradorException | CedulaException | CorreoException | DatosIncompletosException | TelefonoException | GuardarHuespedException | CorreoFormatoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnRegistroActionPerformed
@@ -423,10 +456,6 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRutaKeyTyped
 
-    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionKeyTyped
-
     /**
      * @param args the command line arguments
      */
@@ -436,6 +465,9 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
         txtCedula.setText(null);
         txtNombreCompleto.setText(null);
         cboGenero.setSelectedIndex(0);
+        cboEstrato.setSelectedIndex(0);
+        cboEstadoCivil.setSelectedIndex(0);
+        cboNivelEstudio.setSelectedIndex(0);
         txtCorreo.setText(null);
         txtTelefono.setText(null);
         txtDireccion.setText(null);
@@ -486,9 +518,15 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSeleccionarImagen;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cboEstadoCivil;
+    private javax.swing.JComboBox<String> cboEstrato;
     private javax.swing.JComboBox<String> cboGenero;
     private javax.swing.JComboBox<String> cboNacionalidad;
+    private javax.swing.JComboBox<String> cboNivelEstudio;
     private com.toedter.calendar.JDateChooser dateFechaNacimiento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
@@ -505,7 +543,7 @@ public class FrmRegistroHuesped extends javax.swing.JFrame {
     private javax.swing.JLabel lblmagen;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JPasswordField txtDireccion;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombreCompleto;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtRuta;

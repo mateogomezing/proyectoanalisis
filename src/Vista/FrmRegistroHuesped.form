@@ -102,9 +102,15 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtPassword" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="cboNivelEstudio" max="32767" attributes="0"/>
+                              <Component id="txtDireccion" max="32767" attributes="0"/>
+                              <Component id="txtPassword" alignment="1" pref="198" max="32767" attributes="0"/>
                               <Component id="lblContrasena" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="cboGenero" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
                               <Component id="lblGenero" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -124,20 +130,24 @@
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cboNacionalidad" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCorreo" pref="185" max="32767" attributes="0"/>
-                                              <Component id="txtTelefono" pref="185" max="32767" attributes="0"/>
-                                              <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblNacionalidad" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cboNacionalidad" alignment="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="cboEstrato" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCorreo" alignment="0" pref="185" max="32767" attributes="0"/>
+                                              <Component id="txtTelefono" alignment="0" pref="185" max="32767" attributes="0"/>
+                                              <Component id="lblFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblNacionalidad" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="dateFechaNacimiento" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cboEstadoCivil" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -148,10 +158,6 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtDireccion" min="-2" pref="198" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -159,13 +165,13 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="lblmagen" min="-2" pref="152" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnSeleccionarImagen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="txtRuta" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -213,10 +219,26 @@
                       <Component id="cboNacionalidad" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboEstrato" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtDireccion" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cboNivelEstudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnRegistro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtnVolver" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -663,12 +685,73 @@
             <Property name="text" type="java.lang.String" value="Direccion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txtDireccion">
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireccionKeyTyped"/>
-          </Events>
-        </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dateFechaNacimiento">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtDireccion">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estrato"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboEstrato">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="7">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="1"/>
+                <StringItem index="2" value="2"/>
+                <StringItem index="3" value="3"/>
+                <StringItem index="4" value="4"/>
+                <StringItem index="5" value="5"/>
+                <StringItem index="6" value="6"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nivel De Estudio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboNivelEstudio">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="Sin estudio"/>
+                <StringItem index="2" value="Bachiller"/>
+                <StringItem index="3" value="Tecnico/Tecnologo"/>
+                <StringItem index="4" value="Universitario"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estado Civil"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboEstadoCivil">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="Union Libre"/>
+                <StringItem index="2" value="Casado(a)"/>
+                <StringItem index="3" value="Soltero(a)"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

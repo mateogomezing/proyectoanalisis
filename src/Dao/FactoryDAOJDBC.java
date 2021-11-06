@@ -6,6 +6,7 @@
 package Dao;
 
 import Definiciones.IDAOAdministrador;
+import Definiciones.IDAOAnfitrion;
 import Definiciones.IDAOFabrica;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
@@ -35,6 +36,11 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     @Override
     public IDAOTipoAlojamiento crearDAOTipoAlojamiento() {
         return new DAOTipoAlojamiento();
+    }
+
+    @Override
+    public IDAOAnfitrion crearDAOAnfitrion() {
+        return new DAOAnfitrion();
     }
 
 }

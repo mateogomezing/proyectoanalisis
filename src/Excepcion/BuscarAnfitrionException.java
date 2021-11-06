@@ -7,10 +7,11 @@ package Excepcion;
 
 /**
  *
- * @author santiago
+ * @author mateo
  */
-public class CedulaRecepcionistaException extends Exception{
-    public CedulaRecepcionistaException(){
-        super("Cedula perteneciente a un recepcionista");
+public class BuscarAnfitrionException extends Exception {
+
+    public BuscarAnfitrionException() {
+        super("Error al buscar el anfitrion, favor verifique la cedula");
     }
 }

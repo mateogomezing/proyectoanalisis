@@ -5,29 +5,22 @@
  */
 package Bo;
 
-import Definiciones.IDAOHuesped;
-import Excepcion.BuscarHuespedException;
+import Definiciones.IDAOAnfitrion;
+import Excepcion.BuscarAnfitrionException;
 import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
-import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
-import Excepcion.CorreoException;
-import Excepcion.CorreoFormatoException;
+import Excepcion.CedulaHuespedException;
 import Excepcion.DatosIncompletosException;
-import Excepcion.GuardarHuespedException;
-import Excepcion.TelefonoException;
+import Excepcion.GuardarAnfitrionException;
 import Fabrica.FactoryDAO;
-import Modelo.Huesped;
+import Modelo.Anfitrion;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -36,17 +29,12 @@ import javax.swing.JTextField;
  *
  * @author mateo
  */
-public class BoHuesped {
+public class BOAnfitrion {
 
-    private final IDAOHuesped dao;
-    private final DateFormat formato;
-    private final Pattern pattern;
+    private final IDAOAnfitrion dao;
 
-    public BoHuesped() {
-        dao = FactoryDAO.getFabrica().crearDAOHuesped();
-        formato = DateFormat.getDateInstance();
-        pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    public BOAnfitrion() {
+        dao = FactoryDAO.getFabrica().crearDAOAnfitrion();
     }
 
     /**
@@ -85,25 +73,25 @@ public class BoHuesped {
         }
     }
 
-    public void guardarHuesped(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, CargarImagenException, CedulaException, CorreoException, TelefonoException, CedulaAdministradorException, GuardarHuespedException, CedulaAnfitrionException {
-        verificarCorreo(correo);
+    public void guardarAnfitrion(File ruta, String cedula, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws CargarImagenException, GuardarAnfitrionException, CedulaException, DatosIncompletosException, CedulaAdministradorException, CedulaHuespedException {
 
-        Huesped huesped = new Huesped(0, cargarImagenBytes(ruta), cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+        Anfitrion anfitrion = new Anfitrion(0, cargarImagenBytes(ruta), cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);
 
-        if (!dao.guardarHuesped(huesped)) {
-            throw new GuardarHuespedException();
+        if (!dao.guardarAnfitrion(anfitrion)) {
+            throw new GuardarAnfitrionException();
         }
     }
 
-    public Huesped buscarHuesped(String cedula) throws DatosIncompletosException, BuscarHuespedException {
+    public Anfitrion buscarAnfitrion(String cedula) throws DatosIncompletosException, BuscarAnfitrionException {
         if (cedula == null) {
             throw new DatosIncompletosException();
         }
-        Huesped huesped = dao.buscarHuesped(cedula);
-        if (huesped == null) {
-            throw new BuscarHuespedException();
+        Anfitrion anfitrion = dao.buscarAnfitrion(cedula);
+
+        if (anfitrion == null) {
+            throw new BuscarAnfitrionException();
         }
-        return huesped;
+        return anfitrion;
     }
 
     public String obtenerDatoJtextFile(JTextField x) {
@@ -120,16 +108,5 @@ public class BoHuesped {
             informacion = null;
         }
         return informacion;
-    }
-
-    private void verificarCorreo(String correo) throws DatosIncompletosException, CorreoFormatoException {
-        if (correo == null) {
-            throw new DatosIncompletosException();
-        }
-        Matcher mather = pattern.matcher(correo);
-        if (mather.find()) {
-        } else {
-            throw new CorreoFormatoException();
-        }
     }
 }

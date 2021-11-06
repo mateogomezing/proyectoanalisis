@@ -7,11 +7,10 @@ package Excepcion;
 
 /**
  *
- * @author mateo
+ * @author santiago
  */
-public class GuardarRecepcionistaException extends Exception {
-
-    public GuardarRecepcionistaException() {
-        super("Error al guardar Recepcionista");
+public class CedulaAnfitrionException extends Exception{
+    public CedulaAnfitrionException(){
+        super("Cedula perteneciente a un Anfitrion");
     }
 }

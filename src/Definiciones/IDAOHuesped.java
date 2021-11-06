@@ -6,6 +6,7 @@
 package Definiciones;
 
 import Excepcion.CedulaAdministradorException;
+import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
 import Excepcion.CorreoException;
 import Excepcion.DatosIncompletosException;
@@ -33,9 +34,11 @@ public interface IDAOHuesped {
      * existente
      * @throws CedulaAdministradorException si la cedula pertenece a un
      * administrador
+     * @throws Excepcion.CedulaAnfitrionException si la cedula pertenece a un
+     * anfitrion
      *
      */
-    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException;
+    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException,CedulaAnfitrionException;
 
     /**
      * Método encargado de buscar a un huesped

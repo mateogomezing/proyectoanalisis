@@ -91,13 +91,15 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre.setText("Nombre :");
+        lblNombre.setText("Tipo:");
 
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -316,6 +318,14 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Anfitrion");
+
+        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccione" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -340,7 +350,8 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                     .addComponent(lblSala)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
                                 .addGap(21, 21, 21)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtValorNoche, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,6 +362,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                         .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(spnPiso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))))
@@ -403,7 +415,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnSalir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblmagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -420,6 +432,10 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -610,9 +626,11 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     private javax.swing.JButton btnSeleccionarImagen;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

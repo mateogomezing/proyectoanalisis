@@ -7,13 +7,16 @@ import java.util.Date;
  * @author Sara Lucía
  */
 public class Huesped {
-    
+
     private int id;
     private byte[] foto;
     private String cedula;
     private String nombreCompleto;
     private String genero;
     private String correo;
+    private String estrato;
+    private String nivelestudio;
+    private String estadocivil;
     private String telefono;
     private String direccion;
     private Date fechaNacimiento;
@@ -30,6 +33,9 @@ public class Huesped {
         this.nombreCompleto = null;
         this.genero = null;
         this.correo = null;
+        this.estrato = null;
+        this.nivelestudio = null;
+        this.estadocivil = null;
         this.telefono = null;
         this.direccion = null;
         this.fechaNacimiento = null;
@@ -40,13 +46,16 @@ public class Huesped {
         this.biografia = null;
     }
 
-    public Huesped(int id, byte[] foto, String cedula, String nombreCompleto, String genero, String correo, String telefono, String direccion, Date fechaNacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) {
+    public Huesped(int id, byte[] foto, String cedula, String nombreCompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechaNacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) {
         this.id = id;
         this.foto = foto;
         this.cedula = cedula;
         this.nombreCompleto = nombreCompleto;
         this.genero = genero;
         this.correo = correo;
+        this.estrato = estrato;
+        this.nivelestudio = nivelestudio;
+        this.estadocivil = estadocivil;
         this.telefono = telefono;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
@@ -103,6 +112,30 @@ public class Huesped {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getEstrato() {
+        return estrato;
+    }
+
+    public void setEstrato(String estrato) {
+        this.estrato = estrato;
+    }
+
+    public String getNivelestudio() {
+        return nivelestudio;
+    }
+
+    public void setNivelestudio(String nivelestudio) {
+        this.nivelestudio = nivelestudio;
+    }
+
+    public String getEstadocivil() {
+        return estadocivil;
+    }
+
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
     public String getTelefono() {
@@ -168,4 +201,5 @@ public class Huesped {
     public void setBiografia(String biografia) {
         this.biografia = biografia;
     }
+
 }

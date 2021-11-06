@@ -8,6 +8,7 @@ package Controlador;
 import Bo.BoHuesped;
 import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
+import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
 import Excepcion.CorreoException;
 import Excepcion.CorreoFormatoException;
@@ -32,8 +33,8 @@ public class CtlHuesped {
         bo = new BoHuesped();
     }
 
-    public void guardarHuesped(File ruta, String cedula, String nombrecompleto, String genero, String correo, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, CargarImagenException, CedulaException, CorreoException, TelefonoException, CedulaAdministradorException, GuardarHuespedException {
-        bo.guardarHuesped(ruta, cedula, nombrecompleto, genero, correo, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+    public void guardarHuesped(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, CargarImagenException, CedulaException, CorreoException, TelefonoException, CedulaAdministradorException, GuardarHuespedException, CedulaAnfitrionException {
+        bo.guardarHuesped(ruta, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
     }
 
     public String obtenerDatoJComboBox(JComboBox x) {
