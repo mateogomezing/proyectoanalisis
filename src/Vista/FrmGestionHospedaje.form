@@ -51,7 +51,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnActualizar" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="305" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
                                   <Component id="lblFiltrar" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -71,22 +71,20 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtValorNoche" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                       <Component id="spnBano" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="spnSala" min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="spnCamas" min="-2" pref="42" max="-2" attributes="0"/>
                                       <Component id="jScrollPane3" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
+                                      <Component id="spnHabitaciones" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jSpinner1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="spnPiso" alignment="0" pref="42" max="32767" attributes="0"/>
+                                          <Component id="CbxAnfitrion" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="CbxUbicacion" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="CbxTipoAlojamiento" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtTipo" alignment="0" pref="203" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtNombre" alignment="0" pref="203" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="spnCantidadPersonas" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
@@ -113,7 +111,6 @@
                                   <Component id="btnFiltrar" min="-2" pref="79" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -158,32 +155,32 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtNombre" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="txtTipo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CbxTipoAlojamiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CbxAnfitrion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="spnCantidadPersonas" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel3" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CbxUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblPiso" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="spnPiso" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="spnHabitaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -193,7 +190,7 @@
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblSala" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="spnSala" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="spnCamas" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -219,8 +216,8 @@
                           <Component id="btnFiltrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="169" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -235,7 +232,7 @@
             <Property name="text" type="java.lang.String" value="Tipo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombre">
+        <Component class="javax.swing.JTextField" name="txtTipo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -245,7 +242,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPiso">
@@ -341,22 +338,17 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="4">
                             <Column editable="false" title="Id" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="Piso" type="java.lang.Object"/>
-                            <Column editable="false" title="Ba&#xf1;o" type="java.lang.Object"/>
-                            <Column editable="false" title="Sala" type="java.lang.Object"/>
-                            <Column editable="false" title="Estado" type="java.lang.Object"/>
-                            <Column editable="false" title="Descripcion" type="java.lang.Object"/>
-                            <Column editable="false" title="Valor por noche" type="java.lang.Object"/>
+                            <Column editable="false" title="Anfitrion" type="java.lang.Object"/>
+                            <Column editable="false" title="Categoria" type="java.lang.Object"/>
+                            <Column editable="false" title="Tipo" type="java.lang.Object"/>
+                            <Column editable="false" title="Cantidad Personas" type="java.lang.Object"/>
+                            <Column editable="false" title="Habitaciones" type="java.lang.Object"/>
+                            <Column editable="false" title="Servicios" type="java.lang.Object"/>
+                            <Column editable="false" title="Valor Por Noche" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -508,7 +500,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="GESTION HABITACI&#xd3;N"/>
+            <Property name="text" type="java.lang.String" value="GESTION HOSPEDAJE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFiltrar">
@@ -528,15 +520,13 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
+              <StringArray count="6">
                 <StringItem index="0" value="Seleccione"/>
-                <StringItem index="1" value="Nombre"/>
-                <StringItem index="2" value="Piso"/>
-                <StringItem index="3" value="Bano"/>
-                <StringItem index="4" value="Sala"/>
-                <StringItem index="5" value="Estado"/>
-                <StringItem index="6" value="Descripcion"/>
-                <StringItem index="7" value="Valor por noche"/>
+                <StringItem index="1" value="Id"/>
+                <StringItem index="2" value="Tipo"/>
+                <StringItem index="3" value="Tipo Alojamiento"/>
+                <StringItem index="4" value="Anfitrion"/>
+                <StringItem index="5" value="Ubicacion"/>
               </StringArray>
             </Property>
           </Properties>
@@ -638,14 +628,14 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="spnPiso">
+        <Component class="javax.swing.JSpinner" name="spnHabitaciones">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="spnSala">
+        <Component class="javax.swing.JSpinner" name="spnCamas">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -684,7 +674,7 @@
             <Property name="text" type="java.lang.String" value="Tipo Alojamiento :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="CbxTipoAlojamiento">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -693,7 +683,12 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="4">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="Habitaciones Compartidas"/>
+                <StringItem index="2" value="Habitaci&#xf3;n Privada"/>
+                <StringItem index="3" value="Alojamiento Entero"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -708,8 +703,6 @@
             <Property name="text" type="java.lang.String" value="Cantidad Personas :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -718,7 +711,7 @@
             <Property name="text" type="java.lang.String" value="Ubicacion :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="CbxUbicacion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -727,7 +720,25 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="17">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="Bogot&#xe1;-Cundinamarca"/>
+                <StringItem index="2" value="Medell&#xed;n-Antioquia"/>
+                <StringItem index="3" value="Cali-Valle Del Cauca"/>
+                <StringItem index="4" value="Popay&#xe1;n-Cauca"/>
+                <StringItem index="5" value="Pasto-Nari&#xf1;o"/>
+                <StringItem index="6" value="Manizales-Caldas"/>
+                <StringItem index="7" value="Pereira-Risaralda"/>
+                <StringItem index="8" value="Armenia-Quindio"/>
+                <StringItem index="9" value="Valledupar-Cesar"/>
+                <StringItem index="10" value="Bucaramanga-Santander"/>
+                <StringItem index="11" value="Yopal-Casanare"/>
+                <StringItem index="12" value="Buenaventura-Valle Del Cauca"/>
+                <StringItem index="13" value="Cartagena-Bolivar"/>
+                <StringItem index="14" value="Barranquilla-Atlantico"/>
+                <StringItem index="15" value="Santa Marta-Magdalena"/>
+                <StringItem index="16" value="Riohacha-Guajira"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -745,7 +756,7 @@
             <Property name="text" type="java.lang.String" value="Anfitrion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox3">
+        <Component class="javax.swing.JComboBox" name="CbxAnfitrion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -754,14 +765,19 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="seleccione"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spnCantidadPersonas">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

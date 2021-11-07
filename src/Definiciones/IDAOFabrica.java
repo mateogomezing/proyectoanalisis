@@ -33,17 +33,16 @@ public interface IDAOFabrica {
     public IDAOLogIn crearDAOLogIn();
 
     /**
-     * Metodo para la creacion de un DAOTipoAlojamiento
-     *
-     * @return Abstraccion de DAOTipoAlojamiento
-     */
-    public IDAOTipoAlojamiento crearDAOTipoAlojamiento();
-
-    /**
      * Metodo para la creacion de un DAOAnfitrion
      *
      * @return Abstraccion de DAOAnfitrion
      */
     public IDAOAnfitrion crearDAOAnfitrion();
 
+    /**
+     * Metodo para la creacion de un DAOHospedaje
+     *
+     * @return Abstraccion de DAOHospedaje
+     */
+    public IDAOHospedaje crearDAOHospedaje();
 }

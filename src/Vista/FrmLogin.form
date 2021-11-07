@@ -68,7 +68,7 @@
                   <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="btnSalir" min="-2" pref="134" max="-2" attributes="0"/>
                       <Component id="btnRegistroHuesped" min="-2" max="-2" attributes="0"/>
@@ -76,7 +76,7 @@
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnIngresar" min="-2" pref="134" max="-2" attributes="0"/>
-                      <Component id="btnRegistroHuesped1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRegistroAnfitrion" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
@@ -105,7 +105,7 @@
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnRegistroHuesped" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRegistroHuesped1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRegistroAnfitrion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -204,7 +204,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistroHuespedActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistroHuesped1">
+        <Component class="javax.swing.JButton" name="btnRegistroAnfitrion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -215,7 +215,7 @@
             <Property name="text" type="java.lang.String" value="REGISTRO ANFITRION"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistroHuesped1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistroAnfitrionActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

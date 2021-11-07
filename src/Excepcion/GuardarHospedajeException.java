@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class ModificarHabitacionException extends Exception {
+public class GuardarHospedajeException extends Exception {
 
-    public ModificarHabitacionException() {
-        super("Error al modificar la habitacion");
+    public GuardarHospedajeException() {
+        super("Error al guardar hospedaje");
     }
 }

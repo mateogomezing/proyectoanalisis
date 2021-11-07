@@ -11,6 +11,7 @@ import Excepcion.LogInException;
 import Excepcion.UsuarioSuspendioException;
 import Fabrica.FactoryDAO;
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Huesped;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -39,6 +40,11 @@ public class BOLogIn {
         return administrador;
     }
 
+    public Anfitrion LogInAnfitrion(String cedula, String contrasena) {
+        Anfitrion anfitrion = dao.LogInAnfitrion(cedula, contrasena);
+        return anfitrion;
+    }
+
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -60,6 +66,7 @@ public class BOLogIn {
         verificarDatos(cedula, contrasena);
         Huesped huesped = LogInHusped(cedula, contrasena);
         Administrador administrador = LogInAdministrador(cedula, contrasena);
+        Anfitrion anfitrion = LogInAnfitrion(cedula, contrasena);
 
         if (huesped != null) {
             if (!huesped.getEstado().equals("No Disponible")) {
@@ -72,6 +79,12 @@ public class BOLogIn {
         } else if (administrador != null) {
 
             return administrador;
+        } else if (anfitrion != null) {
+            if (!anfitrion.getEstado().equals("Desactivado")) {
+                return anfitrion;
+            } else {
+                throw new UsuarioSuspendioException();
+            }
         } else {
             throw new LogInException();
         }

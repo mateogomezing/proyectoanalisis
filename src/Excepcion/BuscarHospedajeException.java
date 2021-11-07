@@ -9,10 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class NombreHabitacionException extends Exception {
-    
-    public NombreHabitacionException(){
-        super("Nombre repetido, favor ingrese otra");
+public class BuscarHospedajeException extends Exception {
+
+    public BuscarHospedajeException() {
+        super("Error al buscar el hospedaje, favor verifique el nombre");
     }
-    
 }

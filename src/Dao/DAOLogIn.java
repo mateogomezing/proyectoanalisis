@@ -8,6 +8,7 @@ package Dao;
 import Conexion.Conexion;
 import Definiciones.IDAOLogIn;
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Huesped;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,6 +78,37 @@ public class DAOLogIn implements IDAOLogIn {
         } catch (SQLException ex) {
             administrador = null;
 
+        }
+        return null;
+    }
+
+    @Override
+    public Anfitrion LogInAnfitrion(String cedula, String contrasena) {
+        Anfitrion anfitrion = new Anfitrion();
+
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,residencia,idioma,contrasena,biografia,estado FROM anfitrion where cedula=? AND contrasena=?");
+            pstmt.setString(1, cedula);
+            pstmt.setString(2, contrasena);
+
+            ResultSet respuesta = pstmt.executeQuery();
+            if (respuesta.next()) {
+
+                anfitrion.setId(respuesta.getInt("id"));
+                anfitrion.setFoto(respuesta.getBytes("foto"));
+                anfitrion.setCedula(respuesta.getString("cedula"));
+                anfitrion.setNombreCompleto(respuesta.getString("nombreCompleto"));
+                anfitrion.setResidencia(respuesta.getString("residencia"));
+                anfitrion.setIdioma(respuesta.getString("idioma"));
+                anfitrion.setContrasena(respuesta.getString("contrasena"));
+                anfitrion.setBiografia(respuesta.getString("biografia"));
+                anfitrion.setEstado(respuesta.getString("estado"));
+                return anfitrion;
+
+            }
+
+        } catch (SQLException ex) {
+            anfitrion = null;
         }
         return null;
     }

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -105,6 +106,14 @@ public class BOAnfitrion {
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
+            informacion = null;
+        }
+        return informacion;
+    }
+
+    public String obtenerDatoJtextArea(JTextArea x) {
+        String informacion = x.getText();
+        if (informacion.equals("")) {
             informacion = null;
         }
         return informacion;

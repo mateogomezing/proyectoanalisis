@@ -8,9 +8,9 @@ package Dao;
 import Definiciones.IDAOAdministrador;
 import Definiciones.IDAOAnfitrion;
 import Definiciones.IDAOFabrica;
+import Definiciones.IDAOHospedaje;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
-import Definiciones.IDAOTipoAlojamiento;
 
 /**
  *
@@ -34,13 +34,13 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     }
 
     @Override
-    public IDAOTipoAlojamiento crearDAOTipoAlojamiento() {
-        return new DAOTipoAlojamiento();
+    public IDAOAnfitrion crearDAOAnfitrion() {
+        return new DAOAnfitrion();
     }
 
     @Override
-    public IDAOAnfitrion crearDAOAnfitrion() {
-        return new DAOAnfitrion();
+    public IDAOHospedaje crearDAOHospedaje() {
+        return new DAOHospedaje();
     }
 
 }

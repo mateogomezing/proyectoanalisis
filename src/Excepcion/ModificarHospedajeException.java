@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class BuscarHabitacionException extends Exception {
+public class ModificarHospedajeException extends Exception {
 
-    public BuscarHabitacionException() {
-        super("Error al buscar la habitacion, favor verifique el nombre");
+    public ModificarHospedajeException() {
+        super("Error al modificar el hospedaje");
     }
 }

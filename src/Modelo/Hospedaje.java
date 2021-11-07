@@ -12,9 +12,10 @@ package Modelo;
 public class Hospedaje {
 
     private int id;
+    private int idAnfitrion;
     private byte[] imagen;
-    private int idTipoAlojamiento;
-    private String nombre;
+    private String categoria;
+    private String tipo;
     private String cantidadpersonas;
     private String ubicacion;
     private String habitaciones;
@@ -26,9 +27,10 @@ public class Hospedaje {
 
     public Hospedaje() {
         this.id = 0;
+        this.idAnfitrion = 0;
         this.imagen = null;
-        this.idTipoAlojamiento = 0;
-        this.nombre = null;
+        this.categoria = null;
+        this.tipo = null;
         this.cantidadpersonas = null;
         this.ubicacion = null;
         this.habitaciones = null;
@@ -40,11 +42,12 @@ public class Hospedaje {
 
     }
 
-    public Hospedaje(int id, byte[] imagen, int idTipoAlojamiento, String nombre, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorPorNoche) {
+    public Hospedaje(int id, int idAnfitrion, byte[] imagen, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorPorNoche) {
         this.id = id;
+        this.idAnfitrion = idAnfitrion;
         this.imagen = imagen;
-        this.idTipoAlojamiento = idTipoAlojamiento;
-        this.nombre = nombre;
+        this.categoria = categoria;
+        this.tipo = tipo;
         this.cantidadpersonas = cantidadpersonas;
         this.ubicacion = ubicacion;
         this.habitaciones = habitaciones;
@@ -63,6 +66,14 @@ public class Hospedaje {
         this.id = id;
     }
 
+    public int getIdAnfitrion() {
+        return idAnfitrion;
+    }
+
+    public void setIdAnfitrion(int idAnfitrion) {
+        this.idAnfitrion = idAnfitrion;
+    }
+
     public byte[] getImagen() {
         return imagen;
     }
@@ -71,20 +82,20 @@ public class Hospedaje {
         this.imagen = imagen;
     }
 
-    public int getIdTipoAlojamiento() {
-        return idTipoAlojamiento;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setIdTipoAlojamiento(int idTipoAlojamiento) {
-        this.idTipoAlojamiento = idTipoAlojamiento;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getCantidadpersonas() {

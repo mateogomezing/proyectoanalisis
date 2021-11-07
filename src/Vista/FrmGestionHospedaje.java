@@ -5,15 +5,16 @@
  */
 package Vista;
 
-
-import Excepcion.BuscarHabitacionException;
+import Controlador.CtlHospedaje;
+import Excepcion.BuscarHospedajeException;
 import Excepcion.CargarImagenException;
 import Excepcion.ComboBoxException;
 import Excepcion.DatosIncompletosException;
-import Excepcion.GuardarHabitacionException;
-import Excepcion.ModificarHabitacionException;
-import Excepcion.NombreHabitacionException;
+import Excepcion.GuardarHospedajeException;
+import Excepcion.ModificarHospedajeException;
+import Excepcion.NombreHospedajeException;
 import Modelo.Administrador;
+import Modelo.Hospedaje;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -26,21 +27,35 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FrmGestionHospedaje extends javax.swing.JFrame {
 
-  
+    private Administrador administrador;
+    private final CtlHospedaje controlador;
+    private String estado;
+
     public FrmGestionHospedaje() {
-        
+        controlador = new CtlHospedaje();
         initComponents();
-       
+        btnRegistrar.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        btnModificar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+
     }
 
     public FrmGestionHospedaje(Administrador administrador) {
-        
+        controlador = new CtlHospedaje();
+        this.administrador = administrador;
         initComponents();
 
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-        
+        btnModificar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        btnModificar.setEnabled(false);
+        tblHabitacion.setEnabled(true);
+        txtRuta.setEditable(false);
+        llenarComboBox();
+        // listar();
     }
 
     /**
@@ -54,7 +69,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
         lblPiso = new javax.swing.JLabel();
         txtFiltrar = new javax.swing.JTextField();
         lblBano = new javax.swing.JLabel();
@@ -81,18 +96,18 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         btnSeleccionarImagen = new javax.swing.JButton();
         txtRuta = new javax.swing.JTextField();
         spnBano = new javax.swing.JSpinner();
-        spnPiso = new javax.swing.JSpinner();
-        spnSala = new javax.swing.JSpinner();
+        spnHabitaciones = new javax.swing.JSpinner();
+        spnCamas = new javax.swing.JSpinner();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CbxTipoAlojamiento = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        CbxUbicacion = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        CbxAnfitrion = new javax.swing.JComboBox<>();
+        spnCantidadPersonas = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,11 +116,11 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setText("Tipo:");
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTipo.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipo.setForeground(new java.awt.Color(0, 0, 0));
+        txtTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+                txtTipoKeyTyped(evt);
             }
         });
 
@@ -142,7 +157,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Piso", "Baño", "Sala", "Estado", "Descripcion", "Valor por noche"
+                "Id", "Anfitrion", "Categoria", "Tipo", "Cantidad Personas", "Habitaciones", "Servicios", "Valor Por Noche"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -224,14 +239,14 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo.setText("GESTION HABITACIÓN");
+        lblTitulo.setText("GESTION HOSPEDAJE");
 
         lblFiltrar.setForeground(new java.awt.Color(0, 0, 0));
         lblFiltrar.setText("Filtrar tabla por :");
 
         CbxFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         CbxFiltrar.setForeground(new java.awt.Color(0, 0, 0));
-        CbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Nombre", "Piso", "Bano", "Sala", "Estado", "Descripcion", "Valor por noche" }));
+        CbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Id", "Tipo", "Tipo Alojamiento", "Anfitrion", "Ubicacion" }));
 
         btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setForeground(new java.awt.Color(0, 0, 0));
@@ -288,9 +303,9 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
 
         spnBano.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        spnPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnHabitaciones.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        spnSala.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnCamas.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setColumns(20);
@@ -306,8 +321,9 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Tipo Alojamiento :");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        CbxTipoAlojamiento.setBackground(new java.awt.Color(255, 255, 255));
+        CbxTipoAlojamiento.setForeground(new java.awt.Color(0, 0, 0));
+        CbxTipoAlojamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Habitaciones Compartidas", "Habitación Privada", "Alojamiento Entero" }));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cantidad Personas :");
@@ -315,16 +331,18 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ubicacion :");
 
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
+        CbxUbicacion.setBackground(new java.awt.Color(255, 255, 255));
+        CbxUbicacion.setForeground(new java.awt.Color(0, 0, 0));
+        CbxUbicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bogotá-Cundinamarca", "Medellín-Antioquia", "Cali-Valle Del Cauca", "Popayán-Cauca", "Pasto-Nariño", "Manizales-Caldas", "Pereira-Risaralda", "Armenia-Quindio", "Valledupar-Cesar", "Bucaramanga-Santander", "Yopal-Casanare", "Buenaventura-Valle Del Cauca", "Cartagena-Bolivar", "Barranquilla-Atlantico", "Santa Marta-Magdalena", "Riohacha-Guajira" }));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Anfitrion");
 
-        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccione" }));
+        CbxAnfitrion.setBackground(new java.awt.Color(255, 255, 255));
+        CbxAnfitrion.setForeground(new java.awt.Color(0, 0, 0));
+
+        spnCantidadPersonas.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -338,7 +356,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(305, 305, 305)
+                                .addGap(283, 283, 283)
                                 .addComponent(lblFiltrar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,17 +374,16 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtValorNoche, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnBano, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(spnSala, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spnCamas, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spnHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(spnPiso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CbxAnfitrion, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CbxUbicacion, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CbxTipoAlojamiento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                                    .addComponent(spnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(120, 120, 120)
@@ -387,8 +404,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -426,27 +442,27 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblNombre)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(CbxTipoAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(CbxAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(3, 3, 3)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(CbxUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblPiso)
-                                    .addComponent(spnPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblBano)
@@ -454,7 +470,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblSala)
-                                    .addComponent(spnSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnCamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblValorNoche)
@@ -472,7 +488,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                         .addComponent(txtFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnFiltrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -491,47 +507,161 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       
+        try {
+            String tipo = controlador.obtenerDatoJtextFile(txtTipo);
+            String tipoAlojamiento = controlador.obtenerDatoJComboBox(CbxTipoAlojamiento);
+            int idAnfitrion = controlador.obtenerIdAnfitrion(CbxAnfitrion.getSelectedItem().toString());
+            String cantidadPersonas = spnCantidadPersonas.getValue().toString();
+            String ubicacion = controlador.obtenerDatoJComboBox(CbxUbicacion);
+            String habitaciones = spnHabitaciones.getValue().toString();
+            String bano = spnBano.getValue().toString();
+            String camas = spnCamas.getValue().toString();
+            String valorPorNoche = controlador.obtenerDatoJtextFile(txtValorNoche);
+            String servicios = controlador.obtenerDatoJtextArea(txtDescripcion);
+            String estados = "No Disponible";
+            controlador.modificarHospedaje2(idAnfitrion, tipoAlojamiento, tipo, cantidadPersonas, ubicacion, habitaciones, camas, bano, estados, servicios, valorPorNoche);
+            JOptionPane.showMessageDialog(null, "Se Modifico el hospedaje " + tipo + " correctamente");
+            listar();
+            vaciarCampos();
+            btnRegistrar.setEnabled(true);
+            btnEliminar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            btnBuscar.setEnabled(true);
+            txtTipo.setEnabled(true);
+            btnCancelar.setEnabled(false);
+        } catch (BuscarHospedajeException | DatosIncompletosException | NombreHospedajeException | ModificarHospedajeException ex) {
+            imprimir(ex.getMessage());
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        
+        FrmAdministrador vista = new FrmAdministrador(administrador);
+        vista.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+    private void txtTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoKeyTyped
         char c = evt.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9') && c != '_' && c != '@' && c != '.' && c != '-' && c != ',') {
             evt.consume();
         }
-    }//GEN-LAST:event_txtNombreKeyTyped
+    }//GEN-LAST:event_txtTipoKeyTyped
 
     private void txtFiltrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltrarKeyTyped
 
     }//GEN-LAST:event_txtFiltrarKeyTyped
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-      
+        try {
+            String opcion = CbxFiltrar.getSelectedItem().toString();
+            String accion = controlador.obtenerDatoJtextFile(txtFiltrar);
+            tblHabitacion.setModel(controlador.filtrar(opcion, accion));
+        } catch (ComboBoxException ex) {
+            imprimir(ex.getMessage());
+        }
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        
+        listar();
+        CbxFiltrar.setSelectedItem("Seleccione");
+        txtFiltrar.setText(null);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-       
+        try {
+            String tipo = controlador.obtenerDatoJtextFile(txtTipo);
+            String tipoAlojamiento = controlador.obtenerDatoJComboBox(CbxTipoAlojamiento);
+            int idAnfitrion = controlador.obtenerIdAnfitrion(CbxAnfitrion.getSelectedItem().toString());
+            String cantidadPersonas = spnCantidadPersonas.getValue().toString();
+            String ubicacion = controlador.obtenerDatoJComboBox(CbxUbicacion);
+            String habitaciones = spnHabitaciones.getValue().toString();
+            String bano = spnBano.getValue().toString();
+            String camas = spnCamas.getValue().toString();
+            String valorPorNoche = controlador.obtenerDatoJtextFile(txtValorNoche);
+            String servicios = controlador.obtenerDatoJtextArea(txtDescripcion);
+            File ruta = new File(txtRuta.getText());
+            String estado = "Disponible";
+            controlador.guardarHospedaje(idAnfitrion, ruta, tipoAlojamiento, tipo, cantidadPersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorPorNoche);
+            imprimir("Se guardó el hospedaje " + tipo + " correctamente");
+            vaciarCampos();
+            listar();
+
+        } catch (DatosIncompletosException | NombreHospedajeException | CargarImagenException | GuardarHospedajeException ex) {
+            imprimir(ex.getMessage());
+        }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        btnRegistrar.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        txtTipo.setEnabled(true);
+        vaciarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       
+        try {
+            Hospedaje hospedaje = controlador.buscarHospedaje(controlador.obtenerDatoJtextFile(txtTipo));
+            imprimir("Se encontro el hospedaje " + hospedaje.getTipo() + "correctamente");
+            btnRegistrar.setEnabled(false);
+            btnEliminar.setEnabled(true);
+            btnModificar.setEnabled(true);
+            btnBuscar.setEnabled(false);
+            txtTipo.setEnabled(false);
+            btnCancelar.setEnabled(true);
+
+            lblmagen.setIcon(new ImageIcon(controlador.cargarImagenBufferedImage(hospedaje.getImagen())));
+            cargarInformacion(hospedaje);
+        } catch (CargarImagenException | BuscarHospedajeException | DatosIncompletosException ex) {
+            imprimir(ex.toString());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-       
+        try {
+            String tipo = controlador.obtenerDatoJtextFile(txtTipo);
+            String tipoAlojamiento = controlador.obtenerDatoJComboBox(CbxTipoAlojamiento);
+            int idAnfitrion = controlador.obtenerIdAnfitrion(CbxAnfitrion.getSelectedItem().toString());
+            String cantidadPersonas = spnCantidadPersonas.getValue().toString();
+            String ubicacion = controlador.obtenerDatoJComboBox(CbxUbicacion);
+            String habitaciones = spnHabitaciones.getValue().toString();
+            String bano = spnBano.getValue().toString();
+            String camas = spnCamas.getValue().toString();
+            String valorPorNoche = controlador.obtenerDatoJtextFile(txtValorNoche);
+            String servicios = controlador.obtenerDatoJtextArea(txtDescripcion);
+            String estados = estado;
+            if (controlador.obtenerDatoJtextFile(txtRuta) != null) {
+                File ruta = new File(txtRuta.getText());
+                controlador.modificarHospedaje(idAnfitrion, ruta, tipoAlojamiento, tipo, cantidadPersonas, ubicacion, habitaciones, camas, bano, estados, servicios, valorPorNoche);
+                JOptionPane.showMessageDialog(null, "Se Modifico el hospedaje " + tipo + " correctamente");
+                listar();
+                vaciarCampos();
+                btnRegistrar.setEnabled(true);
+                btnEliminar.setEnabled(false);
+                btnModificar.setEnabled(false);
+                btnBuscar.setEnabled(true);
+                txtTipo.setEnabled(true);
+                btnCancelar.setEnabled(false);
+
+            } else {
+                controlador.modificarHospedaje2(idAnfitrion, tipoAlojamiento, tipo, cantidadPersonas, ubicacion, habitaciones, camas, bano, estados, servicios, valorPorNoche);
+                JOptionPane.showMessageDialog(null, "Se Modifico el hospedaje " + tipo + " correctamente");
+                listar();
+                vaciarCampos();
+                btnRegistrar.setEnabled(true);
+                btnEliminar.setEnabled(false);
+                btnModificar.setEnabled(false);
+                btnBuscar.setEnabled(true);
+                txtTipo.setEnabled(true);
+                btnCancelar.setEnabled(false);
+            }
+
+        } catch (BuscarHospedajeException | DatosIncompletosException | NombreHospedajeException | CargarImagenException | ModificarHospedajeException ex) {
+            imprimir(ex.getMessage());
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtValorNocheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorNocheKeyTyped
@@ -542,8 +672,25 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorNocheKeyTyped
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
 
-        
+        fileChooser.setDialogTitle("Seleccione la imagen de la habitación");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");//se le asigna un filtro
+        fileChooser.setFileFilter(filtro);
+        int condi = fileChooser.showOpenDialog(this);
+        if (condi == JFileChooser.APPROVE_OPTION) {
+            String ruta = fileChooser.getSelectedFile().getAbsolutePath();
+            //     rsscalelabel.RSScaleLabel.setScaleLabel(lblmagen, fileChooser.getSelectedFile().toString());//carga la imagen
+            try {
+                lblmagen.setIcon(new ImageIcon(controlador.cargarImagenBufferedImage(controlador.cargarImagenBytes(new File(ruta)))));
+            } catch (CargarImagenException ex) {
+                imprimir(ex.getMessage());
+            }
+
+            txtRuta.setText(ruta);
+
+        }
+
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
 
     private void txtRutaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutaKeyTyped
@@ -556,7 +703,49 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtDescripcionKeyTyped
-   
+    private void imprimir(String v) {
+        JOptionPane.showMessageDialog(null, v);
+    }
+
+    private void cargarInformacion(Hospedaje hospedaje) {
+        txtTipo.setText(hospedaje.getTipo());
+        CbxTipoAlojamiento.setSelectedItem(hospedaje.getCategoria());
+        int posicion = controlador.seleccionarArchivoAnfitrion(hospedaje.getIdAnfitrion());
+        CbxAnfitrion.setSelectedIndex(posicion);
+        spnCantidadPersonas.setValue(Integer.parseInt(hospedaje.getCantidadpersonas()));
+        CbxUbicacion.setSelectedItem(hospedaje.getUbicacion());
+        spnHabitaciones.setValue(Integer.parseInt(hospedaje.getHabitaciones()));
+        spnBano.setValue(Integer.parseInt(hospedaje.getBano()));
+        spnCamas.setValue(Integer.parseInt(hospedaje.getCamas()));
+        txtValorNoche.setText(hospedaje.getValorPorNoche());
+        txtDescripcion.setText(hospedaje.getServicios());
+        txtRuta.setText(null);
+        estado = hospedaje.getEstado();
+    }
+
+    public final void listar() {
+        tblHabitacion.setModel(controlador.listarElementos());
+    }
+
+    private void llenarComboBox() {
+        CbxAnfitrion.setModel(controlador.llenarComboBox());
+    }
+
+    private void vaciarCampos() {
+        txtTipo.setText(null);
+        CbxTipoAlojamiento.setSelectedItem("Seleccione");
+        CbxAnfitrion.setSelectedItem("Seleccione");
+        spnCantidadPersonas.setValue(0);
+        CbxUbicacion.setSelectedItem("Seleccione");
+        spnHabitaciones.setValue(0);
+        spnBano.setValue(0);
+        spnCamas.setValue(0);
+        txtValorNoche.setText(null);
+        txtDescripcion.setText(null);
+        txtRuta.setText(null);
+        lblmagen.setIcon(null);
+        estado = null;
+    }
 
     /**
      * @param args the command line arguments
@@ -608,13 +797,12 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         });
     }
 
-    private void imprimir(String v) {
-        JOptionPane.showMessageDialog(null, v);
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CbxAnfitrion;
     private javax.swing.JComboBox<String> CbxFiltrar;
+    private javax.swing.JComboBox<String> CbxTipoAlojamiento;
+    private javax.swing.JComboBox<String> CbxUbicacion;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
@@ -624,9 +812,6 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionarImagen;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -636,7 +821,6 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblBano;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblFiltrar;
@@ -647,13 +831,14 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     private javax.swing.JLabel lblValorNoche;
     private javax.swing.JLabel lblmagen;
     private javax.swing.JSpinner spnBano;
-    private javax.swing.JSpinner spnPiso;
-    private javax.swing.JSpinner spnSala;
+    private javax.swing.JSpinner spnCamas;
+    private javax.swing.JSpinner spnCantidadPersonas;
+    private javax.swing.JSpinner spnHabitaciones;
     private javax.swing.JTable tblHabitacion;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtFiltrar;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRuta;
+    private javax.swing.JTextField txtTipo;
     private javax.swing.JTextField txtValorNoche;
     // End of variables declaration//GEN-END:variables
 }

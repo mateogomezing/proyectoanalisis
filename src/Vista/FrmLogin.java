@@ -10,6 +10,7 @@ import Excepcion.DatosIncompletosException;
 import Excepcion.LogInException;
 import Excepcion.UsuarioSuspendioException;
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Huesped;
 import javax.swing.JOptionPane;
 
@@ -49,7 +50,7 @@ public class FrmLogin extends javax.swing.JFrame {
         lblUsuario2 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         btnRegistroHuesped = new javax.swing.JButton();
-        btnRegistroHuesped1 = new javax.swing.JButton();
+        btnRegistroAnfitrion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,12 +107,12 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        btnRegistroHuesped1.setBackground(new java.awt.Color(255, 255, 255));
-        btnRegistroHuesped1.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegistroHuesped1.setText("REGISTRO ANFITRION");
-        btnRegistroHuesped1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroAnfitrion.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistroAnfitrion.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistroAnfitrion.setText("REGISTRO ANFITRION");
+        btnRegistroAnfitrion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroHuesped1ActionPerformed(evt);
+                btnRegistroAnfitrionActionPerformed(evt);
             }
         });
 
@@ -138,14 +139,14 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(185, 185, 185))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistroHuesped))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistroHuesped1))
+                    .addComponent(btnRegistroAnfitrion))
                 .addGap(137, 137, 137))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,7 +169,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistroHuesped)
-                    .addComponent(btnRegistroHuesped1))
+                    .addComponent(btnRegistroAnfitrion))
                 .addContainerGap())
         );
 
@@ -208,6 +209,8 @@ public class FrmLogin extends javax.swing.JFrame {
                 vista.setVisible(true);
                 JOptionPane.showMessageDialog(vista, "Bienvenido seas " + ((Administrador) usuario).getNombrecompleto());
                 this.dispose();
+            } else if (usuario instanceof Anfitrion) {
+
             }
 
         } catch (DatosIncompletosException | LogInException | UsuarioSuspendioException ex) {
@@ -235,9 +238,11 @@ public class FrmLogin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegistroHuespedActionPerformed
 
-    private void btnRegistroHuesped1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroHuesped1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroHuesped1ActionPerformed
+    private void btnRegistroAnfitrionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAnfitrionActionPerformed
+        FrmRegistroAnfitrion vista = new FrmRegistroAnfitrion();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistroAnfitrionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,8 +284,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnRegistroAnfitrion;
     private javax.swing.JButton btnRegistroHuesped;
-    private javax.swing.JButton btnRegistroHuesped1;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

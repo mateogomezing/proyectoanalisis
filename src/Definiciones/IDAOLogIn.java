@@ -6,6 +6,7 @@
 package Definiciones;
 
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Huesped;
 
 /**
@@ -31,4 +32,13 @@ public interface IDAOLogIn {
      * @return objeto con los datos del administrador
      */
     public Administrador LogInAdministrador(String cedula, String contrasena);
+
+    /**
+     * Método encargado de ingresar\logear a un anfitrion
+     *
+     * @param cedula del anfitrion
+     * @param contrasena del anfitrion
+     * @return objeto con los datos del anfitrion
+     */
+    public Anfitrion LogInAnfitrion(String cedula, String contrasena);
 }

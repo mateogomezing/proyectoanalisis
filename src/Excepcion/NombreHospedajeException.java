@@ -9,9 +9,10 @@ package Excepcion;
  *
  * @author mateo
  */
-public class GuardarHabitacionException extends Exception {
+public class NombreHospedajeException extends Exception {
 
-    public GuardarHabitacionException() {
-        super("Error al guardar la habitacion");
+    public NombreHospedajeException() {
+        super("Tipo Hospedaje repetido, favor ingrese otra");
     }
+
 }

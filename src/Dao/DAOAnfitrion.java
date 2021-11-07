@@ -198,8 +198,11 @@ public class DAOAnfitrion implements IDAOAnfitrion {
                     anfitrion.setBiografia(respuesta.getString("biografia"));
                     anfitrion.setEstado(respuesta.getString("estado"));
                     listar.add(anfitrion);
+                } else {
+                    condicion = false;
                 }
             }
+            return listar;
         } catch (SQLException e) {
             // e.printStackTrace();
             System.err.println("Hubo un error al listar");
