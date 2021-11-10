@@ -6,6 +6,7 @@
 package Controlador;
 
 import Bo.BoHuesped;
+import Excepcion.BuscarHuespedException;
 import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
 import Excepcion.CedulaAnfitrionException;
@@ -14,9 +15,12 @@ import Excepcion.CorreoException;
 import Excepcion.CorreoFormatoException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.GuardarHuespedException;
+import Excepcion.ModificarHospedajeException;
 import Excepcion.TelefonoException;
+import Modelo.Huesped;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -35,6 +39,23 @@ public class CtlHuesped {
 
     public void guardarHuesped(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, CargarImagenException, CedulaException, CorreoException, TelefonoException, CedulaAdministradorException, GuardarHuespedException, CedulaAnfitrionException {
         bo.guardarHuesped(ruta, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+    }
+
+    public Huesped buscarHuesped(String cedula) throws DatosIncompletosException, BuscarHuespedException {
+        return bo.buscarHuesped(cedula);
+    }
+
+    public void modificarHuesped(String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, BuscarHuespedException, CorreoException, CedulaException, TelefonoException, ModificarHospedajeException {
+        bo.modificarHuesped(cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+
+    }
+
+    public void modificarHuesped2(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws ModificarHospedajeException, CedulaException, CorreoException, TelefonoException, DatosIncompletosException, BuscarHuespedException, CargarImagenException {
+        bo.modificarHuesped2(ruta, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+    }
+
+    public ArrayList<Huesped> listaHuespedes() {
+        return bo.listaHuesped();
     }
 
     public String obtenerDatoJComboBox(JComboBox x) {

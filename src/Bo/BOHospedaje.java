@@ -179,7 +179,7 @@ public class BOHospedaje {
 
         for (int i = 0; i < listaAnfitrion.size(); i++) {
             if (listaAnfitrion.get(i).getId() == idAnfitrion) {
-                valor = i;
+                valor = i + 1;
                 break;
             }
         }
@@ -264,25 +264,8 @@ public class BOHospedaje {
                 } else {
                     throw new ComboBoxException();
                 }
-            case "Anfitrion":
-                if (!accion.equals("Seleccione")) {
-                    for (int i = 0; i < ListaHospedaje.size(); i++) {
+            //REVISAR
 
-                        for (int j = 0; j < listaAnfitrion.size(); j++) {
-                            if (accion.equals(listaAnfitrion.get(i).getNombreCompleto()) && listaAnfitrion.get(i).getEstado().equals("activo")) {
-                                if (ListaHospedaje.get(i).getIdAnfitrion() == listaAnfitrion.get(i).getId() && listaAnfitrion.get(i).getEstado().equals("activo")) {
-                                    anfitrion = listaAnfitrion.get(j).getNombreCompleto();
-                                    break;
-                                }
-                            }
-
-                        }
-                        modelo.addRow(new Object[]{ListaHospedaje.get(i).getId(), anfitrion, ListaHospedaje.get(i).getCategoria(), ListaHospedaje.get(i).getTipo(), ListaHospedaje.get(i).getCantidadpersonas(), ListaHospedaje.get(i).getHabitaciones(), ListaHospedaje.get(i).getServicios(), ListaHospedaje.get(i).getValorPorNoche()});
-                    }
-                    return modelo;
-                } else {
-                    throw new ComboBoxException();
-                }
             case "Ubicacion":
                 if (!accion.equals("Seleccione")) {
                     for (int i = 0; i < ListaHospedaje.size(); i++) {

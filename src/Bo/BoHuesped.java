@@ -15,6 +15,7 @@ import Excepcion.CorreoException;
 import Excepcion.CorreoFormatoException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.GuardarHuespedException;
+import Excepcion.ModificarHospedajeException;
 import Excepcion.TelefonoException;
 import Fabrica.FactoryDAO;
 import Modelo.Huesped;
@@ -25,6 +26,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -104,6 +106,25 @@ public class BoHuesped {
             throw new BuscarHuespedException();
         }
         return huesped;
+    }
+
+    public void modificarHuesped(String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, BuscarHuespedException, CedulaException, CorreoException, TelefonoException, ModificarHospedajeException {
+        verificarCorreo(correo);
+        Huesped huesped = new Huesped(buscarHuesped(cedula).getId(), null, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+        if (!dao.modificarHuesped(huesped)) {
+            throw new ModificarHospedajeException();
+        }
+    }
+
+    public void modificarHuesped2(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws ModificarHospedajeException, CedulaException, CorreoException, TelefonoException, DatosIncompletosException, BuscarHuespedException, CargarImagenException {
+        Huesped huesped = new Huesped(buscarHuesped(cedula).getId(), cargarImagenBytes(ruta), cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
+        if (!dao.modificarHuesped2(huesped)) {
+            throw new ModificarHospedajeException();
+        }
+    }
+
+    public ArrayList<Huesped> listaHuesped() {
+        return dao.listarHuesped();
     }
 
     public String obtenerDatoJtextFile(JTextField x) {
