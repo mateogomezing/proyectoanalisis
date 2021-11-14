@@ -50,8 +50,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
-        btnHospedaje1 = new javax.swing.JButton();
+        btnHuesped = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        btnAnfitrion = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,17 +93,29 @@ public class FrmAdministrador extends javax.swing.JFrame {
         lblCedula.setForeground(new java.awt.Color(0, 0, 0));
         lblCedula.setText("CEDULA");
 
-        btnHospedaje1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
-        btnHospedaje1.setBorder(null);
-        btnHospedaje1.addActionListener(new java.awt.event.ActionListener() {
+        btnHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
+        btnHuesped.setBorder(null);
+        btnHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospedaje1ActionPerformed(evt);
+                btnHuespedActionPerformed(evt);
             }
         });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Huesped");
+
+        btnAnfitrion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
+        btnAnfitrion.setBorder(null);
+        btnAnfitrion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnfitrionActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Anfitrion");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,11 +140,18 @@ public class FrmAdministrador extends javax.swing.JFrame {
                                 .addComponent(btnHospedaje, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(btnHospedaje1))
+                                .addGap(65, 65, 65)
+                                .addComponent(btnHuesped))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
+                                .addGap(86, 86, 86)
                                 .addComponent(jLabel13)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(btnAnfitrion))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jLabel14)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
@@ -138,20 +159,24 @@ public class FrmAdministrador extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula)
-                    .addComponent(jLabel1)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombre)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnHospedaje)
-                    .addComponent(btnHospedaje1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCedula)
+                            .addComponent(jLabel1)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombre)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnHospedaje)
+                            .addComponent(btnHuesped)))
+                    .addComponent(btnAnfitrion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -181,11 +206,17 @@ public class FrmAdministrador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnHospedaje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje1ActionPerformed
+    private void btnHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuespedActionPerformed
         FrmGestionHuesped huesped = new FrmGestionHuesped(administrador);
         huesped.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnHospedaje1ActionPerformed
+    }//GEN-LAST:event_btnHuespedActionPerformed
+
+    private void btnAnfitrionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnfitrionActionPerformed
+        FrmGestionAnfitrion anfitrion = new FrmGestionAnfitrion(administrador);
+        anfitrion.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAnfitrionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,12 +255,14 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnfitrion;
     private javax.swing.JButton btnHospedaje;
-    private javax.swing.JButton btnHospedaje1;
+    private javax.swing.JButton btnHuesped;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblNombre;

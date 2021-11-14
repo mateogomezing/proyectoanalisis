@@ -9,10 +9,10 @@ package Excepcion;
  *
  * @author mateo
  */
-public class ModificarRecepcionistaException extends Exception {
+public class ModificarAnfitrionException extends Exception {
 
-    public ModificarRecepcionistaException() {
-        super("Error al modificar Recepcionista");
+    public ModificarAnfitrionException() {
+        super("Error al modificar Anfitrion");
     }
 
 }
