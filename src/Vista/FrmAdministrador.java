@@ -54,6 +54,8 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnAnfitrion = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        btnHuesped1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +107,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Huesped");
 
-        btnAnfitrion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
+        btnAnfitrion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recepcion.jpg"))); // NOI18N
         btnAnfitrion.setBorder(null);
         btnAnfitrion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +118,18 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Anfitrion");
+
+        btnHuesped1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
+        btnHuesped1.setBorder(null);
+        btnHuesped1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuesped1ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Opiniones");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,44 +154,55 @@ public class FrmAdministrador extends javax.swing.JFrame {
                                 .addComponent(btnHospedaje, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(btnHuesped))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(86, 86, 86)
-                                .addComponent(jLabel13)))
+                                .addComponent(jLabel13))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(btnHuesped)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
-                                .addComponent(btnAnfitrion))
+                                .addComponent(btnAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(87, 87, 87)
                                 .addComponent(jLabel14)))
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnHuesped1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel15)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula)
+                    .addComponent(jLabel1)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCedula)
-                            .addComponent(jLabel1)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNombre)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnHospedaje)
                             .addComponent(btnHuesped)))
-                    .addComponent(btnAnfitrion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnHuesped1)
+                            .addComponent(btnAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +242,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
         anfitrion.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAnfitrionActionPerformed
+
+    private void btnHuesped1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuesped1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHuesped1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,11 +287,13 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnAnfitrion;
     private javax.swing.JButton btnHospedaje;
     private javax.swing.JButton btnHuesped;
+    private javax.swing.JButton btnHuesped1;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblNombre;

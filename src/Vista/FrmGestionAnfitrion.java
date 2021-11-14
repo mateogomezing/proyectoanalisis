@@ -612,10 +612,7 @@ public class FrmGestionAnfitrion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtFiltrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltrarKeyTyped
-        char c = evt.getKeyChar();
-        if (c == ' ') {
-            evt.consume();
-        }
+
     }//GEN-LAST:event_txtFiltrarKeyTyped
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed

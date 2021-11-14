@@ -103,7 +103,7 @@ public class DAOAnfitrion implements IDAOAnfitrion {
         boolean desicion = false;
 
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  cedula=?,  nombreCompleto=?, residencia=?, idioma=?, contrasena=?, biografia=?, estado=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
+            PreparedStatement pstmt = con.prepareStatement("UPDATE anfitrion SET  cedula=?,  nombreCompleto=?, residencia=?, idioma=?, contrasena=?, biografia=?, estado=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
 
             pstmt.setString(1, anfitrion.getCedula());
             pstmt.setString(2, anfitrion.getNombreCompleto());
@@ -113,6 +113,9 @@ public class DAOAnfitrion implements IDAOAnfitrion {
             pstmt.setString(6, anfitrion.getBiografia());
             pstmt.setString(7, anfitrion.getEstado());
             pstmt.setInt(8, anfitrion.getId());
+            int res = pstmt.executeUpdate();
+
+            desicion = res > 0;
         } catch (SQLException ex) {
             //   ex.printStackTrace();
             int codigo = ex.getErrorCode();
@@ -140,7 +143,7 @@ public class DAOAnfitrion implements IDAOAnfitrion {
         boolean desicion = false;
 
         try (Connection con = Conexion.getConnection()) {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE huesped SET  foto=?, cedula=?,  nombreCompleto=?, residencia=?, idioma=?, contrasena=?, biografia=?, estado=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
+            PreparedStatement pstmt = con.prepareStatement("UPDATE anfitrion SET  foto=?, cedula=?,  nombreCompleto=?, residencia=?, idioma=?, contrasena=?, biografia=?, estado=? WHERE id=?");//preparar la sentencia sql(modificar,agregar,eliminar,etc) se llena de izquierda a derecha de 1 en 1(1,2,3)
 
             pstmt.setBytes(1, anfitrion.getFoto());
             pstmt.setString(2, anfitrion.getCedula());
@@ -151,6 +154,9 @@ public class DAOAnfitrion implements IDAOAnfitrion {
             pstmt.setString(7, anfitrion.getBiografia());
             pstmt.setString(8, anfitrion.getEstado());
             pstmt.setInt(9, anfitrion.getId());
+            int res = pstmt.executeUpdate();
+
+            desicion = res > 0;
         } catch (SQLException ex) {
             //   ex.printStackTrace();
             int codigo = ex.getErrorCode();
