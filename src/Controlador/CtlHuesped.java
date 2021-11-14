@@ -11,11 +11,12 @@ import Excepcion.CargarImagenException;
 import Excepcion.CedulaAdministradorException;
 import Excepcion.CedulaAnfitrionException;
 import Excepcion.CedulaException;
+import Excepcion.ComboBoxException;
 import Excepcion.CorreoException;
 import Excepcion.CorreoFormatoException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.GuardarHuespedException;
-import Excepcion.ModificarHospedajeException;
+import Excepcion.ModificarHuespedException;
 import Excepcion.TelefonoException;
 import Modelo.Huesped;
 import java.awt.image.BufferedImage;
@@ -23,7 +24,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,12 +48,12 @@ public class CtlHuesped {
         return bo.buscarHuesped(cedula);
     }
 
-    public void modificarHuesped(String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, BuscarHuespedException, CorreoException, CedulaException, TelefonoException, ModificarHospedajeException {
+    public void modificarHuesped(String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, BuscarHuespedException, CorreoException, CedulaException, TelefonoException, ModificarHuespedException {
         bo.modificarHuesped(cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
 
     }
 
-    public void modificarHuesped2(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws ModificarHospedajeException, CedulaException, CorreoException, TelefonoException, DatosIncompletosException, BuscarHuespedException, CargarImagenException {
+    public void modificarHuesped2(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws CedulaException, CorreoException, TelefonoException, DatosIncompletosException, BuscarHuespedException, CargarImagenException, ModificarHuespedException, CorreoFormatoException {
         bo.modificarHuesped2(ruta, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
     }
 
@@ -66,11 +69,23 @@ public class CtlHuesped {
         return bo.obtenerDatoJtextFile(x);
     }
 
+    public String obtenerDatoJtextArea(JTextArea x) {
+        return bo.obtenerDatoJtextArea(x);
+    }
+
     public byte[] cargarImagenBytes(File file) throws CargarImagenException {
         return bo.cargarImagenBytes(file);
     }
 
     public BufferedImage cargarImagenBufferedImage(byte[] bytes) throws CargarImagenException {
         return bo.cargarImagenBufferedImage(bytes);
+    }
+
+    public DefaultTableModel listarElementos() {
+        return bo.listarElementos();
+    }
+
+    public DefaultTableModel filtrar(String opcion, String accion) throws DatosIncompletosException, NumberFormatException, ComboBoxException {
+        return bo.filtrar(opcion, accion);
     }
 }

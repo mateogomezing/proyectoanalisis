@@ -29,6 +29,7 @@ public interface IDAOHuesped {
      * existente
      * @throws CorreoException si el correo del huesped ya se encuentra
      * existente
+     *
      * @throws DatosIncompletosException si algunos de los datos son nulos
      * @throws TelefonoException si el telefono del huesped ya se encuentra
      * existente
@@ -38,7 +39,7 @@ public interface IDAOHuesped {
      * anfitrion
      *
      */
-    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException,CedulaAnfitrionException;
+    public boolean guardarHuesped(Huesped huesped) throws CedulaException, CorreoException, DatosIncompletosException, TelefonoException, CedulaAdministradorException, CedulaAnfitrionException;
 
     /**
      * Método encargado de buscar a un huesped

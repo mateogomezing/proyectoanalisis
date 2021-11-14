@@ -71,6 +71,7 @@ public class DAOHuesped implements IDAOHuesped {
                         throw new CorreoException();
                     case "huesped.telefon":
                         throw new TelefonoException();
+                    
                     default:
                         break;
                 }

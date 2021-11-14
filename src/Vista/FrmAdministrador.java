@@ -182,7 +182,9 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnHospedaje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje1ActionPerformed
-        // TODO add your handling code here:
+        FrmGestionHuesped huesped = new FrmGestionHuesped(administrador);
+        huesped.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHospedaje1ActionPerformed
 
     /**
