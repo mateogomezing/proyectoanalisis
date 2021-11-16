@@ -28,12 +28,29 @@ public interface IDAOHospedaje {
     public boolean guardarHospedaje(Hospedaje hospedaje) throws DatosIncompletosException, NombreHospedajeException;
 
     /**
-     * Metodo encargado de buscar un hospedaje
+     * Metodo encargado de buscar un hospedaje por el tipo
      *
      * @param tipo recibe el tipo de hospedaje del hospedaje al buscar
      * @return objeto con los datos del hospedaje
      */
     public Hospedaje buscarHospedaje(String tipo);
+
+    /**
+     * Metodo encargado de buscar un hospedaje por ciudad
+     *
+     * @param ciudad recibe la ciudad del hospedaje al buscar
+     * @return recibe la ciudad del hospedaje al buscar
+     */
+    public ArrayList<Hospedaje> buscarHospedajeCiudad(String ciudad);
+
+    /**
+     * Metodo encargado de buscar un hospedaje por ciudad y tipo
+     *
+     * @param ciudad recibe la ciudad del hospedaje al buscar
+     * @param tipo recibe tipo del hospedaje al buscar
+     * @return recibe la ciudad y el tipo del hospedaje al buscar
+     */
+    public ArrayList<Hospedaje> buscarHospedajeTipo(String ciudad, String tipo);
 
     /**
      * Metodo encargado de modificar el hospedaje cuando modifica la imagen
@@ -44,6 +61,10 @@ public interface IDAOHospedaje {
      * ya se encuentra registrada
      * @throws Excepcion.DatosIncompletosException si algunos de los datos son
      * nulos
+     */
+    /**
+     *
+     * @return
      */
     public boolean modificarHospedaje(Hospedaje hospedaje) throws NombreHospedajeException, DatosIncompletosException;
 

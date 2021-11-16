@@ -11,6 +11,7 @@ import Definiciones.IDAOFabrica;
 import Definiciones.IDAOHospedaje;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
+import Definiciones.IDAOOpiniones;
 
 /**
  *
@@ -41,6 +42,11 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     @Override
     public IDAOHospedaje crearDAOHospedaje() {
         return new DAOHospedaje();
+    }
+
+    @Override
+    public IDAOOpiniones crearDAOOpiniones() {
+        return new DAOOpiniones();
     }
 
 }

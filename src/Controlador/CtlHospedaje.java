@@ -16,6 +16,7 @@ import Excepcion.NombreHospedajeException;
 import Modelo.Hospedaje;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -40,6 +41,24 @@ public class CtlHospedaje {
 
     public Hospedaje buscarHospedaje(String tipo) throws BuscarHospedajeException, DatosIncompletosException {
         return bo.buscarHospedaje(tipo);
+    }
+
+    public ArrayList<Hospedaje> buscarHospedajeCiudad(JComboBox x) throws ComboBoxException, BuscarHospedajeException {
+        return bo.buscarHospedajeCiudad(x);
+    }
+
+    public ArrayList<Hospedaje> buscarHospedajeTipo(JComboBox x, JComboBox xs) throws ComboBoxException, BuscarHospedajeException {
+        return bo.buscarHospedajeTipo(x, xs);
+    }
+
+    public DefaultComboBoxModel llenarComboBoxCategoria(ArrayList<Hospedaje> listahospedaje) {
+        return bo.llenaerComboBoxCategoria(listahospedaje);
+
+    }
+
+    public DefaultComboBoxModel llenarComboBoxTipo(ArrayList<Hospedaje> listahospedaje) {
+        return bo.llenaerComboBoxTipo(listahospedaje);
+
     }
 
     public void modificarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, CargarImagenException, ModificarHospedajeException {

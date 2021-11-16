@@ -100,6 +100,51 @@ public class BOHospedaje {
         return hospedaje;
     }
 
+    public ArrayList<Hospedaje> buscarHospedajeCiudad(JComboBox x) throws ComboBoxException, BuscarHospedajeException {
+        String informacion = x.getSelectedItem().toString();
+        if (informacion.equals("Seleccione")) {
+            throw new ComboBoxException();
+        }
+        ArrayList<Hospedaje> hospedajes = dao.buscarHospedajeCiudad(informacion);
+
+        return hospedajes;
+    }
+
+    public ArrayList<Hospedaje> buscarHospedajeTipo(JComboBox x, JComboBox xs) throws ComboBoxException, BuscarHospedajeException {
+        String informacion = x.getSelectedItem().toString();
+        String informacion2 = xs.getSelectedItem().toString();
+        if (informacion2.equals("Seleccione")) {
+            throw new ComboBoxException();
+        }
+        ArrayList<Hospedaje> hospedajes = dao.buscarHospedajeTipo(informacion, informacion2);
+
+        return hospedajes;
+    }
+
+    public DefaultComboBoxModel llenaerComboBoxCategoria(ArrayList<Hospedaje> hospedajes) {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < hospedajes.size(); i++) {
+
+            if (hospedajes.get(i).getEstado().equalsIgnoreCase("Disponible")) {
+                modelo.addElement(hospedajes.get(i).getCategoria());
+            }
+
+        }
+        return modelo;
+    }
+
+    public DefaultComboBoxModel llenaerComboBoxTipo(ArrayList<Hospedaje> hospedajes) {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < hospedajes.size(); i++) {
+
+            if (hospedajes.get(i).getEstado().equalsIgnoreCase("Disponible")) {
+                modelo.addElement(hospedajes.get(i).getTipo());
+            }
+
+        }
+        return modelo;
+    }
+
     public void modificarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, CargarImagenException, ModificarHospedajeException {
         Hospedaje hospedaje = new Hospedaje(buscarHospedaje(tipo).getId(), idAnfitrion, cargarImagenBytes(ruta), categoria, tipo, cantidadpersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorpornoche);
         if (!dao.modificarHospedaje(hospedaje)) {

@@ -45,4 +45,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOHospedaje
      */
     public IDAOHospedaje crearDAOHospedaje();
+
+    /**
+     * Metodo para la creacion de un DAOOpioniones
+     *
+     * @return Abstraccion de DAOOpiniones
+     */
+    public IDAOOpiniones crearDAOOpiniones();
 }

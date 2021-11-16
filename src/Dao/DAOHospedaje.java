@@ -97,6 +97,87 @@ public class DAOHospedaje implements IDAOHospedaje {
     }
 
     @Override
+    public ArrayList<Hospedaje> buscarHospedajeCiudad(String ciudad) {
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,idAnfitrion,imagen,categoria,tipo,cantidadpersonas,ubicacion,habitaciones,camas,bano,estado,servicios,valorPorNoche FROM hospedaje where ubicacion=?");
+            pstmt.setString(1, ciudad);
+
+            ResultSet respuesta = pstmt.executeQuery();//Me va a traer todo lo que venga como resultado
+            ArrayList<Hospedaje> listar = new ArrayList<>();
+
+            boolean condicion = true;
+            while (condicion == true) {
+                if (respuesta.next()) {
+                    Hospedaje hospedaje = new Hospedaje();
+
+                    hospedaje.setId(respuesta.getInt("id"));
+                    hospedaje.setIdAnfitrion(respuesta.getInt("idAnfitrion"));
+                    hospedaje.setImagen(respuesta.getBytes("imagen"));
+                    hospedaje.setCategoria(respuesta.getString("categoria"));
+                    hospedaje.setTipo(respuesta.getString("tipo"));
+                    hospedaje.setCantidadpersonas(respuesta.getString("cantidadpersonas"));
+                    hospedaje.setUbicacion(respuesta.getString("ubicacion"));
+                    hospedaje.setHabitaciones(respuesta.getString("habitaciones"));
+                    hospedaje.setCamas(respuesta.getString("camas"));
+                    hospedaje.setBano(respuesta.getString("bano"));
+                    hospedaje.setEstado(respuesta.getString("estado"));
+                    hospedaje.setServicios(respuesta.getString("servicios"));
+                    hospedaje.setValorPorNoche(respuesta.getString("valorPorNoche"));
+                    listar.add(hospedaje);
+                } else {
+                    condicion = false;
+                }
+            }
+            return listar;
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            System.err.println("Hubo un error al listar");
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Hospedaje> buscarHospedajeTipo(String ciudad, String tipo) {
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,idAnfitrion,imagen,categoria,tipo,cantidadpersonas,ubicacion,habitaciones,camas,bano,estado,servicios,valorPorNoche FROM hospedaje where ubicacion=? AND categoria=?");
+            pstmt.setString(1, ciudad);
+            pstmt.setString(2, tipo);
+
+            ResultSet respuesta = pstmt.executeQuery();//Me va a traer todo lo que venga como resultado
+            ArrayList<Hospedaje> listar = new ArrayList<>();
+
+            boolean condicion = true;
+            while (condicion == true) {
+                if (respuesta.next()) {
+                    Hospedaje hospedaje = new Hospedaje();
+
+                    hospedaje.setId(respuesta.getInt("id"));
+                    hospedaje.setIdAnfitrion(respuesta.getInt("idAnfitrion"));
+                    hospedaje.setImagen(respuesta.getBytes("imagen"));
+                    hospedaje.setCategoria(respuesta.getString("categoria"));
+                    hospedaje.setTipo(respuesta.getString("tipo"));
+                    hospedaje.setCantidadpersonas(respuesta.getString("cantidadpersonas"));
+                    hospedaje.setUbicacion(respuesta.getString("ubicacion"));
+                    hospedaje.setHabitaciones(respuesta.getString("habitaciones"));
+                    hospedaje.setCamas(respuesta.getString("camas"));
+                    hospedaje.setBano(respuesta.getString("bano"));
+                    hospedaje.setEstado(respuesta.getString("estado"));
+                    hospedaje.setServicios(respuesta.getString("servicios"));
+                    hospedaje.setValorPorNoche(respuesta.getString("valorPorNoche"));
+                    listar.add(hospedaje);
+                } else {
+                    condicion = false;
+                }
+            }
+            return listar;
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            System.err.println("Hubo un error al listar");
+        }
+        return null;
+    }
+
+    @Override
     public boolean modificarHospedaje(Hospedaje hospedaje) throws NombreHospedajeException, DatosIncompletosException {
         boolean desicion = false;
         try (Connection con = Conexion.getConnection()) {
@@ -237,4 +318,5 @@ public class DAOHospedaje implements IDAOHospedaje {
         int tamano = variable.length();
         return variable.substring((tamano - 2), tamano);
     }
+
 }
