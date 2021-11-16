@@ -14,6 +14,7 @@ import Excepcion.GuardarHospedajeException;
 import Excepcion.ModificarHospedajeException;
 import Excepcion.NombreHospedajeException;
 import Modelo.Administrador;
+import Modelo.Anfitrion;
 import Modelo.Hospedaje;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -26,11 +27,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author mateo
  */
 public class FrmGestionHospedaje extends javax.swing.JFrame {
-
-    private Administrador administrador;
+    
+    private Administrador administrador = null;
+    private Anfitrion anfitrion = null;
     private final CtlHospedaje controlador;
     private String estado;
-
+    
     public FrmGestionHospedaje() {
         controlador = new CtlHospedaje();
         initComponents();
@@ -38,24 +40,46 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         btnBuscar.setEnabled(false);
         btnModificar.setEnabled(false);
         btnCancelar.setEnabled(false);
-
+        
     }
-
-    public FrmGestionHospedaje(Administrador administrador) {
-        controlador = new CtlHospedaje();
-        this.administrador = administrador;
-        initComponents();
-
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-
-        btnModificar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        btnModificar.setEnabled(false);
-        tblHabitacion.setEnabled(true);
-        txtRuta.setEditable(false);
-        llenarComboBox();
-        listar();
+    
+    public FrmGestionHospedaje(Administrador administrador, Anfitrion anfitrion) {
+        
+        if (administrador != null) {
+            controlador = new CtlHospedaje();
+            this.administrador = administrador;
+            this.anfitrion = anfitrion;
+            initComponents();
+            
+            this.setLocationRelativeTo(null);
+            this.setResizable(false);
+            
+            btnModificar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            tblHabitacion.setEnabled(true);
+            txtRuta.setEditable(false);
+            llenarComboBox();
+            listar();
+        } else {
+            controlador = new CtlHospedaje();
+            this.administrador = administrador;
+            this.anfitrion = anfitrion;
+            initComponents();
+            
+            this.setLocationRelativeTo(null);
+            this.setResizable(false);
+            
+            btnModificar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            tblHabitacion.setEnabled(true);
+            txtRuta.setEditable(false);
+            llenarComboBoxAnfitrion(anfitrion);
+            CbxAnfitrion.setEnabled(false);
+            
+        }
+        
     }
 
     /**
@@ -585,7 +609,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
             imprimir("Se guardó el hospedaje " + tipo + " correctamente");
             vaciarCampos();
             listar();
-
+            
         } catch (DatosIncompletosException | NombreHospedajeException | CargarImagenException | GuardarHospedajeException ex) {
             imprimir(ex.getMessage());
         }
@@ -612,7 +636,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
             btnBuscar.setEnabled(false);
             txtTipo.setEnabled(false);
             btnCancelar.setEnabled(true);
-
+            
             lblmagen.setIcon(new ImageIcon(controlador.cargarImagenBufferedImage(hospedaje.getImagen())));
             cargarInformacion(hospedaje);
         } catch (CargarImagenException | BuscarHospedajeException | DatosIncompletosException ex) {
@@ -645,7 +669,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                 btnBuscar.setEnabled(true);
                 txtTipo.setEnabled(true);
                 btnCancelar.setEnabled(false);
-
+                
             } else {
                 controlador.modificarHospedaje2(idAnfitrion, tipoAlojamiento, tipo, cantidadPersonas, ubicacion, habitaciones, camas, bano, estados, servicios, valorPorNoche);
                 JOptionPane.showMessageDialog(null, "Se Modifico el hospedaje " + tipo + " correctamente");
@@ -658,7 +682,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
                 txtTipo.setEnabled(true);
                 btnCancelar.setEnabled(false);
             }
-
+            
         } catch (BuscarHospedajeException | DatosIncompletosException | NombreHospedajeException | CargarImagenException | ModificarHospedajeException ex) {
             imprimir(ex.getMessage());
         }
@@ -673,7 +697,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-
+        
         fileChooser.setDialogTitle("Seleccione la imagen de la habitación");
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");//se le asigna un filtro
         fileChooser.setFileFilter(filtro);
@@ -686,9 +710,9 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
             } catch (CargarImagenException ex) {
                 imprimir(ex.getMessage());
             }
-
+            
             txtRuta.setText(ruta);
-
+            
         }
 
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
@@ -706,7 +730,7 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
     private void imprimir(String v) {
         JOptionPane.showMessageDialog(null, v);
     }
-
+    
     private void cargarInformacion(Hospedaje hospedaje) {
         txtTipo.setText(hospedaje.getTipo());
         CbxTipoAlojamiento.setSelectedItem(hospedaje.getCategoria());
@@ -722,15 +746,19 @@ public class FrmGestionHospedaje extends javax.swing.JFrame {
         txtRuta.setText(null);
         estado = hospedaje.getEstado();
     }
-
+    
     public final void listar() {
         tblHabitacion.setModel(controlador.listarElementos());
     }
-
+    
     private void llenarComboBox() {
         CbxAnfitrion.setModel(controlador.llenarComboBox());
     }
-
+    
+    private void llenarComboBoxAnfitrion(Anfitrion anfitrion) {
+       CbxAnfitrion.setModel(controlador.llenarComboxAnfitrion(anfitrion));
+    }
+    
     private void vaciarCampos() {
         txtTipo.setText(null);
         CbxTipoAlojamiento.setSelectedItem("Seleccione");

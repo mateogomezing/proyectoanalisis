@@ -13,6 +13,7 @@ import Excepcion.DatosIncompletosException;
 import Excepcion.GuardarHospedajeException;
 import Excepcion.ModificarHospedajeException;
 import Excepcion.NombreHospedajeException;
+import Modelo.Anfitrion;
 import Modelo.Hospedaje;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -59,6 +60,10 @@ public class CtlHospedaje {
     public DefaultComboBoxModel llenarComboBoxTipo(ArrayList<Hospedaje> listahospedaje) {
         return bo.llenaerComboBoxTipo(listahospedaje);
 
+    }
+
+    public DefaultComboBoxModel llenarComboxAnfitrion(Anfitrion anfitrion) {
+        return bo.llenarComboBoxAnfitrion(anfitrion);
     }
 
     public void modificarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, CargarImagenException, ModificarHospedajeException {

@@ -145,6 +145,18 @@ public class BOHospedaje {
         return modelo;
     }
 
+    public DefaultComboBoxModel llenarComboBoxAnfitrion(Anfitrion anfitrion) {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        ArrayList<Anfitrion> listanfitrion = listaAnfitrion();
+        for (int i = 0; i < listanfitrion.size(); i++) {
+            if (listanfitrion.get(i).getCedula().equalsIgnoreCase(anfitrion.getCedula())) {
+                modelo.addElement(anfitrion.getNombreCompleto());
+            }
+        }
+
+        return modelo;
+    }
+
     public void modificarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, CargarImagenException, ModificarHospedajeException {
         Hospedaje hospedaje = new Hospedaje(buscarHospedaje(tipo).getId(), idAnfitrion, cargarImagenBytes(ruta), categoria, tipo, cantidadpersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorpornoche);
         if (!dao.modificarHospedaje(hospedaje)) {

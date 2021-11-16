@@ -119,7 +119,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Anfitrion");
 
-        btnHuesped1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.jpg"))); // NOI18N
+        btnHuesped1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/opinion.png"))); // NOI18N
         btnHuesped1.setBorder(null);
         btnHuesped1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,12 +166,13 @@ public class FrmAdministrador extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(87, 87, 87)
                                 .addComponent(jLabel14)))
-                        .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHuesped1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel15)))
+                                .addGap(77, 77, 77)
+                                .addComponent(jLabel15))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(btnHuesped1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
@@ -193,9 +194,9 @@ public class FrmAdministrador extends javax.swing.JFrame {
                             .addComponent(btnHuesped)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHuesped1)
-                            .addComponent(btnAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHuesped1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +222,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHospedajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedajeActionPerformed
-        FrmGestionHospedaje hospedaje = new FrmGestionHospedaje(administrador);
+        FrmGestionHospedaje hospedaje = new FrmGestionHospedaje(administrador, null);
         hospedaje.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHospedajeActionPerformed
