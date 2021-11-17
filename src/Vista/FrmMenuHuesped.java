@@ -206,7 +206,9 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHospedajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedajeActionPerformed
-
+        FrmAlojamientos alojamiento = new FrmAlojamientos(huesped);
+        alojamiento.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHospedajeActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
