@@ -100,6 +100,17 @@ public class BOHospedaje {
         return hospedaje;
     }
 
+    public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion) throws BuscarHospedajeException, DatosIncompletosException {
+        if (tipo == null) {
+            throw new DatosIncompletosException();
+        }
+        Hospedaje hospedaje = dao.buscarHospedajeAnfitrion(tipo, idAnfitrion);
+        if (hospedaje == null) {
+            throw new BuscarHospedajeException();
+        }
+        return hospedaje;
+    }
+
     public ArrayList<Hospedaje> buscarHospedajeCiudad(JComboBox x) throws ComboBoxException, BuscarHospedajeException {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -345,6 +356,7 @@ public class BOHospedaje {
         }
         return modelo;
     }
+
 
     public DefaultTableModel listarElementos() {
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();

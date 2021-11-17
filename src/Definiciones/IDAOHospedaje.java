@@ -36,6 +36,17 @@ public interface IDAOHospedaje {
     public Hospedaje buscarHospedaje(String tipo);
 
     /**
+     *  * Metodo encargado de buscar un hospedaje por el tipo y anfitrion
+     *
+     * @param tipo recibe el tipo de hospedaje del hospedaje al buscar
+     * @param idAnfitrion recibe el anfitrion de hospedaje del hospedaje al
+     * buscar
+     * @return objeto con los datos del hospedaje
+     *
+     */
+    public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion);
+
+    /**
      * Metodo encargado de buscar un hospedaje por ciudad
      *
      * @param ciudad recibe la ciudad del hospedaje al buscar

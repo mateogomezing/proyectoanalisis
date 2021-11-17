@@ -44,6 +44,10 @@ public class CtlHospedaje {
         return bo.buscarHospedaje(tipo);
     }
 
+    public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion) throws BuscarHospedajeException, DatosIncompletosException {
+        return bo.buscarHospedajeAnfitrion(tipo, idAnfitrion);
+    }
+
     public ArrayList<Hospedaje> buscarHospedajeCiudad(JComboBox x) throws ComboBoxException, BuscarHospedajeException {
         return bo.buscarHospedajeCiudad(x);
     }
@@ -77,6 +81,8 @@ public class CtlHospedaje {
     public DefaultTableModel listarElementos() {
         return bo.listarElementos();
     }
+
+    
 
     public DefaultTableModel filtrar(String opcion, String accion) throws ComboBoxException {
         return bo.filtrar(opcion, accion);

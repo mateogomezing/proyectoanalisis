@@ -97,6 +97,40 @@ public class DAOHospedaje implements IDAOHospedaje {
     }
 
     @Override
+    public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion) {
+        Hospedaje hospedaje = new Hospedaje();
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,idAnfitrion,imagen,categoria,tipo,cantidadpersonas,ubicacion,habitaciones,camas,bano,estado,servicios,valorPorNoche FROM hospedaje where tipo=? AND idAnfitrion=?");
+            pstmt.setString(1, tipo);
+            pstmt.setInt(2, idAnfitrion);
+            //Resultset guarda los datos de la busqueda
+            ResultSet respuesta = pstmt.executeQuery();
+
+            if (respuesta.next()) {
+                hospedaje.setId(respuesta.getInt("id"));
+                hospedaje.setIdAnfitrion(respuesta.getInt("idAnfitrion"));
+                hospedaje.setImagen(respuesta.getBytes("imagen"));
+                hospedaje.setCategoria(respuesta.getString("categoria"));
+                hospedaje.setTipo(respuesta.getString("tipo"));
+                hospedaje.setCantidadpersonas(respuesta.getString("cantidadpersonas"));
+                hospedaje.setUbicacion(respuesta.getString("ubicacion"));
+                hospedaje.setHabitaciones(respuesta.getString("habitaciones"));
+                hospedaje.setCamas(respuesta.getString("camas"));
+                hospedaje.setBano(respuesta.getString("bano"));
+                hospedaje.setEstado(respuesta.getString("estado"));
+                hospedaje.setServicios(respuesta.getString("servicios"));
+                hospedaje.setValorPorNoche(respuesta.getString("valorPorNoche"));
+                return hospedaje;
+            }
+
+        } catch (SQLException ex) {
+            hospedaje = null;
+
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<Hospedaje> buscarHospedajeCiudad(String ciudad) {
         try (Connection con = Conexion.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement("SELECT  id,idAnfitrion,imagen,categoria,tipo,cantidadpersonas,ubicacion,habitaciones,camas,bano,estado,servicios,valorPorNoche FROM hospedaje where ubicacion=?");

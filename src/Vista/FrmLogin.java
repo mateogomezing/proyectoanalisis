@@ -24,7 +24,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * Creates new form FrmLog
      */
     private final CtlLogIn controlador;
-    
+
     public FrmLogin() {
         controlador = new CtlLogIn();
         initComponents();
@@ -194,29 +194,27 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try {
             Object usuario = controlador.IniciarSesion(controlador.obtenerDatoJtextFile(txtCedula), controlador.obtenerDatoJtextFile(txtContrasena));
-            
+
             if (usuario instanceof Huesped) {
-                JOptionPane.showMessageDialog(null, "en desarrollo");
-                /**
-                 * FrmMenuHuesped vista = new FrmMenuHuesped((Huesped) usuario);
-                 * vista.setVisible(true); JOptionPane.showMessageDialog(vista,
-                 * "Bienvenido seas " + ((Huesped)
-                 * usuario).getNombreCompleto()); this.dispose();
-                 *
-                 */
+
+                FrmMenuHuesped vista = new FrmMenuHuesped((Huesped) usuario);
+                vista.setVisible(true);
+                JOptionPane.showMessageDialog(vista, "Bienvenido seas " + ((Huesped) usuario).getNombreCompleto());
+                this.dispose();
+
             } else if (usuario instanceof Administrador) {
                 FrmAdministrador vista = new FrmAdministrador((Administrador) usuario);
                 vista.setVisible(true);
                 JOptionPane.showMessageDialog(vista, "Bienvenido seas " + ((Administrador) usuario).getNombrecompleto());
                 this.dispose();
             } else if (usuario instanceof Anfitrion) {
-                
+
                 FrmMenuAnfitrion vista = new FrmMenuAnfitrion((Anfitrion) usuario);
                 vista.setVisible(true);
                 JOptionPane.showMessageDialog(vista, "Bienvenido seas " + ((Anfitrion) usuario).getNombreCompleto());
                 this.dispose();
             }
-            
+
         } catch (DatosIncompletosException | LogInException | UsuarioSuspendioException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
