@@ -12,6 +12,7 @@ import Definiciones.IDAOHospedaje;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
 import Definiciones.IDAOOpiniones;
+import Definiciones.IDAOReserva;
 
 /**
  *
@@ -49,4 +50,7 @@ public class FactoryDAOJDBC implements IDAOFabrica {
         return new DAOOpiniones();
     }
 
+    public IDAOReserva crearDAOReserva() {
+        return new DAOReserva();
+    }
 }

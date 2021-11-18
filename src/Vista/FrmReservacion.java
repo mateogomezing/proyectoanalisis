@@ -8,8 +8,17 @@ package Vista;
 import Controlador.CtlAnfitrion;
 import Controlador.CtlHospedaje;
 import Controlador.CtlOpiniones;
+import Controlador.CtlReserva;
 import Excepcion.BuscarAnfitrionException;
 import Excepcion.CargarImagenException;
+import Excepcion.DatosIncompletosException;
+import Excepcion.DayException;
+import Excepcion.FechaException;
+import Excepcion.GuardarReservaException;
+import Excepcion.ReservaActivaException;
+import Excepcion.UsuarioMultadoException;
+import Excepcion.anoException;
+import Excepcion.mesException;
 import Modelo.Anfitrion;
 import Modelo.Hospedaje;
 import Modelo.Huesped;
@@ -30,14 +39,17 @@ public class FrmReservacion extends javax.swing.JFrame {
     private final CtlHospedaje controlador;
     private final CtlOpiniones controladoOpiniones;
     private final CtlAnfitrion controladorAnfitrion;
+    private final CtlReserva controladorReserva;
 
     public FrmReservacion() {
         controlador = new CtlHospedaje();
         controladorAnfitrion = new CtlAnfitrion();
         controladoOpiniones = new CtlOpiniones();
+        controladorReserva = new CtlReserva();
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        dateFechaHoy.setVisible(false);
     }
 
     public FrmReservacion(Hospedaje hospeda, Huesped huesped) {
@@ -45,6 +57,7 @@ public class FrmReservacion extends javax.swing.JFrame {
         controlador = new CtlHospedaje();
         controladoOpiniones = new CtlOpiniones();
         controladorAnfitrion = new CtlAnfitrion();
+        controladorReserva = new CtlReserva();
         this.hospedaje = hospeda;
         this.huespedes = huesped;
         initComponents();
@@ -107,7 +120,7 @@ public class FrmReservacion extends javax.swing.JFrame {
         dateFechaLlegada = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         dateFechaSalida = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        btnReserva = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         txtUbicacion = new javax.swing.JTextField();
@@ -257,9 +270,14 @@ public class FrmReservacion extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("FECHA REGRESO:");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("RESERVAR");
+        btnReserva.setBackground(new java.awt.Color(255, 255, 255));
+        btnReserva.setForeground(new java.awt.Color(0, 0, 0));
+        btnReserva.setText("RESERVAR");
+        btnReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservaActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
@@ -384,7 +402,7 @@ public class FrmReservacion extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(57, 57, 57)
-                                        .addComponent(jButton1)
+                                        .addComponent(btnReserva)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton2))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -420,13 +438,14 @@ public class FrmReservacion extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addComponent(txtTipoAlojamiento))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(spnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBano)
-                            .addComponent(spnBano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUbicacion))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUbicacion)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(spnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblBano)
+                                .addComponent(spnBano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPiso)
@@ -478,7 +497,7 @@ public class FrmReservacion extends javax.swing.JFrame {
                                     .addComponent(dateFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton1)
+                                    .addComponent(btnReserva)
                                     .addComponent(jButton2))
                                 .addGap(35, 35, 35))))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -529,8 +548,31 @@ public class FrmReservacion extends javax.swing.JFrame {
         alojamientos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaActionPerformed
+        try {
+            Date fechaReserva = dateFechaHoy.getDate();
+            Date fechaLleaga = dateFechaLlegada.getDate();
+            Date fechaSalida = dateFechaSalida.getDate();
+
+            controladorReserva.guardarReserva(huespedes.getId(), hospedaje.getId(), fechaReserva, fechaLleaga, fechaSalida);
+            imprimir("Se registro la reserva correctamente");
+            limpiar();
+            FrmMenuHuesped menuHuesped = new FrmMenuHuesped(huespedes);
+            menuHuesped.setVisible(true);
+            this.dispose();
+
+        } catch (DatosIncompletosException | UsuarioMultadoException | ReservaActivaException | GuardarReservaException | anoException | mesException | FechaException | DayException ex) {
+            imprimir(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnReservaActionPerformed
     private void imprimir(String v) {
         JOptionPane.showMessageDialog(null, v);
+    }
+
+    private void limpiar() {
+        dateFechaLlegada.setDate(null);
+        dateFechaSalida.setDate(null);
     }
 
     private void cargarInformacionHuesped(Huesped huespede) {
@@ -666,11 +708,11 @@ public class FrmReservacion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReserva;
     private javax.swing.JButton btnSalir;
     private com.toedter.calendar.JDateChooser dateFechaHoy;
     private com.toedter.calendar.JDateChooser dateFechaLlegada;
     private com.toedter.calendar.JDateChooser dateFechaSalida;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

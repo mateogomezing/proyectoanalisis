@@ -52,4 +52,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOOpiniones
      */
     public IDAOOpiniones crearDAOOpiniones();
+
+    /**
+     * Metodo para la creacion de un DAOReserva
+     *
+     * @return Abstraccion de DAOReserva
+     */
+    public IDAOReserva crearDAOReserva();
 }
