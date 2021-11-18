@@ -99,6 +99,34 @@ public class DAOAnfitrion implements IDAOAnfitrion {
     }
 
     @Override
+    public Anfitrion buscarAnfitrionId(int idAnfitrion) {
+        Anfitrion anfitrion = new Anfitrion();
+
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT  id,foto,cedula,nombreCompleto,residencia,idioma,contrasena,biografia,estado FROM anfitrion where id=?");
+            pstmt.setInt(1, idAnfitrion);
+            //Resultset guarda los datos de la busqueda
+            ResultSet respuesta = pstmt.executeQuery();
+            if (respuesta.next()) {
+                anfitrion.setId(respuesta.getInt("id"));
+                anfitrion.setFoto(respuesta.getBytes("foto"));
+                anfitrion.setCedula(respuesta.getString("cedula"));
+                anfitrion.setNombreCompleto(respuesta.getString("nombreCompleto"));
+                anfitrion.setResidencia(respuesta.getString("residencia"));
+                anfitrion.setIdioma(respuesta.getString("idioma"));
+                anfitrion.setContrasena(respuesta.getString("contrasena"));
+                anfitrion.setBiografia(respuesta.getString("biografia"));
+                anfitrion.setEstado(respuesta.getString("estado"));
+                return anfitrion;
+            }
+
+        } catch (SQLException ex) {
+            anfitrion = null;
+        }
+        return null;
+    }
+
+    @Override
     public boolean modificarAnfitrion(Anfitrion anfitrion) throws CedulaException, DatosIncompletosException {
         boolean desicion = false;
 
@@ -257,4 +285,5 @@ public class DAOAnfitrion implements IDAOAnfitrion {
             throw new CedulaHuespedException();
         }
     }
+
 }

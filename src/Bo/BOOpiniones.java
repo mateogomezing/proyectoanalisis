@@ -43,6 +43,41 @@ public class BOOpiniones {
         return daoHuesped.listarHuesped();
     }
 
+    public DefaultTableModel listarElementosOpinionReserva(int idHospedaje) {
+        ArrayList<Opiniones> listaropiniones = listarOpiniones(idHospedaje);
+        ArrayList<Hospedaje> listahospedaje = listarHospedajes();
+        ArrayList<Huesped> listaHuesped = listarHuesped();
+        String nombreColumnas[] = {"Huesped", "Hospedaje", "Calificacion"};
+        DefaultTableModel modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int filas, int columnas) {
+                switch (columnas) {
+                    case 3:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        };
+        String huesped = "";
+        String hospedaje = "";
+        for (Opiniones opiniones : listaropiniones) {
+
+            for (Huesped huespedes : listaHuesped) {
+                for (Hospedaje hospedajes : listahospedaje) {
+                    if (opiniones.getIdHospedaje() == hospedajes.getId()) {
+                        huesped = huespedes.getCedula() + "-" + huespedes.getNombreCompleto();
+                        hospedaje = hospedajes.getCategoria() + "-" + hospedajes.getTipo();
+                        break;
+                    }
+                }
+
+            }
+            modelo.addRow(new Object[]{huesped, hospedaje, opiniones.getCalificacion()});
+        }
+        return modelo;
+    }
+
     public DefaultTableModel listarElementos(int idHospedaje) {
         ArrayList<Opiniones> listaropiniones = listarOpiniones(idHospedaje);
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();

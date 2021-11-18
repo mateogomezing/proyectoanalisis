@@ -44,6 +44,10 @@ public class CtlAnfitrion {
         return bo.buscarAnfitrion(cedula);
     }
 
+    public Anfitrion buscarAnfitrionId(int IdAnfitrion) throws BuscarAnfitrionException {
+        return bo.buscarAnfitrionId(IdAnfitrion);
+    }
+
     public void modificarAnfitrion(String cedula, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws ModificarAnfitrionException, CedulaException, DatosIncompletosException, BuscarAnfitrionException {
         bo.modificarAnfitrion(cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);
 

@@ -99,6 +99,14 @@ public class BOAnfitrion {
         return anfitrion;
     }
 
+    public Anfitrion buscarAnfitrionId(int IdAnfitrion) throws BuscarAnfitrionException {
+        Anfitrion anfitrion = dao.buscarAnfitrionId(IdAnfitrion);
+        if (anfitrion == null) {
+            throw new BuscarAnfitrionException();
+        }
+        return anfitrion;
+    }
+
     public void modificarAnfitrion(String cedula, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws ModificarAnfitrionException, CedulaException, DatosIncompletosException, BuscarAnfitrionException {
 
         Anfitrion anfitrion = new Anfitrion(buscarAnfitrion(cedula).getId(), null, cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);

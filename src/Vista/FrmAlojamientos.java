@@ -28,15 +28,11 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        btnSeleccionar.setEnabled(false);
+        btnBuscar.setEnabled(false);
         cboCategoria.setEnabled(false);
         cboTipo.setEnabled(false);
         txtValorPorNoche.setEnabled(false);
-        JdateFechaIda.setEnabled(false);
-        JdateFechaRegreso.setEnabled(false);
-        SpnCantidadPersonas.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        btnCancelarFechas.setEnabled(false);
+        
     }
     
     public FrmAlojamientos(Huesped huesped) {
@@ -45,15 +41,11 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        btnSeleccionar.setEnabled(false);
+        btnBuscar.setEnabled(false);
         cboCategoria.setEnabled(false);
         cboTipo.setEnabled(false);
         txtValorPorNoche.setEnabled(false);
-        JdateFechaIda.setEnabled(false);
-        JdateFechaRegreso.setEnabled(false);
-        SpnCantidadPersonas.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        btnCancelarFechas.setEnabled(false);
+        
     }
 
     /**
@@ -68,24 +60,15 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cboCiudad = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        JdateFechaIda = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
-        JdateFechaRegreso = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        SpnCantidadPersonas = new javax.swing.JSpinner();
-        btnSeleccionar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         cboTipo = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JSeparator();
         btnCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtValorPorNoche = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        btnCancelarFechas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,21 +88,12 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Fecha Ida:");
-
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Fecha Regreso:");
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Cantidad Personas:");
-
-        btnSeleccionar.setBackground(new java.awt.Color(255, 255, 255));
-        btnSeleccionar.setForeground(new java.awt.Color(0, 0, 0));
-        btnSeleccionar.setText("SELECCIONAR");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -163,6 +137,11 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -176,14 +155,6 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscar.setText("BUSCAR");
-
-        btnCancelarFechas.setBackground(new java.awt.Color(255, 255, 255));
-        btnCancelarFechas.setForeground(new java.awt.Color(0, 0, 0));
-        btnCancelarFechas.setText("CANCELAR");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,54 +162,30 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JdateFechaIda, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JdateFechaRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SpnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarFechas)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSeleccionar)
-                                .addGap(69, 69, 69)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnCancelar))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
+                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtValorPorNoche, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnCancelar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtValorPorNoche, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,26 +204,8 @@ public class FrmAlojamientos extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSeleccionar)
+                    .addComponent(btnBuscar)
                     .addComponent(btnCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(SpnCantidadPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscar)
-                        .addComponent(btnCancelarFechas))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(JdateFechaIda, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)))
-                            .addComponent(jLabel2))
-                        .addComponent(JdateFechaRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,7 +256,7 @@ public class FrmAlojamientos extends javax.swing.JFrame {
                 cboCiudad.setEnabled(false);
                 cboCategoria.setEnabled(false);
                 cboTipo.setEnabled(true);
-                btnBuscar.setEnabled(true);
+                
             }
         } catch (ComboBoxException | BuscarHospedajeException ex) {
             imprimir(ex.getMessage());
@@ -343,20 +272,37 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             Hospedaje hospedaje = controladorHospedaje.buscarHospedaje(controladorHospedaje.obtenerDatoJComboBox(cboTipo));
             txtValorPorNoche.setText(hospedaje.getValorPorNoche());
             cboTipo.setEnabled(false);
-            btnSeleccionar.setEnabled(true);
+            btnBuscar.setEnabled(true);
             
         } catch (BuscarHospedajeException | DatosIncompletosException ex) {
             imprimir(ex.toString());
         }
     }//GEN-LAST:event_cboTipoMouseClicked
 
-    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-        JdateFechaIda.setEnabled(true);
-        JdateFechaRegreso.setEnabled(true);
-        SpnCantidadPersonas.setEnabled(true);
-        btnBuscar.setEnabled(true);
-        btnCancelarFechas.setEnabled(true);
-    }//GEN-LAST:event_btnSeleccionarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            Hospedaje hospedaje = controladorHospedaje.buscarHospedaje(controladorHospedaje.obtenerDatoJComboBox(cboTipo));
+            
+            FrmReservacion reservacion = new FrmReservacion(hospedaje, huesped);
+            reservacion.setVisible(true);
+            this.dispose();
+            
+        } catch (BuscarHospedajeException | DatosIncompletosException ex) {
+            imprimir(ex.toString());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cboCiudad.setSelectedItem("Seleccione");
+        cboCiudad.setEnabled(true);
+        cboCategoria.setSelectedItem(null);
+        cboTipo.setSelectedItem(null);
+        txtValorPorNoche.setText("");
+        btnBuscar.setEnabled(false);
+        cboCategoria.setEnabled(false);
+        cboTipo.setEnabled(false);
+        txtValorPorNoche.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
     
     private void imprimir(String v) {
         JOptionPane.showMessageDialog(null, v);
@@ -461,26 +407,17 @@ public class FrmAlojamientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser JdateFechaIda;
-    private com.toedter.calendar.JDateChooser JdateFechaRegreso;
-    private javax.swing.JSpinner SpnCantidadPersonas;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelarFechas;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JComboBox<String> cboCategoria;
     private javax.swing.JComboBox<String> cboCiudad;
     private javax.swing.JComboBox<String> cboTipo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtValorPorNoche;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,6 +20,10 @@ public class CtlOpiniones {
         bo = new BOOpiniones();
     }
 
+    public DefaultTableModel listarElementosOpinionReserva(int idHospedaje) {
+        return bo.listarElementosOpinionReserva(idHospedaje);
+    }
+
     public DefaultTableModel listarElementos(int idHospedaje) {
         return bo.listarElementos(idHospedaje);
     }

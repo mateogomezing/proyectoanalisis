@@ -41,6 +41,14 @@ public interface IDAOAnfitrion {
     public Anfitrion buscarAnfitrion(String cedula);
 
     /**
+     * Metodo encargado de buscar a un anfitrion por el id
+     *
+     * @param idAnfitrion recibe el id del anfitrion al buscar
+     * @return objeto con los datos del Anfitrion
+     */
+    public Anfitrion buscarAnfitrionId(int idAnfitrion);
+
+    /**
      * Método encargado de modificar al huesped cuando no se modifica imagen
      *
      * @param anfitrion objeto con todos los datos del anfitrion
