@@ -58,7 +58,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnCheckIn = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        btnHospedaje3 = new javax.swing.JButton();
+        btnCheckOut = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         btnHospedaje4 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
@@ -125,17 +125,17 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Facturacion");
 
-        btnHospedaje3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/estadoreserva.jpg"))); // NOI18N
-        btnHospedaje3.setBorder(null);
-        btnHospedaje3.addActionListener(new java.awt.event.ActionListener() {
+        btnCheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkout.jpg"))); // NOI18N
+        btnCheckOut.setBorder(null);
+        btnCheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospedaje3ActionPerformed(evt);
+                btnCheckOutActionPerformed(evt);
             }
         });
 
         jLabel15.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Mi Reservas");
+        jLabel15.setText("Check-Out");
 
         btnHospedaje4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura.jpg"))); // NOI18N
         btnHospedaje4.setBorder(null);
@@ -159,17 +159,18 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHospedaje, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHospedaje1)
-                            .addComponent(btnHospedaje3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnHospedaje, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnHospedaje1)
+                                .addComponent(btnCheckOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel16))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jLabel15))
-                                    .addComponent(jLabel16))))
+                                .addComponent(jLabel15)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +220,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnHospedaje3)
+                        .addComponent(btnCheckOut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
@@ -269,9 +270,12 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCheckInActionPerformed
 
-    private void btnHospedaje3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHospedaje3ActionPerformed
+    private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
+        FrmCheckOut checkout = new FrmCheckOut(huesped);
+        checkout.setVisible(true);
+        this.dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnHospedaje4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje4ActionPerformed
         // TODO add your handling code here:
@@ -345,9 +349,9 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheckIn;
+    private javax.swing.JButton btnCheckOut;
     private javax.swing.JButton btnHospedaje;
     private javax.swing.JButton btnHospedaje1;
-    private javax.swing.JButton btnHospedaje3;
     private javax.swing.JButton btnHospedaje4;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
