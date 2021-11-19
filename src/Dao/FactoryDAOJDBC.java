@@ -7,10 +7,12 @@ package Dao;
 
 import Definiciones.IDAOAdministrador;
 import Definiciones.IDAOAnfitrion;
+import Definiciones.IDAOCuentaPersonal;
 import Definiciones.IDAOFabrica;
 import Definiciones.IDAOHospedaje;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOLogIn;
+import Definiciones.IDAOMiCuenta;
 import Definiciones.IDAOOpiniones;
 import Definiciones.IDAOReserva;
 
@@ -50,7 +52,18 @@ public class FactoryDAOJDBC implements IDAOFabrica {
         return new DAOOpiniones();
     }
 
+    @Override
     public IDAOReserva crearDAOReserva() {
         return new DAOReserva();
+    }
+
+    @Override
+    public IDAOMiCuenta crearDAOMiCuenta() {
+        return new DAOMiCuenta();
+    }
+
+    @Override
+    public IDAOCuentaPersonal crearDAOCuentaPersonal() {
+        return new DAOCuentaPersonal();
     }
 }

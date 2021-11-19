@@ -9,6 +9,7 @@ import Bo.BOReserva;
 import Excepcion.DatosIncompletosException;
 import Excepcion.DayException;
 import Excepcion.FechaException;
+import Excepcion.GuardarCuentaPersonalException;
 import Excepcion.GuardarReservaException;
 import Excepcion.ReservaActivaException;
 import Excepcion.UsuarioMultadoException;
@@ -30,7 +31,7 @@ public class CtlReserva {
         bo = new BOReserva();
     }
 
-    public void guardarReserva(int idHuesped, int idHabitacion, Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException, UsuarioMultadoException, ReservaActivaException, GuardarReservaException, anoException, mesException, FechaException, DayException {
+    public void guardarReserva(int idHuesped, int idHabitacion, Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException, UsuarioMultadoException, ReservaActivaException, GuardarReservaException, anoException, mesException, FechaException, DayException, GuardarCuentaPersonalException {
         bo.guardarReserva(idHuesped, idHabitacion, fechaHoraReserva, fechaHoraLlegada, fechaHoraSalida);
     }
 

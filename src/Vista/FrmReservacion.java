@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.CtlAnfitrion;
+import Controlador.CtlCuentaPersonal;
 import Controlador.CtlHospedaje;
 import Controlador.CtlOpiniones;
 import Controlador.CtlReserva;
@@ -14,6 +15,7 @@ import Excepcion.CargarImagenException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.DayException;
 import Excepcion.FechaException;
+import Excepcion.GuardarCuentaPersonalException;
 import Excepcion.GuardarReservaException;
 import Excepcion.ReservaActivaException;
 import Excepcion.UsuarioMultadoException;
@@ -40,12 +42,14 @@ public class FrmReservacion extends javax.swing.JFrame {
     private final CtlOpiniones controladoOpiniones;
     private final CtlAnfitrion controladorAnfitrion;
     private final CtlReserva controladorReserva;
+    private final CtlCuentaPersonal controladoCuentapersonal;
 
     public FrmReservacion() {
         controlador = new CtlHospedaje();
         controladorAnfitrion = new CtlAnfitrion();
         controladoOpiniones = new CtlOpiniones();
         controladorReserva = new CtlReserva();
+        controladoCuentapersonal = new CtlCuentaPersonal();
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -56,6 +60,7 @@ public class FrmReservacion extends javax.swing.JFrame {
 
         controlador = new CtlHospedaje();
         controladoOpiniones = new CtlOpiniones();
+        controladoCuentapersonal = new CtlCuentaPersonal();
         controladorAnfitrion = new CtlAnfitrion();
         controladorReserva = new CtlReserva();
         this.hospedaje = hospeda;
@@ -556,13 +561,14 @@ public class FrmReservacion extends javax.swing.JFrame {
             Date fechaSalida = dateFechaSalida.getDate();
 
             controladorReserva.guardarReserva(huespedes.getId(), hospedaje.getId(), fechaReserva, fechaLleaga, fechaSalida);
+            
             imprimir("Se registro la reserva correctamente");
             limpiar();
             FrmMenuHuesped menuHuesped = new FrmMenuHuesped(huespedes);
             menuHuesped.setVisible(true);
             this.dispose();
 
-        } catch (DatosIncompletosException | UsuarioMultadoException | ReservaActivaException | GuardarReservaException | anoException | mesException | FechaException | DayException ex) {
+        } catch (GuardarCuentaPersonalException | DatosIncompletosException | UsuarioMultadoException | ReservaActivaException | GuardarReservaException | anoException | mesException | FechaException | DayException ex) {
             imprimir(ex.getMessage());
         }
     }//GEN-LAST:event_btnReservaActionPerformed

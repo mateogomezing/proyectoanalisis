@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Excepcion;
+package Bo;
 
 /**
  *
- * @author santiago
+ * @author mateo
  */
-public class MultaException extends Exception {
-
-    public MultaException() {
-        super(" checkIn en hora erronea");
-    }
+public class BOMiCuenta {
+    
 }

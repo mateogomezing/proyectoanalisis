@@ -9,8 +9,9 @@ package Excepcion;
  *
  * @author santiago
  */
-public class modificarReservaCheckIn extends Exception{
-    public modificarReservaCheckIn(){
-        super("error al modificar la reserva");
+public class modificarReservaCheckIn extends Exception {
+
+    public modificarReservaCheckIn() {
+        super("error al modificar la reserva verifique la hora");
     }
 }

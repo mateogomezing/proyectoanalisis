@@ -5,58 +5,29 @@
  */
 package Vista;
 
-import Controlador.CtlCheckin;
-import Excepcion.BuscarHospedajeException;
-import Excepcion.CargarImagenException;
-import Excepcion.DatosIncompletosException;
-import Excepcion.DiaException;
-import Excepcion.GuardarCuentaPersonalException;
-import Excepcion.MultaException;
-import Excepcion.anoException;
-import Excepcion.horaException;
-import Excepcion.mesException;
-import Excepcion.modificarReservaCheckIn;
-import Modelo.Hospedaje;
+import Modelo.Administrador;
 import Modelo.Huesped;
-import Modelo.ReservaHospedaje;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author mateo
+ * @author santiago
  */
-public class FrmCheckIn extends javax.swing.JFrame {
+public class FrmCheckOut extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmMenuRecepcionista
+     * Creates new form FrmCheckOut
      */
-    private Huesped huespedes = null;
-    private ReservaHospedaje reserva = null;
-    CtlCheckin controlador;
-
-    public FrmCheckIn() {
+    public FrmCheckOut() {
         initComponents();
-        asignarFechaHoy();
-        dateFechaHoy.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
 
-    public FrmCheckIn(Huesped huesped) {
-        this.huespedes = huesped;
-        controlador = new CtlCheckin();
+    public FrmCheckOut(Huesped huesped) {
+
         initComponents();
-        cargarInformacionHuesped(huespedes);
-        asignarFechaHoy();
-        dateFechaHoy.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
 
     /**
@@ -68,7 +39,6 @@ public class FrmCheckIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -106,17 +76,6 @@ public class FrmCheckIn extends javax.swing.JFrame {
         lblValor = new javax.swing.JLabel();
         dateFechaHoy = new com.toedter.calendar.JDateChooser();
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,7 +108,7 @@ public class FrmCheckIn extends javax.swing.JFrame {
         lblNombre2.setBackground(new java.awt.Color(255, 255, 255));
         lblNombre2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblNombre2.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre2.setText("CHECK IN");
+        lblNombre2.setText("CHECK OUT");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,15 +118,13 @@ public class FrmCheckIn extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(42, 42, 42)
                 .addComponent(lblNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(366, 366, 366))
+                .addGap(370, 370, 370))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +145,7 @@ public class FrmCheckIn extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNombre2)
-                .addGap(59, 59, 59))
+                .addGap(61, 61, 61))
         );
 
         lblCedulahuesped.setBackground(new java.awt.Color(255, 255, 255));
@@ -240,7 +197,7 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
         btnConsultar1.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultar1.setForeground(new java.awt.Color(102, 0, 0));
-        btnConsultar1.setText("GENERAR CHECK IN");
+        btnConsultar1.setText("GENERAR CHECK OUT");
         btnConsultar1.setEnabled(false);
         btnConsultar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,7 +389,7 @@ public class FrmCheckIn extends javax.swing.JFrame {
                             .addComponent(lblValornoche)
                             .addComponent(lblValor)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSeleccione))))
@@ -457,10 +414,10 @@ public class FrmCheckIn extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnConsultar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateFechaHoy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                        .addGap(23, 23, 23))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,52 +438,18 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
-        FrmMenuHuesped menuHuesped = new FrmMenuHuesped(huespedes);
-        menuHuesped.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
 
-        txtCedula2.setText(huespedes.getCedula());
-        txtNombreCompleto.setText(huespedes.getNombreCompleto());
-        txtTelefono.setText(huespedes.getTelefono());
-        txtCorreo.setText(huespedes.getCorreo());
-        cargarInfo(huespedes);
-
-
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar1ActionPerformed
-        try {
-            controlador.realizarCheckIn(dateFechaHoy.getDate(), reserva, huespedes.getId());
-            JOptionPane.showMessageDialog(null, "Se realizó el chek In correctamente");
-            llenarComboBox(huespedes.getId());
-            limpiar();
-        } catch (GuardarCuentaPersonalException | anoException | mesException | DiaException | horaException | DatosIncompletosException | modificarReservaCheckIn ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
 
     }//GEN-LAST:event_btnConsultar1ActionPerformed
 
     private void cbxReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxReservaMouseClicked
-        try {
-            Hospedaje hospedaje = controlador.buscarHospedaje(Integer.parseInt(cbxReserva.getSelectedItem().toString()));
 
-            lblNombrehabitacion.setText(hospedaje.getCategoria() + " - " + hospedaje.getTipo());
-            lblValor.setText(hospedaje.getValorPorNoche());
-            lblDescripcion.setText(hospedaje.getServicios());
-            lblImagen.setIcon(new ImageIcon(controlador.cargarImagenBufferedImage(hospedaje.getImagen())));
-
-            reserva = controlador.buscarReserva(Integer.parseInt(cbxReserva.getSelectedItem().toString()));
-            dateFechaLlegada1.setDate(reserva.getFechaHoraCheckIn());
-            dateFechaSalida.setDate(reserva.getFechaHoraCheckOut());
-            btnConsultar1.setEnabled(true);
-        } catch (BuscarHospedajeException | CargarImagenException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (NumberFormatException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Seleccione una reserva");
-        }
 
     }//GEN-LAST:event_cbxReservaMouseClicked
 
@@ -534,47 +457,6 @@ public class FrmCheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxReservaActionPerformed
 
-    private void cargarInfo(Huesped x) {
-        llenarComboBox(x.getId());
-    }
-
-    private void llenarComboBox(int idHuesped) {
-        cbxReserva.setModel(controlador.llenarComboBox(idHuesped));
-    }
-
-    private void cargarInformacionHuesped(Huesped huesped) {
-        lblCedula.setText(huesped.getCedula());
-        lblNombre.setText(huesped.getNombreCompleto());
-        txtCedula.setText(huesped.getCedula());
-        txtCedula.setEnabled(false);
-    }
-
-    private void asignarFechaHoy() {
-
-        Calendar hoy = new GregorianCalendar();
-        dateFechaHoy.setCalendar(hoy);
-
-    }
-
-    private void limpiar() {
-
-        txtCedula2.setText("");
-        txtNombreCompleto.setText("");
-        txtCorreo.setText("");
-        txtTelefono.setText("");
-
-        dateFechaLlegada1.setDate(null);
-        dateFechaSalida.setDate(null);
-        lblNombrehabitacion.setText("NOMBRE HABITACION");
-        lblValor.setText("VALOR");
-        lblDescripcion.setText("");
-
-        lblImagen.setIcon(null);
-    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -589,23 +471,21 @@ public class FrmCheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCheckOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCheckIn().setVisible(true);
+                new FrmCheckOut().setVisible(true);
             }
         });
     }
@@ -619,7 +499,6 @@ public class FrmCheckIn extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateFechaLlegada1;
     private com.toedter.calendar.JDateChooser dateFechaSalida;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

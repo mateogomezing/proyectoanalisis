@@ -59,4 +59,18 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOReserva
      */
     public IDAOReserva crearDAOReserva();
+
+    /**
+     * Metodo para la creacion de un DAOMiCuenta
+     *
+     * @return Abstraccion de DAOMiCuenta
+     */
+    public IDAOMiCuenta crearDAOMiCuenta();
+
+    /**
+     * Metodo para la creacion de un DAOCuentaPersonal
+     *
+     * @return Abstraccion de DAOCuentaPersonal
+     */
+    public IDAOCuentaPersonal crearDAOCuentaPersonal();
 }

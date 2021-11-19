@@ -5,18 +5,21 @@
  */
 package Bo;
 
+import Dao.DAOCuentaPersonal;
 import Dao.DAOHospedaje;
 import Dao.DAOHuesped;
 import Definiciones.IDAOReserva;
 import Excepcion.DatosIncompletosException;
 import Excepcion.DayException;
 import Excepcion.FechaException;
+import Excepcion.GuardarCuentaPersonalException;
 import Excepcion.GuardarReservaException;
 import Excepcion.ReservaActivaException;
 import Excepcion.UsuarioMultadoException;
 import Excepcion.anoException;
 import Excepcion.mesException;
 import Fabrica.FactoryDAO;
+import Modelo.CuentaPersonal;
 import Modelo.Huesped;
 import Modelo.ReservaHospedaje;
 import java.util.ArrayList;
@@ -35,11 +38,13 @@ public class BOReserva {
     private final IDAOReserva daoReserva;
     private final DAOHuesped daoHuesped;
     private final DAOHospedaje daoHospedaje;
+    private final DAOCuentaPersonal daoCuentaPersonal;
 
     public BOReserva() {
         daoReserva = FactoryDAO.getFabrica().crearDAOReserva();
         daoHuesped = new DAOHuesped();
         daoHospedaje = new DAOHospedaje();
+        daoCuentaPersonal = new DAOCuentaPersonal();
     }
 
     public void validarDatos(Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException {
@@ -48,7 +53,11 @@ public class BOReserva {
         }
     }
 
-    public void guardarReserva(int idHuesped, int idHabitacion, Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException, UsuarioMultadoException, ReservaActivaException, GuardarReservaException, anoException, mesException, FechaException, DayException {
+    public boolean modificarReserva(String estado, String estadoServicio, int idReserva) throws DatosIncompletosException {
+        return daoReserva.modificarReserva(estado, estadoServicio, idReserva);
+    }
+
+    public void guardarReserva(int idHuesped, int idHabitacion, Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException, UsuarioMultadoException, ReservaActivaException, GuardarReservaException, anoException, mesException, FechaException, DayException, GuardarCuentaPersonalException {
         validarDatos(fechaHoraReserva, fechaHoraLlegada, fechaHoraSalida);
         fechaHoraLlegada.setHours(0);
         fechaHoraLlegada.setMinutes(0);
@@ -63,9 +72,12 @@ public class BOReserva {
         }
         verificarFecha(fechaHoraReserva, fechaHoraLlegada, fechaHoraSalida, idHabitacion);
         ReservaHospedaje reserva = new ReservaHospedaje(0, idHuesped, idHabitacion, fechaHoraReserva, fechaHoraLlegada, fechaHoraSalida, fechaHoraLlegada, fechaHoraSalida, "Prestado", "inactivo");
+
         if (!daoReserva.guardarReserva(reserva)) {
             throw new GuardarReservaException();
+
         }
+
     }
 
     private String verificarTipoUsuario(int idHuesped) {
