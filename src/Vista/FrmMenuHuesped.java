@@ -60,7 +60,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         btnCheckOut = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        btnHospedaje4 = new javax.swing.JButton();
+        btnMiReserva = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +123,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Facturacion");
+        jLabel14.setText("Mis Reservas");
 
         btnCheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkout.jpg"))); // NOI18N
         btnCheckOut.setBorder(null);
@@ -137,11 +137,11 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Check-Out");
 
-        btnHospedaje4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura.jpg"))); // NOI18N
-        btnHospedaje4.setBorder(null);
-        btnHospedaje4.addActionListener(new java.awt.event.ActionListener() {
+        btnMiReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/estadoreserva.jpg"))); // NOI18N
+        btnMiReserva.setBorder(null);
+        btnMiReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospedaje4ActionPerformed(evt);
+                btnMiReservaActionPerformed(evt);
             }
         });
 
@@ -181,7 +181,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
                                         .addGap(12, 12, 12)
                                         .addComponent(jLabel14))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnHospedaje4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnMiReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel13)
                                             .addGap(19, 19, 19))))))
@@ -226,7 +226,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(btnHospedaje1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnHospedaje4)
+                        .addComponent(btnMiReserva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -277,9 +277,11 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
-    private void btnHospedaje4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHospedaje4ActionPerformed
+    private void btnMiReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiReservaActionPerformed
+        FrmMisReservas MisReservas = new FrmMisReservas(huesped);
+        MisReservas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMiReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,7 +354,7 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckOut;
     private javax.swing.JButton btnHospedaje;
     private javax.swing.JButton btnHospedaje1;
-    private javax.swing.JButton btnHospedaje4;
+    private javax.swing.JButton btnMiReserva;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

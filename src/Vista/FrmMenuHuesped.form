@@ -80,7 +80,7 @@
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="btnHospedaje4" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Component id="btnMiReserva" min="-2" pref="97" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -141,7 +141,7 @@
                           <Component id="btnHospedaje1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="btnHospedaje4" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnMiReserva" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
@@ -270,7 +270,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Facturacion"/>
+            <Property name="text" type="java.lang.String" value="Mis Reservas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCheckOut">
@@ -297,17 +297,17 @@
             <Property name="text" type="java.lang.String" value="Check-Out"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnHospedaje4">
+        <Component class="javax.swing.JButton" name="btnMiReserva">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/factura.jpg"/>
+              <Image iconType="3" name="/Imagenes/estadoreserva.jpg"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHospedaje4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMiReservaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">

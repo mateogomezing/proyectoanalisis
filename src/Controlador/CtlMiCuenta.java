@@ -5,10 +5,22 @@
  */
 package Controlador;
 
+import Bo.BOMiCuenta;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mateo
  */
 public class CtlMiCuenta {
-    
+
+    BOMiCuenta bo;
+
+    public CtlMiCuenta() {
+        bo = new BOMiCuenta();
+    }
+
+    public DefaultTableModel listaElementosReservaInactiva(int idHuesped) {
+        return bo.listarElementosReservacionInactiva(idHuesped);
+    }
 }

@@ -20,7 +20,7 @@ public class FrmMisReservas extends javax.swing.JFrame {
 
     public FrmMisReservas() {
         initComponents();
-
+        controlador = new CtlMiCuenta();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -28,10 +28,12 @@ public class FrmMisReservas extends javax.swing.JFrame {
 
     public FrmMisReservas(Huesped huesped) {
         initComponents();
-
+        this.huesped = huesped;
+        controlador = new CtlMiCuenta();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
+        cargardatos(huesped);
+        listarReserva(huesped);
     }
 
     /**
@@ -256,12 +258,25 @@ public class FrmMisReservas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-
+        FrmMenuHuesped menuHuesped = new FrmMenuHuesped(huesped);
+        menuHuesped.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jtblReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblReservaMouseClicked
 
     }//GEN-LAST:event_jtblReservaMouseClicked
+    private void cargardatos(Huesped huesped) {
+        lblCedula.setText(huesped.getCedula());
+        lblNombre.setText(huesped.getNombreCompleto());
+        lblCorreo.setText(huesped.getCorreo());
+        lblTelefono.setText(huesped.getTelefono());
+        lblNacionalidad.setText(huesped.getNacionalidad());
+    }
+
+    private void listarReserva(Huesped huesped) {
+        jtblReserva.setModel(controlador.listaElementosReservaInactiva(huesped.getId()));
+    }
 
     private void imprimir(String v) {
         JOptionPane.showMessageDialog(null, v);
