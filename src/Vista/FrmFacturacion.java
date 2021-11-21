@@ -7,15 +7,18 @@ package Vista;
 
 import Controlador.CtlFactura;
 import Controlador.CtlHospedaje;
+import Controlador.CtlOpiniones;
 import Controlador.CtlReserva;
 import Excepcion.BuscarHuespedException;
 import Excepcion.DatosIncompletosException;
 import Excepcion.FacturacionException;
+import Excepcion.GuardarOpinionesException;
 import Excepcion.ModificarCuentaPersonalException;
 import Modelo.Hospedaje;
 import Modelo.Huesped;
 import Modelo.ReservaHospedaje;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +33,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
     private CtlFactura controlador;
     private CtlHospedaje controladorHospedaje;
     private CtlReserva controladorReserva;
+    private CtlOpiniones controladorOpiniones;
     int idReservacion = 0;
     String valorPgar = null;
 
@@ -43,6 +47,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
         this.huesped = huesped;
         initComponents();
         this.controlador = new CtlFactura();
+        this.controladorOpiniones = new CtlOpiniones();
         this.controladorHospedaje = new CtlHospedaje();
         this.controladorReserva = new CtlReserva();
         this.setLocationRelativeTo(null);
@@ -244,21 +249,25 @@ public class FrmFacturacion extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Calidad del servicio :");
 
+        SpnCalidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
         SpnCalidad.setEnabled(false);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Veracidad:");
 
+        SpnVeracidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
         SpnVeracidad.setEnabled(false);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Limpieza:");
 
+        SpnLimpieza.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
         SpnLimpieza.setEnabled(false);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ubicacion:");
 
+        SpnUbicacion.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
         SpnUbicacion.setEnabled(false);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -559,11 +568,26 @@ public class FrmFacturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        limpiarPago();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEncuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncuestaActionPerformed
-        // TODO add your handling code here:
+        try {
+            String calidad = SpnCalidad.getValue().toString();
+            String veracidad = SpnVeracidad.getValue().toString();
+            String limpieza = SpnLimpieza.getValue().toString();
+            String ubicacion = SpnUbicacion.getValue().toString();
+            String comentarios = controladorOpiniones.obtenerDatoJtextArea(txtComentarios);
+            double valorfinal = controladorOpiniones.calificacionfinal(calidad, veracidad, limpieza, ubicacion);
+            ReservaHospedaje reserva = controlador.buscarReservaId(idReservacion);
+
+            String valorcompleto = valorfinal + "";
+            controladorOpiniones.guardarOpiniones(huesped.getId(), reserva.getIdHabitacion(), valorcompleto, comentarios);
+            imprimir("Se guardó comentario correctamente");
+            limpiarEncuesta();
+        } catch (DatosIncompletosException | GuardarOpinionesException ex) {
+            imprimir(ex.getMessage());
+        }
     }//GEN-LAST:event_btnEncuestaActionPerformed
     private void cargarInfo(Huesped huespedes) {
 
@@ -587,6 +611,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
         btnEncuesta.setEnabled(true);
         btnBuscar.setEnabled(false);
         btnGenerarValor.setEnabled(false);
+        jtblReserva.setEnabled(false);
     }
 
     private void imprimir(String v) {
@@ -595,6 +620,39 @@ public class FrmFacturacion extends javax.swing.JFrame {
 
     private void listarReserva(Huesped huesped) {
         jtblReserva.setModel(controlador.listaElementosReserva(huesped.getId()));
+    }
+
+    private void limpiarPago() {
+        txtCuentaBancaria.setText("");
+        txtCuentaBancaria.setEnabled(false);
+        txtValorNoche.setText("");
+        txtGastosLimpieza.setText("");
+        txtPlataforma.setText("");
+        txtValorPagar.setText("");
+    }
+
+    private void limpiarEncuesta() {
+        btnSalir.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        jtblReserva.setEnabled(true);
+        jtblReserva.setModel(new DefaultTableModel());
+        btnGenerarValor.setEnabled(true);
+        txtCuentaBancaria.setText("");
+        txtValorNoche.setText("");
+        txtGastosLimpieza.setText("");
+        txtPlataforma.setText("");
+        txtValorPagar.setText("");
+        SpnCalidad.setValue(0);
+        SpnCalidad.setEnabled(false);
+        SpnLimpieza.setValue(0);
+        SpnLimpieza.setEnabled(false);
+        SpnVeracidad.setValue(0);
+        SpnVeracidad.setEnabled(false);
+        SpnUbicacion.setValue(0);
+        SpnUbicacion.setEnabled(false);
+        txtComentarios.setText("");
+        txtComentarios.setEnabled(false);
+        btnEncuesta.setEnabled(false);
     }
 
     /**

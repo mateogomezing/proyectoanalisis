@@ -7,6 +7,8 @@ package Dao;
 
 import Conexion.Conexion;
 import Definiciones.IDAOOpiniones;
+import Excepcion.DatosIncompletosException;
+import Excepcion.GuardarOpinionesException;
 import Modelo.Opiniones;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +21,31 @@ import java.util.ArrayList;
  * @author mateo
  */
 public class DAOOpiniones implements IDAOOpiniones {
+
+    @Override
+    public boolean guardarOpinion(Opiniones opinion) throws DatosIncompletosException, GuardarOpinionesException {
+        boolean desicion = false;
+
+        try (Connection con = Conexion.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO opiniones (idHuesped,idHospedaje,calificacion,descripcion) values (?,?,?,?)");
+
+            pstmt.setInt(1, opinion.getIdHuesped());
+            pstmt.setInt(2, opinion.getIdHospedaje());
+            pstmt.setString(3, opinion.getCalificacion());
+            pstmt.setString(4, opinion.getDescripcion());
+            pstmt.executeUpdate();
+            desicion = true;
+        } catch (SQLException ex) {
+            //   ex.printStackTrace();
+            int codigo = ex.getErrorCode();
+            if (codigo == 1048) {
+                throw new DatosIncompletosException();
+            }
+
+            desicion = false;
+        }
+        return desicion;
+    }
 
     @Override
     public ArrayList<Opiniones> buscarOpinionAdministrador(int idHospedaje) {

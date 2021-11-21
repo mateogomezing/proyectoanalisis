@@ -8,11 +8,14 @@ package Bo;
 import Definiciones.IDAOHospedaje;
 import Definiciones.IDAOHuesped;
 import Definiciones.IDAOOpiniones;
+import Excepcion.DatosIncompletosException;
+import Excepcion.GuardarOpinionesException;
 import Fabrica.FactoryDAO;
 import Modelo.Hospedaje;
 import Modelo.Huesped;
 import Modelo.Opiniones;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +32,44 @@ public class BOOpiniones {
         dao = FactoryDAO.getFabrica().crearDAOOpiniones();
         daoHuesped = FactoryDAO.getFabrica().crearDAOHuesped();
         daoHospedaje = FactoryDAO.getFabrica().crearDAOHospedaje();
+    }
+
+    public double calificacionfinal(String calidad, String veracidad, String limpieza, String ubicacion) throws DatosIncompletosException {
+        double valorfinal = 0;
+        if (calidad == null | veracidad == null | limpieza == null | ubicacion == null) {
+            throw new DatosIncompletosException();
+        } else {
+            int calidades = Integer.parseInt(calidad);
+            int veracidades = Integer.parseInt(veracidad);
+            int limpiezas = Integer.parseInt(limpieza);
+            int ubicaciones = Integer.parseInt(ubicacion);
+            int suma = calidades + veracidades + limpiezas + ubicaciones;
+            valorfinal = suma / 4;
+        }
+        return valorfinal;
+    }
+
+    public void guardarOpinion(int idHuesped, int idHospedaje, String calificacion, String descripcion) throws DatosIncompletosException, GuardarOpinionesException {
+        verificarDatos(calificacion);
+        verificarDatos(descripcion);
+        Opiniones opinion = new Opiniones(0, idHuesped, idHospedaje, calificacion, descripcion);
+        if (!dao.guardarOpinion(opinion)) {
+            throw new GuardarOpinionesException();
+        }
+    }
+
+    public void verificarDatos(String dato) throws DatosIncompletosException {
+        if (dato == null) {
+            throw new DatosIncompletosException();
+        }
+    }
+
+    public String obtenerDatoJtextArea(JTextArea x) {
+        String informacion = x.getText();
+        if (informacion.equals("")) {
+            informacion = null;
+        }
+        return informacion;
     }
 
     public ArrayList<Opiniones> listarOpiniones(int idHospedaje) {
@@ -65,8 +106,8 @@ public class BOOpiniones {
 
             for (Huesped huespedes : listaHuesped) {
                 for (Hospedaje hospedajes : listahospedaje) {
-                    if (opiniones.getIdHospedaje() == hospedajes.getId()) {
-                        huesped = huespedes.getCedula() + "-" + huespedes.getNombreCompleto();
+                    if (opiniones.getIdHospedaje() == hospedajes.getId() && huespedes.getId() == opiniones.getIdHuesped()) {
+                        huesped = huespedes.getNombreCompleto();
                         hospedaje = hospedajes.getCategoria() + "-" + hospedajes.getTipo();
                         break;
                     }

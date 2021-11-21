@@ -261,6 +261,7 @@ public class FrmCheckOut extends javax.swing.JFrame {
         lblDescripcion.setColumns(20);
         lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion.setRows(5);
+        lblDescripcion.setEnabled(false);
         jScrollPane1.setViewportView(lblDescripcion);
 
         lblValornoche.setBackground(new java.awt.Color(255, 255, 255));
