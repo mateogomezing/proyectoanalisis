@@ -87,4 +87,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOCiudadCalificacion
      */
     public IDAOCiudadCalificacion creaDAOCiudadCalificacion();
+
+    /**
+     * Metodo para la creacion de un DAOAlojamientoRango
+     *
+     * @return Abstraccion de DAOAlojamientoRango
+     */
+    public IDAOAlojamientoRango crearDAOAlojamientoRango();
 }
