@@ -39,7 +39,7 @@ public class BOCiudadDeterminada {
         return lista;
     }
 
-    public DefaultTableModel listarElementosMultasDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
+    public DefaultTableModel listarElementosCiudadDeterminadaDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         ArrayList<DTO.DTOCiudadDeterminada> lista = listaCiudadDeterminadaDTO(ciudades);
 
         String nombreColumnas[] = {"IdReserva", "Fecha Reserva", "IdHabitacion", "Categoria", "Tipo", "Ciudad", "Cedula Cliente", "Nombre Completo", "Nivel De Estudio", "Estrato"};
@@ -71,5 +71,42 @@ public class BOCiudadDeterminada {
             informacion = null;
         }
         return informacion;
+    }
+
+    public ArrayList<DTO.DTOCiudadDeterminada> listaCiudadCiudadDeterminadaMayorDTO(String ciudad) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
+        if (ciudad == null) {
+            throw new DatosIncompletosException();
+        }
+        ArrayList<DTO.DTOCiudadDeterminada> lista = dao.BuscarCiudadDeterminadaDTO(ciudad);
+        if (lista == null) {
+            throw new BuscarCiudadDeterminadaException();
+        }
+        return lista;
+    }
+
+    public DefaultTableModel listarElementosCiudadDeterminadaMayorDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
+        ArrayList<DTO.DTOCiudadDeterminada> lista = listaCiudadCiudadDeterminadaMayorDTO(ciudades);
+
+        String nombreColumnas[] = {"IdReserva", "Fecha Reserva", "IdHabitacion", "Categoria", "Tipo", "Ciudad", "Cedula Cliente", "Nombre Completo", "Nivel De Estudio", "Estrato"};
+        DefaultTableModel modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas) {
+            @Override
+            public boolean isCellEditable(int filas, int columnas) {
+                switch (columnas) {
+                    case 10:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        };
+
+        for (DTO.DTOCiudadDeterminada ciudad : lista) {
+
+            String fechareservacion = formato.format(ciudad.getFechareservacion());
+            modelo.addRow(new Object[]{ciudad.getIdReserva(), fechareservacion, ciudad.getIdhabitacion(), ciudad.getCategoria(), ciudad.getTipo(), ciudad.getCiudad(), ciudad.getCedulaCliente(), ciudad.getNombreCompleto(), ciudad.getNivelEstudio(), ciudad.getEstrato()});
+
+        }
+
+        return modelo;
     }
 }

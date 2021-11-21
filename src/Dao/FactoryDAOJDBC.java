@@ -7,6 +7,7 @@ package Dao;
 
 import Definiciones.IDAOAdministrador;
 import Definiciones.IDAOAnfitrion;
+import Definiciones.IDAOCiudadCalificacion;
 import Definiciones.IDAOCiudadDeterminada;
 import Definiciones.IDAOCuentaPersonal;
 import Definiciones.IDAOFabrica;
@@ -71,5 +72,10 @@ public class FactoryDAOJDBC implements IDAOFabrica {
     @Override
     public IDAOCiudadDeterminada crearDAOCiudadDeterminada() {
         return new DAOCiudadDeterminada();
+    }
+
+    @Override
+    public IDAOCiudadCalificacion creaDAOCiudadCalificacion() {
+        return new DAOCiudadCalificacion();
     }
 }

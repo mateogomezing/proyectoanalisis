@@ -23,11 +23,16 @@ public class CtlCiudadDeterminada {
         bo = new BOCiudadDeterminada();
     }
 
-    public DefaultTableModel listarElementosMultasDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
-        return bo.listarElementosMultasDTO(ciudades);
+    public DefaultTableModel listarElementosCiudadDeterminadaDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
+        return bo.listarElementosCiudadDeterminadaDTO(ciudades);
     }
 
     public String obtenerDatoJComboBox(JComboBox x) {
         return bo.obtenerDatoJComboBox(x);
+    }
+
+    public DefaultTableModel listarElementosCiudadDeterminadaMayorDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
+        return bo.listarElementosCiudadDeterminadaMayorDTO(ciudades);
+
     }
 }

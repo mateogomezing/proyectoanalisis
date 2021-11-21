@@ -45,6 +45,10 @@ public class FrmReportes extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnReporteCiudad = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        btnReporteCiudadOrden = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        btnReporteCiudadCalificacion = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +76,30 @@ public class FrmReportes extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Alojamiento Por Ciudad");
 
+        btnReporteCiudadOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitacion.jpg"))); // NOI18N
+        btnReporteCiudadOrden.setBorder(null);
+        btnReporteCiudadOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteCiudadOrdenActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Alojamiento Por Orden");
+
+        btnReporteCiudadCalificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitacion.jpg"))); // NOI18N
+        btnReporteCiudadCalificacion.setBorder(null);
+        btnReporteCiudadCalificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteCiudadCalificacionActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Alojamiento Por Calificacion");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,21 +111,39 @@ public class FrmReportes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(btnReporteCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnReporteCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136)
+                        .addComponent(btnReporteCiudadOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(btnReporteCiudadCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(jLabel12)))
-                .addContainerGap(345, Short.MAX_VALUE))
+                        .addComponent(jLabel12)
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel14)))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(btnReporteCiudad)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReporteCiudad)
+                    .addComponent(btnReporteCiudadOrden))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(btnReporteCiudadCalificacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,7 +161,7 @@ public class FrmReportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReporteCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCiudadActionPerformed
-        FrmReporteCiudad ciudad = new FrmReporteCiudad();
+        FrmReporteCiudad ciudad = new FrmReporteCiudad(administrador);
         ciudad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnReporteCiudadActionPerformed
@@ -125,6 +171,18 @@ public class FrmReportes extends javax.swing.JFrame {
         adminitrador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnReporteCiudadOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCiudadOrdenActionPerformed
+        FrmReporteOrden ciudad = new FrmReporteOrden(administrador);
+        ciudad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReporteCiudadOrdenActionPerformed
+
+    private void btnReporteCiudadCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCiudadCalificacionActionPerformed
+        FrmReporteCalificacionFinal ciudad = new FrmReporteCalificacionFinal(administrador);
+        ciudad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReporteCiudadCalificacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,8 +224,12 @@ public class FrmReportes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReporteCiudad;
+    private javax.swing.JButton btnReporteCiudadCalificacion;
+    private javax.swing.JButton btnReporteCiudadOrden;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

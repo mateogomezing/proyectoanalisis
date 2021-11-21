@@ -77,7 +77,14 @@ public interface IDAOFabrica {
     /**
      * Metodo para la creacion de un DAOCiudadDeterminada
      *
-     * @return bstraccion de DAOCiudadDeterminada
+     * @return Abstraccion de DAOCiudadDeterminada
      */
     public IDAOCiudadDeterminada crearDAOCiudadDeterminada();
+
+    /**
+     * Metodo para la creacion de un DAOCiudadCalificacion
+     *
+     * @return Abstraccion de DAOCiudadCalificacion
+     */
+    public IDAOCiudadCalificacion creaDAOCiudadCalificacion();
 }

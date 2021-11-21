@@ -5,9 +5,9 @@
  */
 package Vista;
 
+import Controlador.CtlCiudadCalificacion;
 import Controlador.CtlCiudadDeterminada;
-import Controlador.CtlHospedaje;
-import Controlador.CtlOpiniones;
+
 import Excepcion.BuscarCiudadDeterminadaException;
 import Excepcion.DatosIncompletosException;
 import Modelo.Administrador;
@@ -18,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mateo
  */
-public class FrmReporteCiudad extends javax.swing.JFrame {
+public class FrmReporteCalificacionFinal extends javax.swing.JFrame {
 
     private Administrador administrador;
-    private final CtlCiudadDeterminada controlador;
+    private final CtlCiudadCalificacion controlador;
 
-    public FrmReporteCiudad() {
-        controlador = new CtlCiudadDeterminada();
+    public FrmReporteCalificacionFinal() {
+        controlador = new CtlCiudadCalificacion();
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -32,8 +32,8 @@ public class FrmReporteCiudad extends javax.swing.JFrame {
 
     }
 
-    public FrmReporteCiudad(Administrador administrador) {
-        controlador = new CtlCiudadDeterminada();
+    public FrmReporteCalificacionFinal(Administrador administrador) {
+        controlador = new CtlCiudadCalificacion();
         this.administrador = administrador;
         initComponents();
 
@@ -74,13 +74,13 @@ public class FrmReporteCiudad extends javax.swing.JFrame {
         tblLista.setForeground(new java.awt.Color(0, 0, 0));
         tblLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "IdReserva", "Fecha Reserva", "IdHabitacion", "Categoria", "Tipo", "Ciudad", "Cedula Cliente", "Nombre Completo", "Nivel De Estudio", "Estrato"
+                "IdReserva", "Fecha Reserva", "IdHabitacion", "Categoria", "Tipo", "Ciudad", "Calificacion"
             }
         ));
         jScrollPane2.setViewportView(tblLista);
@@ -204,7 +204,7 @@ public class FrmReporteCiudad extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             String ciudad = controlador.obtenerDatoJComboBox(cboCiudad);
-            tblLista.setModel(controlador.listarElementosCiudadDeterminadaDTO(ciudad));
+            tblLista.setModel(controlador.listarElementosCiudadCalificacionDTO(ciudad));
         } catch (DatosIncompletosException | BuscarCiudadDeterminadaException ex) {
             imprimir(ex.getMessage());
         }
@@ -235,14 +235,110 @@ public class FrmReporteCiudad extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmReporteCalificacionFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmReporteCalificacionFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmReporteCalificacionFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmReporteCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmReporteCalificacionFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -279,7 +375,7 @@ public class FrmReporteCiudad extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporteCiudad().setVisible(true);
+                new FrmReporteCalificacionFinal().setVisible(true);
             }
         });
     }
