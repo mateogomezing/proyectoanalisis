@@ -261,7 +261,9 @@ public class FrmMenuHuesped extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnHospedaje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedaje1ActionPerformed
-        // TODO add your handling code here:
+        FrmFacturacion facturacion = new FrmFacturacion(huesped);
+        facturacion.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHospedaje1ActionPerformed
 
     private void btnCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInActionPerformed

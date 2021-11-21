@@ -109,6 +109,8 @@ public class BOReserva {
                         throw new ReservaActivaException();
                     } else if (reservaHabitacion.getEstado().equalsIgnoreCase("CheckIn")) {
                         throw new ReservaActivaException();
+                    } else if (reservaHabitacion.getEstado().equalsIgnoreCase("CheckOut")) {
+                        throw new ReservaActivaException();
                     }
                 }
             }
@@ -135,6 +137,9 @@ public class BOReserva {
                         if (contador == 2) {
                             throw new ReservaActivaException();
                         }
+                    } else if (reservaHabitacion.getEstado().equalsIgnoreCase("CheckOut")) {
+                        throw new ReservaActivaException();
+
                     }
                 }
 
