@@ -8,6 +8,7 @@ package Bo;
 import Definiciones.IDAOAnfitrion;
 import Definiciones.IDAOHospedaje;
 import Excepcion.BuscarHospedajeException;
+import Excepcion.CantidadHuespedesException;
 import Excepcion.CargarImagenException;
 import Excepcion.ComboBoxException;
 import Excepcion.DatosIncompletosException;
@@ -94,9 +95,27 @@ public class BOHospedaje {
             throw new DatosIncompletosException();
         }
         Hospedaje hospedaje = dao.buscarHospedaje(tipo);
+
         if (hospedaje == null) {
             throw new BuscarHospedajeException();
         }
+
+        return hospedaje;
+    }
+
+    public Hospedaje buscarHospedaje2(String tipo, String cantidadpersonas) throws BuscarHospedajeException, DatosIncompletosException, CantidadHuespedesException {
+        if (tipo == null) {
+            throw new DatosIncompletosException();
+        }
+        Hospedaje hospedaje = dao.buscarHospedaje(tipo);
+
+        if (!hospedaje.getCantidadpersonas().equalsIgnoreCase(cantidadpersonas)) {
+            throw new CantidadHuespedesException();
+        }
+        if (hospedaje == null) {
+            throw new BuscarHospedajeException();
+        }
+
         return hospedaje;
     }
 
@@ -356,7 +375,6 @@ public class BOHospedaje {
         }
         return modelo;
     }
-
 
     public DefaultTableModel listarElementos() {
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();

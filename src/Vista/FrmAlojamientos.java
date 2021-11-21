@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.CtlHospedaje;
 import Excepcion.BuscarHospedajeException;
+import Excepcion.CantidadHuespedesException;
 import Excepcion.ComboBoxException;
 import Excepcion.DatosIncompletosException;
 import Modelo.Hospedaje;
@@ -69,6 +70,8 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtValorPorNoche = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        SpnCantidadHuespedes = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +158,12 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Huespedes:");
+
+        SpnCantidadHuespedes.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
+        SpnCantidadHuespedes.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,28 +173,37 @@ public class FrmAlojamientos extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorPorNoche))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(btnCancelar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(217, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnCancelar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtValorPorNoche, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SpnCantidadHuespedes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,15 +216,19 @@ public class FrmAlojamientos extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
+                    .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
                     .addComponent(txtValorPorNoche, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(jLabel7))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel3)
+                    .addComponent(SpnCantidadHuespedes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
                     .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,6 +294,7 @@ public class FrmAlojamientos extends javax.swing.JFrame {
             Hospedaje hospedaje = controladorHospedaje.buscarHospedaje(controladorHospedaje.obtenerDatoJComboBox(cboTipo));
             txtValorPorNoche.setText(hospedaje.getValorPorNoche());
             cboTipo.setEnabled(false);
+            SpnCantidadHuespedes.setEnabled(true);
             btnBuscar.setEnabled(true);
             
         } catch (BuscarHospedajeException | DatosIncompletosException ex) {
@@ -281,14 +304,16 @@ public class FrmAlojamientos extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            Hospedaje hospedaje = controladorHospedaje.buscarHospedaje(controladorHospedaje.obtenerDatoJComboBox(cboTipo));
+            String cantidad = SpnCantidadHuespedes.getValue().toString();
+            
+            Hospedaje hospedaje = controladorHospedaje.buscarHospedaje2(controladorHospedaje.obtenerDatoJComboBox(cboTipo), cantidad);
             
             FrmReservacion reservacion = new FrmReservacion(hospedaje, huesped);
             reservacion.setVisible(true);
             this.dispose();
             
-        } catch (BuscarHospedajeException | DatosIncompletosException ex) {
-            imprimir(ex.toString());
+        } catch (BuscarHospedajeException | DatosIncompletosException | CantidadHuespedesException ex) {
+            imprimir(ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -302,6 +327,8 @@ public class FrmAlojamientos extends javax.swing.JFrame {
         cboCategoria.setEnabled(false);
         cboTipo.setEnabled(false);
         txtValorPorNoche.setEnabled(false);
+        SpnCantidadHuespedes.setValue(0);
+        SpnCantidadHuespedes.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
     
     private void imprimir(String v) {
@@ -407,6 +434,7 @@ public class FrmAlojamientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner SpnCantidadHuespedes;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalir;
@@ -414,6 +442,7 @@ public class FrmAlojamientos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboCiudad;
     private javax.swing.JComboBox<String> cboTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

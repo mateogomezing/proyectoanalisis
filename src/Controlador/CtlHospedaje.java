@@ -7,6 +7,7 @@ package Controlador;
 
 import Bo.BOHospedaje;
 import Excepcion.BuscarHospedajeException;
+import Excepcion.CantidadHuespedesException;
 import Excepcion.CargarImagenException;
 import Excepcion.ComboBoxException;
 import Excepcion.DatosIncompletosException;
@@ -42,6 +43,10 @@ public class CtlHospedaje {
 
     public Hospedaje buscarHospedaje(String tipo) throws BuscarHospedajeException, DatosIncompletosException {
         return bo.buscarHospedaje(tipo);
+    }
+
+    public Hospedaje buscarHospedaje2(String tipo, String cantidadpersonas) throws BuscarHospedajeException, DatosIncompletosException, CantidadHuespedesException {
+        return bo.buscarHospedaje2(tipo, cantidadpersonas);
     }
 
     public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion) throws BuscarHospedajeException, DatosIncompletosException {
@@ -81,8 +86,6 @@ public class CtlHospedaje {
     public DefaultTableModel listarElementos() {
         return bo.listarElementos();
     }
-
-    
 
     public DefaultTableModel filtrar(String opcion, String accion) throws ComboBoxException {
         return bo.filtrar(opcion, accion);
