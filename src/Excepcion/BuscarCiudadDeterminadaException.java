@@ -9,9 +9,9 @@ package Excepcion;
  *
  * @author mateo
  */
-public class BuscarMultasException extends Exception {
+public class BuscarCiudadDeterminadaException extends Exception {
 
-    public BuscarMultasException() {
-        super("No tiene Registrado Multas");
+    public BuscarCiudadDeterminadaException() {
+        super("No tiene Registrado Ciudades");
     }
 }

@@ -73,4 +73,11 @@ public interface IDAOFabrica {
      * @return Abstraccion de DAOCuentaPersonal
      */
     public IDAOCuentaPersonal crearDAOCuentaPersonal();
+
+    /**
+     * Metodo para la creacion de un DAOCiudadDeterminada
+     *
+     * @return bstraccion de DAOCiudadDeterminada
+     */
+    public IDAOCiudadDeterminada crearDAOCiudadDeterminada();
 }
