@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOCiudadCalificacion {
 
@@ -28,6 +30,15 @@ public class BOCiudadCalificacion {
         formato = DateFormat.getDateInstance();
     }
 
+    /**
+     * Metodo encargado de lista la consulta Ciudades mas calificadas por medio
+     * variable ciudad
+     *
+     * @param ciudad
+     * @return lista de Alojamientos
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public ArrayList<DTO.DTOCiudadCalificacion> listaCiudadCalificacionDTO(String ciudad) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         if (ciudad == null) {
             throw new DatosIncompletosException();
@@ -39,6 +50,14 @@ public class BOCiudadCalificacion {
         return lista;
     }
 
+    /**
+     * Metodo encargado de llenar elementos a la tabla
+     *
+     * @param ciudades
+     * @return modelo de la tabla
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public DefaultTableModel listarElementosCiudadCalificacionDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         ArrayList<DTO.DTOCiudadCalificacion> lista = listaCiudadCalificacionDTO(ciudades);
 
@@ -65,6 +84,12 @@ public class BOCiudadCalificacion {
         return modelo;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {

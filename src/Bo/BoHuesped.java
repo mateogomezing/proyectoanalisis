@@ -40,7 +40,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BoHuesped {
 
@@ -91,6 +93,35 @@ public class BoHuesped {
         }
     }
 
+    /**
+     * Metodo encargado de guardarHuesped
+     *
+     * @param ruta
+     * @param cedula
+     * @param nombrecompleto
+     * @param genero
+     * @param correo
+     * @param estrato
+     * @param nivelestudio
+     * @param estadocivil
+     * @param telefono
+     * @param direccion
+     * @param fechanacimiento
+     * @param nacionalidad
+     * @param contrasena
+     * @param tipo
+     * @param estado
+     * @param biografia
+     * @throws DatosIncompletosException
+     * @throws CorreoFormatoException
+     * @throws CargarImagenException
+     * @throws CedulaException
+     * @throws CorreoException
+     * @throws TelefonoException
+     * @throws CedulaAdministradorException
+     * @throws GuardarHuespedException
+     * @throws CedulaAnfitrionException
+     */
     public void guardarHuesped(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, CargarImagenException, CedulaException, CorreoException, TelefonoException, CedulaAdministradorException, GuardarHuespedException, CedulaAnfitrionException {
         verificarCorreo(correo);
 
@@ -101,6 +132,14 @@ public class BoHuesped {
         }
     }
 
+    /**
+     * Metodo encargado de buscar Huesped respecto a la cedula
+     *
+     * @param cedula
+     * @return objeto Huesped
+     * @throws DatosIncompletosException
+     * @throws BuscarHuespedException
+     */
     public Huesped buscarHuesped(String cedula) throws DatosIncompletosException, BuscarHuespedException {
         if (cedula == null) {
             throw new DatosIncompletosException();
@@ -112,6 +151,32 @@ public class BoHuesped {
         return huesped;
     }
 
+    /**
+     * metodo encargado de modificar huesped sin imagen
+     *
+     * @param cedula
+     * @param nombrecompleto
+     * @param genero
+     * @param correo
+     * @param estrato
+     * @param nivelestudio
+     * @param estadocivil
+     * @param telefono
+     * @param direccion
+     * @param fechanacimiento
+     * @param nacionalidad
+     * @param contrasena
+     * @param tipo
+     * @param estado
+     * @param biografia
+     * @throws DatosIncompletosException
+     * @throws CorreoFormatoException
+     * @throws BuscarHuespedException
+     * @throws CedulaException
+     * @throws CorreoException
+     * @throws TelefonoException
+     * @throws ModificarHuespedException
+     */
     public void modificarHuesped(String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws DatosIncompletosException, CorreoFormatoException, BuscarHuespedException, CedulaException, CorreoException, TelefonoException, ModificarHuespedException {
         verificarCorreo(correo);
         Huesped huesped = new Huesped(buscarHuesped(cedula).getId(), null, cedula, nombrecompleto, genero, correo, estrato, nivelestudio, estadocivil, telefono, direccion, fechanacimiento, nacionalidad, contrasena, tipo, estado, biografia);
@@ -120,6 +185,34 @@ public class BoHuesped {
         }
     }
 
+    /**
+     * Metodo encargado de modificar Huesped con imagen
+     *
+     * @param ruta
+     * @param cedula
+     * @param nombrecompleto
+     * @param genero
+     * @param correo
+     * @param estrato
+     * @param nivelestudio
+     * @param estadocivil
+     * @param telefono
+     * @param direccion
+     * @param fechanacimiento
+     * @param nacionalidad
+     * @param contrasena
+     * @param tipo
+     * @param estado
+     * @param biografia
+     * @throws CedulaException
+     * @throws CorreoException
+     * @throws TelefonoException
+     * @throws DatosIncompletosException
+     * @throws BuscarHuespedException
+     * @throws CargarImagenException
+     * @throws ModificarHuespedException
+     * @throws CorreoFormatoException
+     */
     public void modificarHuesped2(File ruta, String cedula, String nombrecompleto, String genero, String correo, String estrato, String nivelestudio, String estadocivil, String telefono, String direccion, Date fechanacimiento, String nacionalidad, String contrasena, String tipo, String estado, String biografia) throws CedulaException, CorreoException, TelefonoException, DatosIncompletosException, BuscarHuespedException, CargarImagenException, ModificarHuespedException, CorreoFormatoException {
 
         verificarCorreo(correo);
@@ -129,10 +222,21 @@ public class BoHuesped {
         }
     }
 
+    /**
+     * Metodo encargado de listar Huesped
+     *
+     * @return lista de Huesped
+     */
     public ArrayList<Huesped> listaHuesped() {
         return dao.listarHuesped();
     }
 
+    /**
+     * metodo encargado de verificar JTextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -141,6 +245,12 @@ public class BoHuesped {
         return informacion;
     }
 
+    /**
+     * metodo encargado de verificar JTextArea
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextArea(JTextArea x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -149,6 +259,12 @@ public class BoHuesped {
         return informacion;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -157,6 +273,13 @@ public class BoHuesped {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de verificar formato del correo
+     *
+     * @param correo
+     * @throws DatosIncompletosException
+     * @throws CorreoFormatoException
+     */
     private void verificarCorreo(String correo) throws DatosIncompletosException, CorreoFormatoException {
         if (correo == null) {
             throw new DatosIncompletosException();
@@ -168,6 +291,11 @@ public class BoHuesped {
         }
     }
 
+    /**
+     * Metodo encargado de listar elementos Huesped
+     *
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementos() {
 
         ArrayList<Huesped> lista = listaHuesped();
@@ -195,6 +323,16 @@ public class BoHuesped {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de fitrar datos de la tabla
+     *
+     * @param opcion
+     * @param accion
+     * @return modelo de la tabla
+     * @throws DatosIncompletosException
+     * @throws NumberFormatException
+     * @throws ComboBoxException
+     */
     public DefaultTableModel filtrar(String opcion, String accion) throws DatosIncompletosException, NumberFormatException, ComboBoxException {
         if (accion == null) {
             throw new DatosIncompletosException();

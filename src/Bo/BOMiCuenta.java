@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOMiCuenta {
 
@@ -33,10 +34,21 @@ public class BOMiCuenta {
         formato = DateFormat.getDateInstance();
     }
 
+    /**
+     * Metodo encargado de listar Reservas
+     *
+     * @return lista de reservas
+     */
     public ArrayList<ReservaHospedaje> listareservas() {
         return daoReserva.listarReserva();
     }
 
+    /**
+     * Metodo encargado elementos Reservacion respecto IdHuesped
+     *
+     * @param idHuesped
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementosReservacionInactiva(int idHuesped) {
         ArrayList<ReservaHospedaje> lista = listareservas();
         ArrayList<Hospedaje> listaHabitaciones = listaHabitacion();
@@ -74,6 +86,11 @@ public class BOMiCuenta {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de listar Hospedaje
+     *
+     * @return lista Hospedaje
+     */
     public ArrayList<Hospedaje> listaHabitacion() {
         return daoHospedaje.listarHospedaje();
     }

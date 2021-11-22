@@ -15,7 +15,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
+ *
  */
 public class BOAlojamientoRango {
 
@@ -27,6 +30,16 @@ public class BOAlojamientoRango {
         formato = DateFormat.getDateInstance();
     }
 
+    /**
+     *
+     * Metodo para la consulta de lista de alojamientos por rango
+     *
+     * @param valorinicial valor inicial del rango
+     * @param valorfinal valor final del rango
+     * @return lista de alojamientos
+     * @throws BuscarCiudadDeterminadaException
+     * @throws RangoValoresException
+     */
     public ArrayList<DTO.DTOAlojamientoRango> listaAlojamientoRangoDTO(int valorinicial, int valorfinal) throws BuscarCiudadDeterminadaException, RangoValoresException {
         if (valorinicial > valorfinal) {
             throw new RangoValoresException();
@@ -38,6 +51,16 @@ public class BOAlojamientoRango {
         return lista;
     }
 
+    /**
+     * Metodo que listar en la tabla los elementos de los alojamientos
+     * consultados
+     *
+     * @param valorinicial valor inicial del rango
+     * @param valorfinal valor final del rango
+     * @return modelo de la tabla
+     * @throws BuscarCiudadDeterminadaException
+     * @throws RangoValoresException
+     */
     public DefaultTableModel listarElementosAlojamientoRangoDTO(int valorinicial, int valorfinal) throws BuscarCiudadDeterminadaException, RangoValoresException {
         ArrayList<DTO.DTOAlojamientoRango> lista = listaAlojamientoRangoDTO(valorinicial, valorfinal);
 

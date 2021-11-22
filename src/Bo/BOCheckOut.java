@@ -36,7 +36,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOCheckOut {
 
@@ -55,15 +57,32 @@ public class BOCheckOut {
 
     }
 
+    /**
+     * Metodo que lista las reservas
+     */
     private void listarReservas() {
 
         listaReserva = BoReserva.listarReserva();
     }
 
+    /**
+     * Metodo encargado de buscar huesped por medio de la cedula
+     *
+     * @param cedula
+     * @return objeto Huesped
+     * @throws BuscarHuespedException
+     * @throws DatosIncompletosException
+     */
     public Huesped buscarHuesped(String cedula) throws BuscarHuespedException, DatosIncompletosException {
         return BoHuesped.buscarHuesped(cedula);
     }
 
+    /**
+     * Metodo encargado de verificar JtextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -72,6 +91,12 @@ public class BOCheckOut {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de buscar Reserva por medio del id
+     *
+     * @param idReserva
+     * @return objeto ReservaHospedaje
+     */
     public ReservaHospedaje buscarReserva(int idReserva) {
         listarReservas();
         for (ReservaHospedaje reservaHabitacion : listaReserva) {
@@ -83,6 +108,13 @@ public class BOCheckOut {
         return null;
     }
 
+    /**
+     * Metodo encargado de Buscar Habitacion
+     *
+     * @param idReserva
+     * @return objeto Hospedaje
+     * @throws BuscarHospedajeException
+     */
     public Hospedaje buscarHabitacion(int idReserva) throws BuscarHospedajeException {
 
         ReservaHospedaje reserva = null;
@@ -108,6 +140,12 @@ public class BOCheckOut {
 
     }
 
+    /**
+     * Metodo encargado de llenar ComboBox de la reserva por medio del idhuesped
+     *
+     * @param idHuesped
+     * @return model ComboBox
+     */
     public DefaultComboBoxModel llenarComboBox(int idHuesped) {
         listarReservas();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -136,6 +174,22 @@ public class BOCheckOut {
         }
     }
 
+    /**
+     * Metodo encargado realizar CheckOut
+     *
+     * @param fechaHoy
+     * @param reserva
+     * @param idHuesped
+     * @throws anoException
+     * @throws mesException
+     * @throws DiaException
+     * @throws horaException
+     * @throws DatosIncompletosException
+     * @throws modificarReservaCheckIn
+     * @throws GuardarCuentaPersonalException
+     * @throws ModificarCuentaPersonalException
+     * @throws DayException
+     */
     public void realizarCheckOut(Date fechaHoy, ReservaHospedaje reserva, int idHuesped) throws anoException, mesException, DiaException, horaException, DatosIncompletosException, modificarReservaCheckIn, GuardarCuentaPersonalException, ModificarCuentaPersonalException, DayException {
 // int idHuesped, int idReservaHabitacion, String estado, String valorApagar
         Calendar calLlegada = new GregorianCalendar();

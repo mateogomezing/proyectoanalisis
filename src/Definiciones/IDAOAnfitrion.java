@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public interface IDAOAnfitrion {
 
     /**
-     * Método encargado de guardar el huesped
+     * Método encargado de guardar el anfitrion
      *
      * @param anfitrion recibe el anfitrion
      * @return vardadero si guardó el anfitrion falso si no

@@ -32,7 +32,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
+ *
  */
 public class BOAnfitrion {
 
@@ -78,6 +81,24 @@ public class BOAnfitrion {
         }
     }
 
+    /**
+     * Método encargado de guardar el Anfitrion
+     *
+     * @param ruta
+     * @param cedula
+     * @param nombrecompleto
+     * @param residencia
+     * @param idioma
+     * @param contrasena
+     * @param biografia
+     * @param estado
+     * @throws CargarImagenException
+     * @throws GuardarAnfitrionException
+     * @throws CedulaException
+     * @throws DatosIncompletosException
+     * @throws CedulaAdministradorException
+     * @throws CedulaHuespedException
+     */
     public void guardarAnfitrion(File ruta, String cedula, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws CargarImagenException, GuardarAnfitrionException, CedulaException, DatosIncompletosException, CedulaAdministradorException, CedulaHuespedException {
 
         Anfitrion anfitrion = new Anfitrion(0, cargarImagenBytes(ruta), cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);
@@ -87,6 +108,14 @@ public class BOAnfitrion {
         }
     }
 
+    /**
+     * Metodo encargado de buscar anfitrion por la cedula
+     *
+     * @param cedula
+     * @return retorna objeto anfitrion
+     * @throws DatosIncompletosException
+     * @throws BuscarAnfitrionException
+     */
     public Anfitrion buscarAnfitrion(String cedula) throws DatosIncompletosException, BuscarAnfitrionException {
         if (cedula == null) {
             throw new DatosIncompletosException();
@@ -99,6 +128,13 @@ public class BOAnfitrion {
         return anfitrion;
     }
 
+    /**
+     * Metodo encargado de buscar anfitrion por el id
+     *
+     * @param IdAnfitrion
+     * @return retorna objeto anfitrion
+     * @throws BuscarAnfitrionException
+     */
     public Anfitrion buscarAnfitrionId(int IdAnfitrion) throws BuscarAnfitrionException {
         Anfitrion anfitrion = dao.buscarAnfitrionId(IdAnfitrion);
         if (anfitrion == null) {
@@ -107,6 +143,21 @@ public class BOAnfitrion {
         return anfitrion;
     }
 
+    /**
+     * Metodo encargado de modificar anfitrion sin foto
+     *
+     * @param cedula
+     * @param nombrecompleto
+     * @param residencia
+     * @param idioma
+     * @param contrasena
+     * @param biografia
+     * @param estado
+     * @throws ModificarAnfitrionException
+     * @throws CedulaException
+     * @throws DatosIncompletosException
+     * @throws BuscarAnfitrionException
+     */
     public void modificarAnfitrion(String cedula, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws ModificarAnfitrionException, CedulaException, DatosIncompletosException, BuscarAnfitrionException {
 
         Anfitrion anfitrion = new Anfitrion(buscarAnfitrion(cedula).getId(), null, cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);
@@ -115,6 +166,23 @@ public class BOAnfitrion {
         }
     }
 
+    /**
+     * Metodo encargado de modificar anfitrion con foto
+     *
+     * @param cedula
+     * @param ruta
+     * @param nombrecompleto
+     * @param residencia
+     * @param idioma
+     * @param contrasena
+     * @param biografia
+     * @param estado
+     * @throws CargarImagenException
+     * @throws CedulaException
+     * @throws DatosIncompletosException
+     * @throws ModificarAnfitrionException
+     * @throws BuscarAnfitrionException
+     */
     public void modificarAnfitrion2(String cedula, File ruta, String nombrecompleto, String residencia, String idioma, String contrasena, String biografia, String estado) throws CargarImagenException, CedulaException, DatosIncompletosException, ModificarAnfitrionException, BuscarAnfitrionException {
 
         Anfitrion anfitrion = new Anfitrion(buscarAnfitrion(cedula).getId(), cargarImagenBytes(ruta), cedula, nombrecompleto, residencia, idioma, contrasena, biografia, estado);
@@ -123,10 +191,20 @@ public class BOAnfitrion {
         }
     }
 
+    /**
+     * Metodo que lista los anfitriones
+     *
+     * @return lista de objetos anfitriones
+     */
     public ArrayList<Anfitrion> listaAnfitrion() {
         return dao.listarAnfitrion();
     }
 
+    /**
+     * Metodo que se encarga de listar elementos en la tabla
+     *
+     * @return
+     */
     public DefaultTableModel listarElementos() {
 
         ArrayList<Anfitrion> lista = listaAnfitrion();
@@ -153,6 +231,16 @@ public class BOAnfitrion {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de filtrar la tabla de anfitriones
+     *
+     * @param opcion
+     * @param accion
+     * @return
+     * @throws DatosIncompletosException
+     * @throws NumberFormatException
+     * @throws ComboBoxException
+     */
     public DefaultTableModel filtrar(String opcion, String accion) throws DatosIncompletosException, NumberFormatException, ComboBoxException {
         if (accion == null) {
             throw new DatosIncompletosException();
@@ -203,6 +291,12 @@ public class BOAnfitrion {
 
     }
 
+    /**
+     * Metodo encargado de verificar JtextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -211,6 +305,12 @@ public class BOAnfitrion {
         return informacion;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -219,6 +319,12 @@ public class BOAnfitrion {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de verificar JtextArea
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextArea(JTextArea x) {
         String informacion = x.getText();
         if (informacion.equals("")) {

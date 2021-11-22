@@ -27,7 +27,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ *
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOFactura {
 
@@ -49,10 +52,24 @@ public class BOFactura {
         boCuentaPersona = new BOCuentaPersonal();
     }
 
+    /**
+     * metodo encargado de buscr huesped por medio de la cedula
+     *
+     * @param cedula
+     * @return objeto Huesped
+     * @throws BuscarHuespedException
+     * @throws DatosIncompletosException
+     */
     public Huesped buscarHuesped(String cedula) throws BuscarHuespedException, DatosIncompletosException {
         return boHuesped.buscarHuesped(cedula);
     }
 
+    /**
+     * metodo encargado de verificar JTextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -61,6 +78,13 @@ public class BOFactura {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de Buscar una reserva por medio de idReserva y idHuesped
+     *
+     * @param idReserva
+     * @param idHuesped
+     * @return lista ReservasActivas
+     */
     public DTO.DTOReservaActiva buscarReserva(int idReserva, int idHuesped) {
         ArrayList<DTOReservaActiva> listasreserva = listaReservas(idHuesped);
         DTOReservaActiva reserva = new DTOReservaActiva();
@@ -75,20 +99,43 @@ public class BOFactura {
         return reserva;
     }
 
+    /**
+     * metodo encargado listaReservas Activas
+     *
+     * @param idHuesped
+     * @return listas de reservas
+     */
     public ArrayList<DTO.DTOReservaActiva> listaReservas(int idHuesped) {
 
         return dao.BuscarReservaActiva(idHuesped);
 
     }
 
+    /**
+     * Metodo encargado de listarHospedaje
+     *
+     * @return lista de Hospedajes
+     */
     public ArrayList<Hospedaje> listaHabitacion() {
         return daoHospedaje.listarHospedaje();
     }
 
+    /**
+     * Metodo encargado de listarReservas
+     *
+     * @return lista de reservas
+     */
     public ArrayList<ReservaHospedaje> listaReservas() {
         return daoReserva.listarReserva();
     }
 
+    /**
+     * Metodo encargado determinar el valor de habitacion por las noches y
+     * respecto idReserva
+     *
+     * @param idReserva
+     * @return valor de la habitacion
+     */
     public String generarValorHabitacion(int idReserva) {
         double valorTotal;
 
@@ -98,6 +145,12 @@ public class BOFactura {
         return String.valueOf(valorTotal);
     }
 
+    /**
+     * Metodo encargado de generar valor de limpieza por medio del idReserva
+     *
+     * @param idReserva
+     * @return valor de la limpieza
+     */
     public String generarValorLimpieza(int idReserva) {
         double valorTotal;
 
@@ -107,6 +160,12 @@ public class BOFactura {
         return String.valueOf(valorTotal);
     }
 
+    /**
+     * Metodo encargado de valor por plataforma respecto del idReserva
+     *
+     * @param idReserva
+     * @return valor de la plataforma
+     */
     public String generarValorPlataforma(int idReserva) {
         double valorTotal;
 
@@ -116,6 +175,12 @@ public class BOFactura {
         return String.valueOf(valorTotal);
     }
 
+    /**
+     * metodo encargado de generar valor total a pagar respecto el idReserva
+     *
+     * @param idReserva
+     * @return valor total del alojamiento y reserva
+     */
     public String generarValorTotal(int idReserva) {
         double valorTotal;
 
@@ -127,6 +192,13 @@ public class BOFactura {
         return String.valueOf(valorTotal);
     }
 
+    /**
+     * metodo encargado de buscar una reserva por medio del idReserva
+     *
+     * @param idReserva
+     * @return objeto ReservaHospedaje
+     * @throws DatosIncompletosException
+     */
     public ReservaHospedaje buscarReservaId(int idReserva) throws DatosIncompletosException {
         ArrayList<ReservaHospedaje> listareserva = listaReservas();
         ReservaHospedaje reserva = new ReservaHospedaje();
@@ -145,6 +217,12 @@ public class BOFactura {
         return reserva;
     }
 
+    /**
+     * metodo encargado de establece el valorhabitacion respecto a la idReserva
+     *
+     * @param idReserva
+     * @return valor de la habitacion respecto las noches
+     */
     public double valorHabitacion(int idReserva) {
 
         ArrayList<ReservaHospedaje> listareserva = listaReservas();
@@ -178,6 +256,12 @@ public class BOFactura {
         return 0;
     }
 
+    /**
+     * metodo encargado de listarElemtnos de la reserva respecto idHuesped
+     *
+     * @param idHuesped
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementosReservacion(int idHuesped) {
         ArrayList<DTO.DTOReservaActiva> lista = listaReservas(idHuesped);
         ArrayList<Hospedaje> listaHabitaciones = listaHabitacion();
@@ -215,6 +299,17 @@ public class BOFactura {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de generar el pago de la reserva
+     *
+     * @param reserva
+     * @param idHuesped
+     * @param valorpagado
+     * @param cuentaBancaria
+     * @throws DatosIncompletosException
+     * @throws FacturacionException
+     * @throws ModificarCuentaPersonalException
+     */
     public void pagar(ReservaHospedaje reserva, int idHuesped, String valorpagado, String cuentaBancaria) throws DatosIncompletosException, FacturacionException, ModificarCuentaPersonalException {
         if (cuentaBancaria == null) {
             throw new DatosIncompletosException();

@@ -34,7 +34,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOHospedaje {
 
@@ -82,6 +84,26 @@ public class BOHospedaje {
         }
     }
 
+    /**
+     * Metodo encargado de guardar Hospedaje
+     *
+     * @param idAnfitrion
+     * @param ruta
+     * @param categoria
+     * @param tipo
+     * @param cantidadpersonas
+     * @param ubicacion
+     * @param habitaciones
+     * @param camas
+     * @param bano
+     * @param estado
+     * @param servicios
+     * @param valorpornoche
+     * @throws DatosIncompletosException
+     * @throws NombreHospedajeException
+     * @throws CargarImagenException
+     * @throws GuardarHospedajeException
+     */
     public void guardarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws DatosIncompletosException, NombreHospedajeException, CargarImagenException, GuardarHospedajeException {
 
         Hospedaje hospedaje = new Hospedaje(0, idAnfitrion, cargarImagenBytes(ruta), categoria, tipo, cantidadpersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorpornoche);
@@ -90,6 +112,14 @@ public class BOHospedaje {
         }
     }
 
+    /**
+     * Metodo encargado de buscarHospedaje respecto el tipo
+     *
+     * @param tipo
+     * @return objeto Hospedaje
+     * @throws BuscarHospedajeException
+     * @throws DatosIncompletosException
+     */
     public Hospedaje buscarHospedaje(String tipo) throws BuscarHospedajeException, DatosIncompletosException {
         if (tipo == null) {
             throw new DatosIncompletosException();
@@ -103,6 +133,16 @@ public class BOHospedaje {
         return hospedaje;
     }
 
+    /**
+     * Metodo encargado de buscar Hospedaje respecto al tipo y cantidad personas
+     *
+     * @param tipo
+     * @param cantidadpersonas
+     * @return objeto Hospedaje
+     * @throws BuscarHospedajeException
+     * @throws DatosIncompletosException
+     * @throws CantidadHuespedesException
+     */
     public Hospedaje buscarHospedaje2(String tipo, String cantidadpersonas) throws BuscarHospedajeException, DatosIncompletosException, CantidadHuespedesException {
         if (tipo == null) {
             throw new DatosIncompletosException();
@@ -119,6 +159,15 @@ public class BOHospedaje {
         return hospedaje;
     }
 
+    /**
+     * Metodo encargado de buscar hospedaje respecto al tipo y idAnfitrion
+     *
+     * @param tipo
+     * @param idAnfitrion
+     * @return objeto Hospedaje
+     * @throws BuscarHospedajeException
+     * @throws DatosIncompletosException
+     */
     public Hospedaje buscarHospedajeAnfitrion(String tipo, int idAnfitrion) throws BuscarHospedajeException, DatosIncompletosException {
         if (tipo == null) {
             throw new DatosIncompletosException();
@@ -130,6 +179,14 @@ public class BOHospedaje {
         return hospedaje;
     }
 
+    /**
+     * Metodo encargado de buscarHospedaje respecto por ciudades
+     *
+     * @param x
+     * @return lista de Hospedajes
+     * @throws ComboBoxException
+     * @throws BuscarHospedajeException
+     */
     public ArrayList<Hospedaje> buscarHospedajeCiudad(JComboBox x) throws ComboBoxException, BuscarHospedajeException {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -140,6 +197,15 @@ public class BOHospedaje {
         return hospedajes;
     }
 
+    /**
+     * Metodo encargado de buscarHospedaje respecto los Tipos
+     *
+     * @param x
+     * @param xs
+     * @return lista hospedajes
+     * @throws ComboBoxException
+     * @throws BuscarHospedajeException
+     */
     public ArrayList<Hospedaje> buscarHospedajeTipo(JComboBox x, JComboBox xs) throws ComboBoxException, BuscarHospedajeException {
         String informacion = x.getSelectedItem().toString();
         String informacion2 = xs.getSelectedItem().toString();
@@ -151,6 +217,12 @@ public class BOHospedaje {
         return hospedajes;
     }
 
+    /**
+     * Metodo encargado de llenar ComboBox con Categoria
+     *
+     * @param hospedajes
+     * @return modelo del comboBox
+     */
     public DefaultComboBoxModel llenaerComboBoxCategoria(ArrayList<Hospedaje> hospedajes) {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < hospedajes.size(); i++) {
@@ -163,6 +235,12 @@ public class BOHospedaje {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de llenar ComboBox con Tipo
+     *
+     * @param hospedajes
+     * @return modelo del comboBox
+     */
     public DefaultComboBoxModel llenaerComboBoxTipo(ArrayList<Hospedaje> hospedajes) {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < hospedajes.size(); i++) {
@@ -175,6 +253,12 @@ public class BOHospedaje {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de llenar ComboBox con Anfitrion
+     *
+     * @param anfitrion
+     * @return modelo del comboBox
+     */
     public DefaultComboBoxModel llenarComboBoxAnfitrion(Anfitrion anfitrion) {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         ArrayList<Anfitrion> listanfitrion = listaAnfitrion();
@@ -187,6 +271,27 @@ public class BOHospedaje {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de modificar Hospedaje con imagen
+     *
+     * @param idAnfitrion
+     * @param ruta
+     * @param categoria
+     * @param tipo
+     * @param cantidadpersonas
+     * @param ubicacion
+     * @param habitaciones
+     * @param camas
+     * @param bano
+     * @param estado
+     * @param servicios
+     * @param valorpornoche
+     * @throws BuscarHospedajeException
+     * @throws DatosIncompletosException
+     * @throws NombreHospedajeException
+     * @throws CargarImagenException
+     * @throws ModificarHospedajeException
+     */
     public void modificarHospedaje(int idAnfitrion, File ruta, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, CargarImagenException, ModificarHospedajeException {
         Hospedaje hospedaje = new Hospedaje(buscarHospedaje(tipo).getId(), idAnfitrion, cargarImagenBytes(ruta), categoria, tipo, cantidadpersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorpornoche);
         if (!dao.modificarHospedaje(hospedaje)) {
@@ -195,6 +300,25 @@ public class BOHospedaje {
         }
     }
 
+    /**
+     * Metodo encargado de modificar hospedaje pero sin imagen
+     *
+     * @param idAnfitrion
+     * @param categoria
+     * @param tipo
+     * @param cantidadpersonas
+     * @param ubicacion
+     * @param habitaciones
+     * @param camas
+     * @param bano
+     * @param estado
+     * @param servicios
+     * @param valorpornoche
+     * @throws BuscarHospedajeException
+     * @throws DatosIncompletosException
+     * @throws NombreHospedajeException
+     * @throws ModificarHospedajeException
+     */
     public void modificarHospedaje2(int idAnfitrion, String categoria, String tipo, String cantidadpersonas, String ubicacion, String habitaciones, String camas, String bano, String estado, String servicios, String valorpornoche) throws BuscarHospedajeException, DatosIncompletosException, NombreHospedajeException, ModificarHospedajeException {
         Hospedaje hospedaje = new Hospedaje(buscarHospedaje(tipo).getId(), idAnfitrion, null, categoria, tipo, cantidadpersonas, ubicacion, habitaciones, camas, bano, estado, servicios, valorpornoche);
         if (!dao.modificarHospedaje2(hospedaje)) {
@@ -203,14 +327,30 @@ public class BOHospedaje {
         }
     }
 
+    /**
+     * Metodo encargado de listar Hospedajes
+     *
+     * @return lista Hospedajes
+     */
     public ArrayList<Hospedaje> listarHospedajes() {
         return dao.listarHospedaje();
     }
 
+    /**
+     * Metodo encargado de listar Anfitrion
+     *
+     * @return lista Anfitrion
+     */
     public ArrayList<Anfitrion> listaAnfitrion() {
         return daoanfitrion.listarAnfitrion();
     }
 
+    /**
+     * metodo encargado de verificar JTextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -219,6 +359,12 @@ public class BOHospedaje {
         return informacion;
     }
 
+    /**
+     * metodo encargado de verificar JTextArea
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextArea(JTextArea x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -227,6 +373,11 @@ public class BOHospedaje {
         return informacion;
     }
 
+    /**
+     * Metodo encagado de llenar ComboBox de elementos de anfitrion
+     *
+     * @return modelo comboBox
+     */
     public DefaultComboBoxModel llenarComboBox() {
         ArrayList<Anfitrion> listarAnfitrion = listaAnfitrion();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -237,6 +388,12 @@ public class BOHospedaje {
         return modelo;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -245,6 +402,13 @@ public class BOHospedaje {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de obtener el idAnfitrion respecto al nombre
+     *
+     * @param anfitrion
+     * @return id del anfitrion
+     * @throws DatosIncompletosException
+     */
     public int obtenerIdAnfitrion(String anfitrion) throws DatosIncompletosException {
         ArrayList<Anfitrion> listarAnfitrion = listaAnfitrion();
         if (anfitrion.equalsIgnoreCase("Seleccione")) {
@@ -260,6 +424,12 @@ public class BOHospedaje {
         return 0;
     }
 
+    /**
+     * Metodo encargado de seleccionar Anfitrion respecto el id
+     *
+     * @param idAnfitrion
+     * @return posiicion del anfitrion
+     */
     public int seleccionarArchivoAnfitrion(int idAnfitrion) {
         ArrayList<Anfitrion> listaAnfitrion = listaAnfitrion();
         int valor = 0;
@@ -273,6 +443,14 @@ public class BOHospedaje {
         return valor;
     }
 
+    /**
+     * Metodo encargado de filtrar datos respecto a la tabal
+     *
+     * @param opcion
+     * @param accion
+     * @return modelo de la Tabla
+     * @throws ComboBoxException
+     */
     public DefaultTableModel filtrar(String opcion, String accion) throws ComboBoxException {
 
         String anfitrion = "";
@@ -376,6 +554,11 @@ public class BOHospedaje {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de listar Hospedaje
+     *
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementos() {
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();
         ArrayList<Anfitrion> listaanfitrion = listaAnfitrion();

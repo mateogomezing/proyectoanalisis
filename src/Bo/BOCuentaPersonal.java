@@ -15,7 +15,9 @@ import Modelo.CuentaPersonal;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOCuentaPersonal {
 
@@ -25,6 +27,14 @@ public class BOCuentaPersonal {
         dao = FactoryDAO.getFabrica().crearDAOCuentaPersonal();
     }
 
+    /**
+     * Metodo encargado de buscar cuentapersonal por medio de la idReserva
+     *
+     * @param idReserva
+     * @return objeto CuentaPersonal
+     * @throws DatosIncompletosException
+     * @throws BuscarCuentaPersonalException
+     */
     public CuentaPersonal buscarCuentaPersonal(int idReserva) throws DatosIncompletosException, BuscarCuentaPersonalException {
         if (idReserva == 0) {
             throw new DatosIncompletosException();
@@ -36,6 +46,13 @@ public class BOCuentaPersonal {
         return cuenta;
     }
 
+    /**
+     * Metodo encargado de guardar CuentaPersonal
+     *
+     * @param cuentaPersonal
+     * @throws DatosIncompletosException
+     * @throws GuardarCuentaPersonalException
+     */
     public void guardarCuentaPersonal(CuentaPersonal cuentaPersonal) throws DatosIncompletosException, GuardarCuentaPersonalException {
 
         if (!dao.guardarCuentaPersonal(cuentaPersonal)) {
@@ -44,6 +61,13 @@ public class BOCuentaPersonal {
 
     }
 
+    /**
+     * Metodo encargado de modificae Cuenta Personal
+     *
+     * @param cuentapersonal
+     * @throws DatosIncompletosException
+     * @throws ModificarCuentaPersonalException
+     */
     public void modificarCuentaPersonal(CuentaPersonal cuentapersonal) throws DatosIncompletosException, ModificarCuentaPersonalException {
         if (!dao.modificarCuentaPersonal(cuentapersonal)) {
             throw new ModificarCuentaPersonalException();

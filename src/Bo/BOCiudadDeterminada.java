@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOCiudadDeterminada {
 
@@ -28,6 +30,14 @@ public class BOCiudadDeterminada {
         formato = DateFormat.getDateInstance();
     }
 
+    /**
+     * Metodo encargado de lista la consulta Ciudades por medio variable ciudad
+     *
+     * @param ciudad
+     * @return lista de alojamientos
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public ArrayList<DTO.DTOCiudadDeterminada> listaCiudadDeterminadaDTO(String ciudad) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         if (ciudad == null) {
             throw new DatosIncompletosException();
@@ -39,6 +49,14 @@ public class BOCiudadDeterminada {
         return lista;
     }
 
+    /**
+     * Metodo encargado de llenar elementos a la tabla
+     *
+     * @param ciudades
+     * @return modelo de la tabla
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public DefaultTableModel listarElementosCiudadDeterminadaDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         ArrayList<DTO.DTOCiudadDeterminada> lista = listaCiudadDeterminadaDTO(ciudades);
 
@@ -65,6 +83,12 @@ public class BOCiudadDeterminada {
         return modelo;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione")) {
@@ -73,6 +97,15 @@ public class BOCiudadDeterminada {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de lista la consulta Ciudades por medio variable ciudad
+     * de mayor a menor
+     *
+     * @param ciudad
+     * @return lista de alojamientos
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public ArrayList<DTO.DTOCiudadDeterminada> listaCiudadCiudadDeterminadaMayorDTO(String ciudad) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         if (ciudad == null) {
             throw new DatosIncompletosException();
@@ -84,6 +117,14 @@ public class BOCiudadDeterminada {
         return lista;
     }
 
+    /**
+     * Metodo encargado de llenar elementos a la tabla
+     *
+     * @param ciudades
+     * @return modelo de la tabla
+     * @throws DatosIncompletosException
+     * @throws BuscarCiudadDeterminadaException
+     */
     public DefaultTableModel listarElementosCiudadDeterminadaMayorDTO(String ciudades) throws DatosIncompletosException, BuscarCiudadDeterminadaException {
         ArrayList<DTO.DTOCiudadDeterminada> lista = listaCiudadCiudadDeterminadaMayorDTO(ciudades);
 

@@ -19,7 +19,6 @@ import Excepcion.UsuarioMultadoException;
 import Excepcion.anoException;
 import Excepcion.mesException;
 import Fabrica.FactoryDAO;
-import Modelo.CuentaPersonal;
 import Modelo.Huesped;
 import Modelo.ReservaHospedaje;
 import java.util.ArrayList;
@@ -31,7 +30,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOReserva {
 
@@ -47,16 +48,51 @@ public class BOReserva {
         daoCuentaPersonal = new DAOCuentaPersonal();
     }
 
+    /**
+     * Metodo encarfado de validar los datos nulos
+     *
+     * @param fechaHoraReserva
+     * @param fechaHoraLlegada
+     * @param fechaHoraSalida
+     * @throws DatosIncompletosException
+     */
     public void validarDatos(Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException {
         if (fechaHoraReserva == null || fechaHoraLlegada == null || fechaHoraSalida == null) {
             throw new DatosIncompletosException();
         }
     }
 
+    /**
+     * Metodo encargado de modificar la reserva
+     *
+     * @param estado
+     * @param estadoServicio
+     * @param idReserva
+     * @return desicion si o no
+     * @throws DatosIncompletosException
+     */
     public boolean modificarReserva(String estado, String estadoServicio, int idReserva) throws DatosIncompletosException {
         return daoReserva.modificarReserva(estado, estadoServicio, idReserva);
     }
 
+    /**
+     * Metodo encargado de guardar Reserva respecto a las fechas y horas
+     *
+     * @param idHuesped
+     * @param idHabitacion
+     * @param fechaHoraReserva
+     * @param fechaHoraLlegada
+     * @param fechaHoraSalida
+     * @throws DatosIncompletosException
+     * @throws UsuarioMultadoException
+     * @throws ReservaActivaException
+     * @throws GuardarReservaException
+     * @throws anoException
+     * @throws mesException
+     * @throws FechaException
+     * @throws DayException
+     * @throws GuardarCuentaPersonalException
+     */
     public void guardarReserva(int idHuesped, int idHabitacion, Date fechaHoraReserva, Date fechaHoraLlegada, Date fechaHoraSalida) throws DatosIncompletosException, UsuarioMultadoException, ReservaActivaException, GuardarReservaException, anoException, mesException, FechaException, DayException, GuardarCuentaPersonalException {
         validarDatos(fechaHoraReserva, fechaHoraLlegada, fechaHoraSalida);
         fechaHoraLlegada.setHours(0);
@@ -80,6 +116,12 @@ public class BOReserva {
 
     }
 
+    /**
+     * Metodo encargado de verificar el tipo de usuario
+     *
+     * @param idHuesped
+     * @return
+     */
     private String verificarTipoUsuario(int idHuesped) {
         ArrayList<Huesped> ListaHuesped = daoHuesped.listarHuesped();
 
@@ -93,10 +135,23 @@ public class BOReserva {
 
     }
 
+    /**
+     * Metodo encargado de listar Reserva
+     *
+     * @return lista de reservas
+     */
     public ArrayList<ReservaHospedaje> listarReserva() {
         return daoReserva.listarReserva();
     }
 
+    /**
+     * Metodo encargado de verificar si tiene una reserva
+     *
+     * @param idHuesped
+     * @param idHabitacion
+     * @throws UsuarioMultadoException
+     * @throws ReservaActivaException
+     */
     private void verificarSiTieneReserva(int idHuesped, int idHabitacion) throws UsuarioMultadoException, ReservaActivaException {
 
         ArrayList<ReservaHospedaje> lista = listarReserva();//todas las reservas
@@ -118,6 +173,14 @@ public class BOReserva {
 
     }
 
+    /**
+     * Metodo encargado de verificar si tiene dos Reservas
+     *
+     * @param idHuesped
+     * @param idHabitacion
+     * @throws UsuarioMultadoException
+     * @throws ReservaActivaException
+     */
     private void verificarSiTieneDosReserva(int idHuesped, int idHabitacion) throws UsuarioMultadoException, ReservaActivaException {
 
         ArrayList<ReservaHospedaje> lista = listarReserva();//todas las reservas
@@ -231,6 +294,12 @@ public class BOReserva {
 
     }
 
+    /**
+     * metodo encargado de verificar JTextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -239,6 +308,12 @@ public class BOReserva {
         return informacion;
     }
 
+    /**
+     * metodo encargado de verificar JComboBox
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJComboBox(JComboBox x) {
         String informacion = x.getSelectedItem().toString();
         if (informacion.equals("Seleccione habitacion")) {

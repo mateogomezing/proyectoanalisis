@@ -20,7 +20,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOOpiniones {
 
@@ -34,6 +36,16 @@ public class BOOpiniones {
         daoHospedaje = FactoryDAO.getFabrica().crearDAOHospedaje();
     }
 
+    /**
+     * Metodo encarfado de dar la calificacion final
+     *
+     * @param calidad
+     * @param veracidad
+     * @param limpieza
+     * @param ubicacion
+     * @return valor de la calificacion
+     * @throws DatosIncompletosException
+     */
     public double calificacionfinal(String calidad, String veracidad, String limpieza, String ubicacion) throws DatosIncompletosException {
         double valorfinal = 0;
         if (calidad == null | veracidad == null | limpieza == null | ubicacion == null) {
@@ -49,6 +61,16 @@ public class BOOpiniones {
         return valorfinal;
     }
 
+    /**
+     * Metodo encargado de guardar Opinion
+     *
+     * @param idHuesped
+     * @param idHospedaje
+     * @param calificacion
+     * @param descripcion
+     * @throws DatosIncompletosException
+     * @throws GuardarOpinionesException
+     */
     public void guardarOpinion(int idHuesped, int idHospedaje, String calificacion, String descripcion) throws DatosIncompletosException, GuardarOpinionesException {
         verificarDatos(calificacion);
         verificarDatos(descripcion);
@@ -58,12 +80,24 @@ public class BOOpiniones {
         }
     }
 
+    /**
+     * Metodo de verifica los datos nulos
+     *
+     * @param dato
+     * @throws DatosIncompletosException
+     */
     public void verificarDatos(String dato) throws DatosIncompletosException {
         if (dato == null) {
             throw new DatosIncompletosException();
         }
     }
 
+    /**
+     * metodo encargado de verificar JTextArea
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextArea(JTextArea x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -72,18 +106,40 @@ public class BOOpiniones {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de listar las opiniones
+     *
+     * @param idHospedaje
+     * @return lista de opiniones
+     */
     public ArrayList<Opiniones> listarOpiniones(int idHospedaje) {
         return dao.buscarOpinionAdministrador(idHospedaje);
     }
 
+    /**
+     * metodo encargado de listarHospedaje
+     *
+     * @return lista de hospedaje
+     */
     public ArrayList<Hospedaje> listarHospedajes() {
         return daoHospedaje.listarHospedaje();
     }
 
+    /**
+     * Metodo encargado de listar Huesped
+     *
+     * @return lista de Huesped
+     */
     public ArrayList<Huesped> listarHuesped() {
         return daoHuesped.listarHuesped();
     }
 
+    /**
+     * Metodo encargado listar elementos de opinion en la tabla
+     *
+     * @param idHospedaje
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementosOpinionReserva(int idHospedaje) {
         ArrayList<Opiniones> listaropiniones = listarOpiniones(idHospedaje);
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();
@@ -119,6 +175,12 @@ public class BOOpiniones {
         return modelo;
     }
 
+    /**
+     * Metodo de listar elementos de la opinion
+     *
+     * @param idHospedaje
+     * @return modelo de la tabla
+     */
     public DefaultTableModel listarElementos(int idHospedaje) {
         ArrayList<Opiniones> listaropiniones = listarOpiniones(idHospedaje);
         ArrayList<Hospedaje> listahospedaje = listarHospedajes();

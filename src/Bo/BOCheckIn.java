@@ -31,7 +31,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author mateo
+ * @author mateo Gomez Ramirez 2320182006
+ * @author Sara Lucia Carmona 240220191021
+ * @author Didier Andres LLanten Velez 240220201013
  */
 public class BOCheckIn {
 
@@ -49,11 +51,21 @@ public class BOCheckIn {
         listaReserva = new ArrayList<>();
     }
 
+    /**
+     * Metodo que lista las reservas
+     */
     private void listarReservas() {
 
         listaReserva = BoReserva.listarReserva();
     }
 
+    /**
+     * Metodo encargado de buscar hospedaje
+     *
+     * @param idReserva
+     * @return
+     * @throws BuscarHospedajeException
+     */
     public Hospedaje buscarHospedaje(int idReserva) throws BuscarHospedajeException {
         ReservaHospedaje reserva = null;
 
@@ -76,6 +88,12 @@ public class BOCheckIn {
         throw new BuscarHospedajeException();
     }
 
+    /**
+     * Metodo encargado de buscar una rerserva por medio del id
+     *
+     * @param idReserva
+     * @return
+     */
     public ReservaHospedaje buscarReserva(int idReserva) {
         listarReservas();
         for (ReservaHospedaje reservaHabitacion : listaReserva) {
@@ -105,6 +123,13 @@ public class BOCheckIn {
         }
     }
 
+    /**
+     *
+     * Metodo encargado de verificar JtextField
+     *
+     * @param x
+     * @return
+     */
     public String obtenerDatoJtextFile(JTextField x) {
         String informacion = x.getText();
         if (informacion.equals("")) {
@@ -113,6 +138,12 @@ public class BOCheckIn {
         return informacion;
     }
 
+    /**
+     * Metodo encargado de llenar los comboBox Reserva respecto el idHuesped
+     *
+     * @param idHuesped
+     * @return
+     */
     public DefaultComboBoxModel llenarComboBox(int idHuesped) {
         listarReservas();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -123,6 +154,20 @@ public class BOCheckIn {
         return modelo;
     }
 
+    /**
+     * Metodo encargado de realizar el CheckIn
+     *
+     * @param fechaHoy
+     * @param reserva
+     * @param idHuesped
+     * @throws anoException
+     * @throws mesException
+     * @throws DiaException
+     * @throws horaException
+     * @throws DatosIncompletosException
+     * @throws modificarReservaCheckIn
+     * @throws GuardarCuentaPersonalException
+     */
     public void realizarCheckIn(Date fechaHoy, ReservaHospedaje reserva, int idHuesped) throws anoException, mesException, DiaException, horaException, DatosIncompletosException, modificarReservaCheckIn, GuardarCuentaPersonalException {
 // int idHuesped, int idReservaHabitacion, String estado, String valorApagar
         Calendar calLlegada = new GregorianCalendar();
@@ -160,8 +205,6 @@ public class BOCheckIn {
                         }
 
                     } else {
-                        //   throw new horaException();
-                        // aca va la multa  int id, int idHuesped, String cantidadPagar, String estado
 
                         throw new modificarReservaCheckIn();
 
