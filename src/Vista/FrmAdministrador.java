@@ -273,7 +273,9 @@ public class FrmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuesped1ActionPerformed
 
     private void btnHuesped2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuesped2ActionPerformed
-        // TODO add your handling code here:
+        FrmGestionOpinion opinion = new FrmGestionOpinion(administrador);
+        opinion.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHuesped2ActionPerformed
 
     /**
